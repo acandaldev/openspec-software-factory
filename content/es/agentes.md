@@ -44,7 +44,7 @@ El método separa cinco responsabilidades que un agente único mezcla: coordinar
 
 ## Coordinador
 
-Lee el plan, elige la tarea lista y **transcribe** el brief cerrado desde `tasks.md`: cambio, tareas, bloque, nivel, modelo, criterio de aceptación y ficheros esperados. No decide el nivel ni el bloque. Lanza al implementer, verifica los gates, empuja la rama y espera el CI. No toca el código.
+Lee el plan, elige la tarea lista y **transcribe** el brief cerrado desde `tasks.md`: cambio, tareas, bloque, nivel, modelo, criterio de aceptación y ficheros esperados. No decide el nivel ni el bloque. Lanza al implementer, verifica los gates y, al cerrar el bloque, empuja la rama y espera el CI. No toca el código.
 
 ## Implementer
 

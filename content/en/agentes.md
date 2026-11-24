@@ -44,7 +44,7 @@ The method separates five responsibilities that a single agent mixes: coordinate
 
 ## Coordinator
 
-Reads the plan, picks the ready task and **transcribes** the closed brief from `tasks.md`: change, tasks, block, level, model, acceptance criterion and expected files. It does not decide the level or the block. Launches the implementer, checks the gates, pushes the branch and waits for CI. It does not touch code.
+Reads the plan, picks the ready task and **transcribes** the closed brief from `tasks.md`: change, tasks, block, level, model, acceptance criterion and expected files. It does not decide the level or the block. Launches the implementer, checks the gates and, when the block closes, pushes the branch and waits for CI. It does not touch code.
 
 ## Implementer
 

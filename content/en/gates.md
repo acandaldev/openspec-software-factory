@@ -96,7 +96,7 @@ A commit cannot contain mutation markers or rely on a green pass from before the
 
 ## CI
 
-CI does not replace local gates: it confirms them in a clean environment. A red run nobody looks at is a false green; that is why every push waits for its result before moving on.
+CI does not replace local gates: it confirms them in a clean environment. A red run nobody looks at is a false green; that is why every block or PR push waits for its result before moving on.
 
 The mutation gate is local: it runs during the task and in the review, on a frozen copy. A mutation sweep in CI, if one exists, is informational: it observes, it does not approve.
 
