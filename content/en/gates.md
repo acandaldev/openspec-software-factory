@@ -98,7 +98,7 @@ A commit cannot contain mutation markers or rely on a green pass from before the
 
 CI does not replace local gates: it confirms them in a clean environment. A red run nobody looks at is a false green; that is why every block or PR push waits for its result before moving on.
 
-The mutation gate is local: it runs during the task and in the review, on a frozen copy. A mutation sweep in CI, if one exists, is informational: it observes, it does not approve.
+The mutation gate is local: `[HARD]` mutates during the task and in the review; NORMAL/`[FAST]` once in the block review. Always on a frozen copy. A mutation sweep in CI, if one exists, is informational: it observes, it does not approve.
 
 The table describes patterns from the reference implementation, not a contract: each project defines its workflows and paths. The template core is the documentation workflow and the secrets gate; PR and deployment gates are added per project.
 

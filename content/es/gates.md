@@ -98,7 +98,7 @@ Un commit no puede contener marcadores de mutación ni apoyarse en un verde ante
 
 El CI no sustituye a los gates locales: los confirma en un entorno limpio. Un run rojo que nadie mira es un verde falso; por eso cada push del bloque o de la PR espera su resultado antes de seguir.
 
-El gate de mutación es local: se ejecuta durante la tarea y en la revisión, sobre una copia congelada. Un barrido de mutación en CI, si existe, es informativo: observa, no aprueba.
+El gate de mutación es local: `[HARD]` muta en la tarea y en la revisión; NORMAL/`[FAST]`, una vez en la revisión de bloque. Siempre sobre una copia congelada. Un barrido de mutación en CI, si existe, es informativo: observa, no aprueba.
 
 La tabla describe patrones de la implementación de referencia, no un contrato: cada proyecto define sus workflows y sus rutas. El núcleo del template es el workflow de documentación y el gate de secretos; los gates de PR y despliegue se añaden en cada proyecto.
 
