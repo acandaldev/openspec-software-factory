@@ -76,7 +76,7 @@ La traza no es un log: es la materia prima del curador.
 
 ## 4. Curador
 
-Al cerrar un bloque o un cambio, alguien lee lo que pasó y reescribe el sistema. No se corrige el síntoma; se corrige la regla que lo permitió.
+Al cerrar un bloque o un cambio, el curador lee lo que pasó y reescribe el sistema. No se corrige el síntoma; se corrige la regla que lo permitió.
 
 - Un incidente se convierte en una fila del registro: hueco, decisión, dónde vive y commit.
 - Una regla que se repite en dos sitios se elimina de uno.

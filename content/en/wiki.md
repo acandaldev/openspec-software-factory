@@ -33,7 +33,7 @@ And two special files: `index.md` (catalogue read first) and `log.md` (append-on
 
 ## The part worth copying
 
-The **deterministic** lint: broken links, pages with no inbound links, incomplete frontmatter, sources that no longer exist. A script checks it and CI fails.
+The **deterministic** lint: broken links, pages with no inbound links, incomplete frontmatter, sources that no longer exist. A script can check it and make CI fail.
 
 Semantic lint —"these two pages contradict each other"— is useful as manual review, but not as a gate: a model that is wrong must not block a merge.
 
@@ -50,6 +50,6 @@ They are not the same:
 
 If the project already has mature `docs/`, the wiki starts as a **research folder**, not as a second documentation.
 
-## Verdict
+## Recommendation
 
-For a running product: **no**. For the template: **yes, as an optional layer**, documented and with deterministic lint. Let each project decide whether to turn it on.
+The wiki is not a part of the method: it is an optional module. Turn it on only if you accumulate external sources and need traceability; if your operational documentation is already mature, leave it off.

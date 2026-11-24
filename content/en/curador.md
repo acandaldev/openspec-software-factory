@@ -2,7 +2,7 @@
 
 Without a curator, a factory does work. With a curator, **the system that does the work improves**. The difference between the two is the difference between a workflow and a factory.
 
-> In v1, the curator is a review by the main session guided by the `docs/harness.md` record; it is not an autonomous agent.
+> The curator is not an autonomous agent: it is a review by the main session guided by the `docs/harness.md` record.
 
 <svg class="diagram" viewBox="0 40 760 170" role="img" aria-label="From trace to record and rule">
   <defs>
@@ -48,6 +48,8 @@ The result is not a note in a chat: it is a row in the record, with gap, decisio
 
 ## The record
 
+A real record looks like this. Example row:
+
 | Date | Origin | Gap | Decision | Where | Commit |
 |---|---|---|---|---|---|
 | 21-nov | Incident | A critical task touched 6 files and exhausted context | Split if it touches >3 files or mixes flows | AGENTS.md | `a1b2c3d` |
@@ -56,11 +58,13 @@ The record does not keep every change. It keeps **decisions**: what changed the 
 
 ## Cadence
 
-The curator does not run on inspiration. It runs:
+The curator does not run on inspiration. The recommended cadence is:
 
 - **When a block closes**, if there was an incident or a pattern.
 - **Once a week**, reading stops, deltas and causes.
 - **When a change closes**, before archiving.
+
+No cron cures: the weekly cron only validates documentation. Curation is a human review.
 
 Ten minutes are enough if the trace exists. Without a trace, the curator guesses, and a curator that guesses is another source of debt.
 

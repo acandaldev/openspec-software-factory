@@ -1,6 +1,8 @@
 # Cómo se adopta
 
-El método se copia a un proyecto, se configura con unos pocos datos y se verifica. No es una instalación de plataforma: es un repositorio con reglas y gates.
+> El template ejecutable (v1) todavía no está publicado. Esta página describe cómo se adoptará el método; el estado real está en el `TEMPLATE.md` del repositorio.
+
+La adopción consiste en copiar el método a un proyecto, configurarlo con unos pocos datos y verificarlo. No es una instalación de plataforma: es un repositorio con reglas y gates.
 
 <svg class="diagram" viewBox="0 20 760 90" role="img" aria-label="Seis pasos para adoptar el método">
   <line x1="50" y1="50" x2="710" y2="50" stroke="#22303a" stroke-width="2"/>
@@ -71,7 +73,7 @@ El método se copia a un proyecto, se configura con unos pocos datos y se verifi
 | Documentos excluidos por defecto | auditorías, documentación de cliente |
 | Versiones | Node, SDK, OpenSpec |
 
-Todo eso vive en **un solo fichero** de configuración. Si un dato aparece en dos sitios, el generador debe fallar.
+El objetivo es que todo eso viva en **un solo fichero** de configuración. Si un dato aparece en dos sitios, el generador debe fallar.
 
 ## Pasos
 
@@ -85,7 +87,7 @@ Todo eso vive en **un solo fichero** de configuración. Si un dato aparece en do
 
 ## Harness y adaptadores
 
-La v1 se construye y se prueba sobre **OpenCode**. No es una dependencia del método —el contrato, los gates y la traza son ficheros y git—, pero sí de las capacidades que el bucle usa: subagentes, permisos por agente y sesiones reanudables.
+La v1 se construirá y se probará sobre **OpenCode**. No es una dependencia del método —el contrato, los gates y la traza son ficheros y git—, pero sí de las capacidades que el bucle usa: subagentes, permisos por agente y sesiones reanudables.
 
 | Harness | Estado en la v1 |
 |---|---|
@@ -106,9 +108,9 @@ Un adaptador traduce la misma fuente al formato de cada asistente. No se impleme
 ## Cómo saber que está bien
 
 - Un documento nuevo sin `type` **rompe** el CI.
-- Una tarea sin dependencia declarada **se ve** en el plan.
+- Una tarea sin dependencia explícita **se ve** en el plan.
 - Un commit de tarea sin brief **se detecta** en la revisión.
-- Un cambio de harness sin fila en el registro **se nota**.
-- Un secreto o un dato del proyecto real **rompe** el build.
+- Un cambio de harness sin fila en el registro **se revisa en el curador**.
+- Un secreto o un dato del proyecto real **debe romper** el build.
 
 Si nada de eso falla, el método está decorando, no controlando.

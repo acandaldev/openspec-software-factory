@@ -31,9 +31,9 @@ Y dos ficheros especiales: `index.md` (catálogo que se lee primero) y `log.md` 
 - **Query**: se lee el índice, se eligen las páginas relevantes y se sintetiza con citas.
 - **Lint**: contradicciones, páginas huérfanas, enlaces rotos y afirmaciones caducadas.
 
-## La parte que sí copiaría
+## La parte que merece la pena copiar
 
-El lint **determinista**: enlaces rotos, páginas sin entrantes, frontmatter incompleto, fuentes que ya no existen. Eso se comprueba con un script y falla el CI.
+El lint **determinista**: enlaces rotos, páginas sin entrantes, frontmatter incompleto, fuentes que ya no existen. Eso se puede comprobar con un script y hacer que falle el CI.
 
 El lint semántico —«estas dos páginas se contradicen»— es útil como revisión manual, pero no como gate: un modelo que se equivoca no debe bloquear un merge.
 
@@ -50,6 +50,6 @@ No son lo mismo:
 
 Si el proyecto ya tiene `docs/` maduro, la wiki empieza como **carpeta de investigación**, no como segunda documentación.
 
-## Veredicto
+## Recomendación
 
-Para un producto en marcha: **no**. Para el template: **sí, como capa opcional**, documentada y con el lint determinista. Que cada proyecto decida si la enciende.
+La wiki no es una pieza del método: es un módulo opcional. Enciéndela solo si acumulas fuentes externas y necesitas trazabilidad; si tu documentación operativa ya es madura, déjala apagada.

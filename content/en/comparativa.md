@@ -31,7 +31,7 @@ OpenSpec already solves specification: proposal, requirements, scenarios and tas
 
 ## What it does not promise
 
-> It is not a benchmark. There is no independent metric saying this method is 30% better. There is local evidence: gates that run, mutations that fail and a record with dates and commits.
+> It is not a benchmark. There is no independent metric saying this method is better. There is local evidence: gates that run, mutations that fail and a record with dates and commits.
 >
 > It does not remove human review. It concentrates it on the gates that matter.
 >

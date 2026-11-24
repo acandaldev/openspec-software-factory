@@ -28,6 +28,8 @@ node scripts/docs-sync.mjs --plan <change> # print the plan as JSON
 
 Walks the text files and fails if it finds a credential, a user path or a term from the forbidden list. It is the gate that prevents the template from carrying data from the project it came from.
 
+It currently lives in this site's repository, not in the reference implementation: it is a pending requirement for the template.
+
 ```bash
 node scripts/check-secrets.mjs   # fails with the finding and its line
 ```

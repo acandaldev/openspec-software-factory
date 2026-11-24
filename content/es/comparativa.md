@@ -31,7 +31,7 @@ OpenSpec ya resuelve la especificación: propuesta, requisitos, escenarios y tar
 
 ## Lo que no promete
 
-> No es un benchmark. No hay una métrica independiente que diga que este método es un 30 % mejor. Hay evidencia local: gates que se ejecutan, mutaciones que fallan y un registro con fecha y commit.
+> No es un benchmark. No hay una métrica independiente que diga que este método es mejor. Hay evidencia local: gates que se ejecutan, mutaciones que fallan y un registro con fecha y commit.
 >
 > No elimina la revisión humana. La concentra en las puertas que importan.
 >

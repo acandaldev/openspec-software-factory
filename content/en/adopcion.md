@@ -1,6 +1,8 @@
-# How it is adopted
+# How to adopt it
 
-The method is copied into a project, configured with a few fields and verified. It is not a platform install: it is a repository with rules and gates.
+> The executable template (v1) is not published yet. This page describes how the method will be adopted; the real status is in the repository's `TEMPLATE.md`.
+
+Adoption consists of copying the method into a project, configuring it with a few fields and verifying it. It is not a platform install: it is a repository with rules and gates.
 
 <svg class="diagram" viewBox="0 20 760 90" role="img" aria-label="Six steps to adopt the method">
   <line x1="50" y1="50" x2="710" y2="50" stroke="#22303a" stroke-width="2"/>
@@ -71,7 +73,7 @@ The method is copied into a project, configured with a few fields and verified. 
 | Documents excluded by default | audits, client documentation |
 | Versions | Node, SDK, OpenSpec |
 
-All of that lives in **one configuration file**. If a datum appears in two places, the generator must fail.
+The goal is for all of that to live in **one configuration file**. If a piece of data appears in two places, the generator must fail.
 
 ## Steps
 
@@ -85,7 +87,7 @@ All of that lives in **one configuration file**. If a datum appears in two place
 
 ## Harness and adapters
 
-v1 is built and tested on **OpenCode**. It is not a dependency of the method —the contract, gates and trace are files and git— but it is a dependency of the capabilities the loop uses: subagents, per-agent permissions and resumable sessions.
+v1 will be built and tested on **OpenCode**. It is not a dependency of the method —the contract, gates and trace are files and git— but it is a dependency of the capabilities the loop uses: subagents, per-agent permissions and resumable sessions.
 
 | Harness | v1 status |
 |---|---|
@@ -106,9 +108,9 @@ An adapter translates the same source into each assistant's format. None is impl
 ## How to know it works
 
 - A new document without `type` **breaks** CI.
-- A task without a declared dependency **shows** in the plan.
+- A task without an explicit dependency **shows** in the plan.
 - A task commit without a brief **is detected** in review.
-- A harness change without a record row **is noticed**.
-- A secret or real-project datum **breaks** the build.
+- A harness change without a record row **is reviewed by the curator**.
+- A secret or real-project piece of data **must break** the build.
 
 If none of that fails, the method is decoration, not control.

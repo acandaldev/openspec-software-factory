@@ -14,8 +14,8 @@
     "slug": "operacion",
     "nav": { "es": "Cómo se opera", "en": "How it runs" },
     "description": {
-      "es": "Documentos, scripts, curador y wiki: cómo se mantiene el método sin que se pudra.",
-      "en": "Documents, scripts, curator and wiki: how the method is kept from rotting."
+      "es": "Documentos, scripts, curador y una capa wiki opcional: cómo se mantiene el método sin que se pudra.",
+      "en": "Documents, scripts, curator and an optional wiki layer: how the method is kept from rotting."
     },
     "intro": "operacion",
     "sources": ["documentos", "scripts", "curador", "wiki"],
@@ -25,8 +25,8 @@
     "slug": "adopcion",
     "nav": { "es": "Cómo se adopta", "en": "How to adopt" },
     "description": {
-      "es": "Cómo se instala en un proyecto, qué añade a OpenSpec y cómo verificar que controla de verdad.",
-      "en": "How to install it in a project, what it adds to OpenSpec and how to verify it really controls."
+      "es": "Cómo se adopta en un proyecto, qué añade a OpenSpec y cómo verificar que controla de verdad.",
+      "en": "How to adopt it in a project, what it adds to OpenSpec and how to verify it really controls."
     },
     "intro": "adopcion",
     "sources": ["comparativa"],

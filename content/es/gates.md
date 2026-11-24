@@ -98,6 +98,8 @@ Un commit no puede contener marcadores de mutación ni apoyarse en un verde ante
 
 El CI no sustituye a los gates locales: los confirma en un entorno limpio. Un run rojo que nadie mira es un verde falso; por eso cada push espera su resultado antes de seguir.
 
+La mutación no corre en CI: se ejecuta durante la tarea y en la revisión, sobre una copia congelada.
+
 | Workflow | Cuándo |
 |---|---|
 | Backend | PR que toca `backend/` |

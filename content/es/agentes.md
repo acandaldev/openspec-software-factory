@@ -40,6 +40,8 @@ El método separa cuatro responsabilidades que un agente único mezcla: coordina
   <circle id="task-dot" r="4" fill="#6ee7a8" opacity="0" aria-hidden="true"/>
 </svg>
 
+> El reviewer de specs no aparece en el flujo de tarea: se usa al cerrar un cambio o cuando cambia una especificación.
+
 ## Coordinador
 
 Lee el plan, elige la tarea lista y escribe un **brief cerrado**: cambio, tareas, nivel, modelo, criterio de aceptación y ficheros esperados. Lanza al implementer, verifica los gates, empuja la rama y espera el CI. No toca el código.

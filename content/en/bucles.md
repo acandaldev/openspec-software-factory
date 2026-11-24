@@ -57,7 +57,7 @@ The task label decides the model and the batch size. It is not a preference: it 
 Autonomy is not "never ask". It is knowing exactly when to stop:
 
 - A maximum-criticality task, after its review.
-- A second round of changes on the same task.
+- A third round of changes on the same task (the cap is three).
 - A permission that needs the human.
 - A finding that is not in the plan.
 - A file colliding with another lane.

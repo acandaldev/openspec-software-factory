@@ -2,7 +2,7 @@
 
 Sin curador, una fábrica hace trabajo. Con curador, **mejora el sistema que hace el trabajo**. La diferencia entre las dos es la misma que entre un workflow y una fábrica.
 
-> En la v1, el curador es una revisión de la sesión principal guiada por el registro de `docs/harness.md`; no es un agente autónomo.
+> El curador no es un agente autónomo: es una revisión de la sesión principal guiada por el registro de `docs/harness.md`.
 
 <svg class="diagram" viewBox="0 40 760 170" role="img" aria-label="De la traza al registro y a la regla">
   <defs>
@@ -48,6 +48,8 @@ El resultado no es una nota en un chat: es una fila en el registro, con hueco, d
 
 ## El registro
 
+Un registro real tiene esta forma. Ejemplo de fila:
+
 | Fecha | Origen | Hueco | Decisión | Dónde | Commit |
 |---|---|---|---|---|---|
 | 21-nov | Incidente | Una tarea crítica tocó 6 ficheros y agotó el contexto | Partir si toca >3 ficheros o mezcla flujos | AGENTS.md | `a1b2c3d` |
@@ -56,11 +58,13 @@ El registro no guarda cualquier cambio. Guarda **decisiones**: lo que cambió el
 
 ## La cadencia
 
-El curador no se ejecuta por inspiración. Se ejecuta:
+El curador no se ejecuta por inspiración. La cadencia recomendada es:
 
 - **Al cerrar un bloque**, si hubo un incidente o un patrón.
 - **Una vez por semana**, leyendo paradas, deltas y causas.
 - **Al cerrar un cambio**, antes de archivar.
+
+No hay un cron que cure: el cron semanal solo valida la documentación. La curación es una revisión humana.
 
 Diez minutos bastan si la traza existe. Sin traza, el curador adivina, y un curador que adivina es otro generador de deuda.
 

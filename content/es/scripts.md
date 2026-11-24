@@ -28,6 +28,8 @@ node scripts/docs-sync.mjs --plan <cambio> # imprime el plan en JSON
 
 Recorre los ficheros de texto y falla si encuentra una credencial, una ruta de usuario o un término de la lista prohibida. Es el gate que impide que el template arrastre datos del proyecto del que salió.
 
+Hoy vive en el repositorio de este sitio, no en la implementación de referencia: es un requisito pendiente del template.
+
 ```bash
 node scripts/check-secrets.mjs   # falla con el hallazgo y su línea
 ```

@@ -57,7 +57,7 @@ La etiqueta de la tarea decide el modelo y el tamaño del lote. No es una prefer
 La autonomía no es «no preguntar nunca». Es saber exactamente cuándo parar:
 
 - Una tarea de máxima criticidad, después de su revisión.
-- Una segunda ronda de cambios sobre la misma tarea.
+- Una tercera ronda de cambios sobre la misma tarea (el tope es tres).
 - Un permiso que necesita al humano.
 - Un hallazgo que no está en el plan.
 - Un fichero en colisión con otro carril.

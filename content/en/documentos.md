@@ -1,6 +1,6 @@
 # One fact, one place
 
-Documentation is not an archive: it is the context the agent reads before working. If a datum lives in two places, one of them will eventually lie.
+Documentation is not an archive: it is the context the agent reads before working. If a piece of data lives in two places, one of them will eventually lie.
 
 ## The layers
 
@@ -23,7 +23,7 @@ One rules file at the root, and one per side when the project has distinct sides
 
 Operational memory is short on purpose: state, current decisions and pending items. It is not a diary or an inventory. Technical detail lives in runbooks; chronology, in change history.
 
-A 300-line state is not read. A 50-line state is read and updated.
+A 300-line state is not read. The guideline is 85 lines; the shorter, the better.
 
 ## The index
 

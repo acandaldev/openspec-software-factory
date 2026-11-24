@@ -23,7 +23,7 @@ Un solo fichero de reglas en la raíz, y uno por lado cuando el proyecto tiene l
 
 La memoria operativa es corta a propósito: estado, decisiones vigentes y pendientes. No es un diario ni un inventario. El detalle técnico vive en los runbooks; la cronología, en el historial de cambios.
 
-Un estado de 300 líneas no se lee. Un estado de 50 se lee y se actualiza.
+Un estado de 300 líneas no se lee. El límite orientativo es 85 líneas; cuanto más corto, mejor.
 
 ## El índice
 

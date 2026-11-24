@@ -40,6 +40,8 @@ The method separates four responsibilities that a single agent mixes: coordinate
   <circle id="task-dot" r="4" fill="#6ee7a8" opacity="0" aria-hidden="true"/>
 </svg>
 
+> The spec reviewer does not appear in the task flow: it is used when closing a change or when a specification changes.
+
 ## Coordinator
 
 Reads the plan, picks the ready task and writes a **closed brief**: change, tasks, level, model, acceptance criterion and expected files. Launches the implementer, checks the gates, pushes the branch and waits for CI. It does not touch code.
@@ -68,4 +70,4 @@ The task level decides the model and the batch size. Levels are not mixed: the h
 
 ## Permissions
 
-A subagent cannot approve a confirmation: there is no user in its session. That is why what it may run is defined in advance. Irreversible actions are denied; routine ones are allowed; doubtful ones are asked to the human in the coordinator.
+A subagent cannot approve a confirmation: there is no user in its session. That is why what it may run is defined in advance. Irreversible actions are denied; routine ones are allowed; doubtful ones are escalated to the human in the coordinator.

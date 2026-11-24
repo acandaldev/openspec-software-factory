@@ -41,7 +41,7 @@ The agent does not guess the stack, the decisions or the state. It reads them:
 - **Runbooks**: how to deploy, how to verify and how to roll back.
 - **State**: what is done, what is blocked and what comes next.
 
-The rule is "one fact, one place". If a datum lives in two documents, one of them will eventually lie.
+The rule is "one fact, one place". If a piece of data lives in two documents, one of them will eventually lie.
 
 ## 2. Agents with gates
 
@@ -76,7 +76,7 @@ The trace is not a log: it is the raw material of the curator.
 
 ## 4. Curator
 
-When a block or a change closes, someone reads what happened and rewrites the system. The symptom is not patched; the rule that allowed it is fixed.
+When a block or a change closes, the curator reads what happened and rewrites the system. The symptom is not patched; the rule that allowed it is fixed.
 
 - An incident becomes a row in the record: gap, decision, where it lives and commit.
 - A rule repeated in two places is removed from one.
