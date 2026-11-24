@@ -11,6 +11,17 @@
     "redirects": ["problema", "arquitectura", "bucles", "agentes", "gates"]
   },
   {
+    "slug": "ejemplo",
+    "nav": { "es": "Ejemplo completo", "en": "Full example" },
+    "description": {
+      "es": "Un cambio completo de acme-notes: dos bloques, once tareas y el orden exacto de los comandos.",
+      "en": "A complete acme-notes change: two blocks, eleven tasks and the exact command order."
+    },
+    "intro": "ejemplo",
+    "sources": [],
+    "redirects": []
+  },
+  {
     "slug": "operacion",
     "nav": { "es": "Cómo se opera", "en": "How it runs" },
     "description": {
@@ -29,7 +40,7 @@
       "en": "How to adopt it in a project, what it adds to OpenSpec and how to verify it really controls."
     },
     "intro": "adopcion",
-    "sources": ["ejemplo", "comparativa"],
+    "sources": ["comparativa"],
     "redirects": ["comparativa"]
   }
 ]

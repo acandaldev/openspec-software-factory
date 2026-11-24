@@ -4,6 +4,10 @@
 
 La adopción consiste en crear el proyecto desde el template, configurarlo con unos pocos datos y verificarlo. No es una instalación de plataforma: es un repositorio con reglas y gates.
 
+<a id="un-ejemplo-completo-acme-notes"></a>
+
+> El recorrido completo, con dos bloques y once tareas, tiene su propia página: [Ejemplo completo](ejemplo.html). Esta página se queda con la adopción.
+
 <svg class="diagram" viewBox="0 20 760 90" role="img" aria-label="Seis pasos para adoptar el método">
   <line x1="50" y1="50" x2="710" y2="50" stroke="#22303a" stroke-width="2"/>
   <line class="draw" pathLength="1" x1="50" y1="50" x2="710" y2="50" stroke="#6ee7a8" stroke-width="2"/>

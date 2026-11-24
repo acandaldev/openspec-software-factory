@@ -4,6 +4,10 @@
 
 Adoption consists in creating the project from the template, configuring it with a few values and verifying it. It is not a platform install: it is a repository with rules and gates.
 
+<a id="un-ejemplo-completo-acme-notes"></a>
+
+> The full walkthrough, with two blocks and eleven tasks, has its own page: [Full example](ejemplo.html). This page stays focused on adoption.
+
 <svg class="diagram" viewBox="0 20 760 90" role="img" aria-label="Six steps to adopt the method">
   <line x1="50" y1="50" x2="710" y2="50" stroke="#22303a" stroke-width="2"/>
   <line class="draw" pathLength="1" x1="50" y1="50" x2="710" y2="50" stroke="#6ee7a8" stroke-width="2"/>

@@ -4,7 +4,7 @@ OpenSpec define **qué debe ser verdad**. Esta fábrica añade **quién lo ejecu
 
 No es un prompt largo ni un chatbot con herramientas. Es un método con cuatro piezas, cuatro bucles y una regla: cada decisión deja rastro en git.
 
-Esta página es el recorrido completo: el problema, las piezas, los bucles, los agentes y los gates. Si buscas cómo se mantiene o cómo se instala, usa las otras dos pestañas.
+Esta página es el recorrido completo: el problema, las piezas, los bucles, los agentes y los gates. Si quieres ver el método en marcha, empieza por el [ejemplo completo](ejemplo.html). Para saber cómo se mantiene o cómo se adopta, usa las otras pestañas.
 
 <p><a class="cta" href="{{repo}}">Ver el repositorio</a></p>
 

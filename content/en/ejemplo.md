@@ -1,104 +1,221 @@
-# A complete example: acme-notes
+# Full example: acme-notes, from idea to archived change
 
-`acme-notes` is a small notes app: a backend, a UI and two people. It is not a real case; it is an imaginary project to show the full sequence without domain noise.
+> This walkthrough assumes you already created the repository from the template and ran `node bootstrap.mjs`. If you have not, start with [How to adopt it](adopcion.html).
 
-## The contract
+`acme-notes` is a small notes app: an API, a UI and a two-person team. It is not a real case; it is an imaginary project to show the full sequence without domain noise.
 
-The change is called `notes`. The proposal defines one capability: create and list notes. Block 1 is the first deployable slice. `tasks.md` looks like this:
+The change is called `notes`. It has **two blocks** and **eleven tasks**. A block is a phase that can be deployed on its own; a task is a small piece with its own commit. The example shows when each command is called and what each step leaves behind before moving on.
 
-```text
-## 1. API and list
+## The pieces you will see
+
+| Piece | What it is | In this example |
+|---|---|---|
+| **Change** | The whole job, with its proposal, specs, design and tasks. | `notes` |
+| **Block** | A deliverable phase. It ends in a branch and a PR. | 1 and 2 |
+| **Task** | An observable step inside the block. | `1.1`, `1.2`… |
+| **Level** | The difficulty and risk of the task. | `[HARD]`, `NORMAL`, `[FAST]` |
+| **Worktree** | A separate working copy so the block does not mix with `main`. | `paralelo/notes-1` |
+| **Brief** | The closed instruction the coordinator hands to the implementer. | Change, task, level, model and criterion |
+| **Gates** | The checks that must pass before committing. | Build, tests, format and spec |
+| **Mutation** | Deliberately breaking the code to check that the test fails. | One or two per task |
+
+## The plan is written before coding
+
+Everything starts with planning, not code. The command `/opsx-propose notes` creates the proposal, the spec, the design and the tasks. Then a person reviews the result and adjusts blocks and levels.
+
+The `tasks.md` for the example looks like this:
+
+```md
+## 1. Create and list notes
 
 - [ ] 1.1 [HARD] Note model, migration and repository
-- [ ] 1.2 [FAST] POST /notes with validation
-- [ ] 1.3 [FAST] GET /notes and list in the UI
+- [ ] 1.2 NORMAL POST /notes with validation
+- [ ] 1.3 NORMAL GET /notes and list
+- [ ] 1.4 [FAST] Form to create a note
+- [ ] 1.5 [FAST] Note list in the UI
+- [ ] 1.6 [FAST] Empty state and error messages
+
+## 2. Edit and archive
+
+- [ ] 2.1 [HARD] Edit a note without losing changes
+- [ ] 2.2 NORMAL Archive a note
+- [ ] 2.3 [FAST] Active and archived filter
+- [ ] 2.4 [FAST] Edit a note from the UI
+- [ ] 2.5 [FAST] Archive from the UI
 ```
 
-`1.1` is `[HARD]`: it touches data and is reviewed 1 to 1. `1.2` and `1.3` are `[FAST]`: they can be batched and reviewed when the block closes.
+### How to read the levels
 
-## The commands
-
-| Command | When | What it does |
+| Level | When it is used | How it is worked |
 |---|---|---|
-| `/opsx-propose` | Before writing code | Creates proposal, spec, design and tasks. |
-| `/implementar` | One task | Closed brief + `implementer`; gates and commit in the worktree. |
-| `/revisar` | One task or a block | `reviewer` over the commit range; verdict and `Review-*`. |
-| `/coordinar` | A block | Chains the ready tasks; stops at the stops. |
-| `/curar` | Block, week or change close | Proposes rows for `docs/harness.md`; the human approves. |
-| `/openspec-review` | Change close | Checks coherence between proposal, spec, design and tasks. |
-| `/opsx-verify`, `/opsx-sync`, `/opsx-archive` | Close | Verifies, syncs specs and archives. |
+| `[HARD]` | Touches data, concurrency, money or something hard to undo. | One task per run, the most capable model and a review when that task ends. |
+| `NORMAL` | A normal feature without special risk. | Batches of 1 to 3 tasks and a review when the block closes. |
+| `[FAST]` | Small, repetitive or visual. | Batches of 3 to 5 tasks, an economical model and a review when the block closes. |
 
-`/implementar` and `/revisar` are **per task**; `/coordinar` is **per block**. In the example, 1.1 is `[HARD]` and is reviewed on its own; that is why it comes first. Then `/coordinar` chains 1.2 and 1.3. If you run `/coordinar notes 1` from the start, it would do 1.1 and stop after its `[HARD]` review; the example separates 1.1 so the single-task command is visible.
+Blocks and levels are **written during planning**, normally with `/opsx-propose` and human review. The coordinator does not invent them: it reads the requested block and copies the task level. If a label is missing, the task is treated as `NORMAL`.
 
-<svg class="diagram" viewBox="0 0 760 210" role="img" aria-label="Sequence: plan, HARD task, FAST block, PR and close">
-  <defs>
-    <marker id="ex1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6ee7a8"/>
-    </marker>
-  </defs>
+## The full chronology
 
-  <rect x="10" y="36" width="132" height="78" rx="10" fill="#131a21" stroke="#22303a"/>
-  <text x="76" y="60" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="13" font-weight="600">Plan</text>
-  <text x="76" y="80" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="11">opsx-propose</text>
-  <text x="76" y="98" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">contract</text>
+This is the command sequence for the example, from start to finish:
 
-  <line class="draw" pathLength="1" x1="142" y1="75" x2="150" y2="75" stroke="#6ee7a8" stroke-width="2" marker-end="url(#ex1)"/>
+| # | Moment | Command | What happens |
+|---|---|---|---|
+| 1 | Plan | `/opsx-propose notes` | Proposal, spec, design and `tasks.md` are born. |
+| 2 | Review the contract | `/openspec-review notes` | The plan pieces are checked for coherence. |
+| 3 | Block 1, `[HARD]` task | `/implementar notes 1.1` | The first task is implemented and committed. |
+| 4 | Review `1.1` | `/revisar notes 1.1` | An independent reviewer issues the verdict for that task. |
+| 5 | Rest of block 1 | `/coordinar notes 1` | `1.2` to `1.6` run with their reviews and stop before the PR. |
+| 6 | Close block 1 | Open the PR and merge | Green CI, merge and deploy the block. |
+| 7 | Curate block 1 | `/curar notes 1` | The block trace is turned into harness improvements. |
+| 8 | Block 2, `[HARD]` task | `/implementar notes 2.1` | Editing without losing changes is implemented. |
+| 9 | Review `2.1` | `/revisar notes 2.1` | Verdict for the data task. |
+| 10 | Rest of block 2 | `/coordinar notes 2` | `2.2` to `2.5` run and stop before the PR. |
+| 11 | Close block 2 | Open the PR and merge | Green CI, merge and deploy. |
+| 12 | Curate block 2 | `/curar notes 2` | Final harness batch for the change. |
+| 13 | Close the change | `/openspec-review`, `/opsx-verify`, `/opsx-sync`, `/opsx-archive` | Review, verify, sync specs and archive. |
 
-  <rect x="154" y="36" width="132" height="78" rx="10" fill="#131a21" stroke="#22303a"/>
-  <text x="220" y="60" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="13" font-weight="600">Task [HARD]</text>
-  <text x="220" y="80" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="11">implementar</text>
-  <text x="220" y="98" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">review 1.1</text>
+## Step by step
 
-  <line class="draw" pathLength="1" x1="286" y1="75" x2="294" y2="75" stroke="#6ee7a8" stroke-width="2" marker-end="url(#ex1)"/>
+### 1. Plan the change
 
-  <rect x="298" y="36" width="132" height="78" rx="10" fill="#131a21" stroke="#22303a"/>
-  <text x="364" y="60" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="13" font-weight="600">Block [FAST]</text>
-  <text x="364" y="80" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="11">coordinar 1</text>
-  <text x="364" y="98" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">1.2 + 1.3</text>
+**Command:** `/opsx-propose notes`
 
-  <line class="draw" pathLength="1" x1="430" y1="75" x2="438" y2="75" stroke="#6ee7a8" stroke-width="2" marker-end="url(#ex1)"/>
+**What happens:** OpenSpec creates a folder for the change with four pieces: `proposal.md` (what we want), `specs/notes/spec.md` (what must be true), `design.md` (how it will be done) and `tasks.md` (the work in order).
 
-  <rect x="442" y="36" width="132" height="78" rx="10" fill="#131a21" stroke="#22303a"/>
-  <text x="508" y="60" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="13" font-weight="600">PR</text>
-  <text x="508" y="80" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="11">CI + merge</text>
-  <text x="508" y="98" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">full suite</text>
+**What you look at:** `tasks.md` should have clear blocks, small tasks and one label per task. No code is touched yet.
 
-  <line class="draw" pathLength="1" x1="574" y1="75" x2="582" y2="75" stroke="#6ee7a8" stroke-width="2" marker-end="url(#ex1)"/>
+**Why now:** without `tasks.md` there is nothing to implement or review. The contract is the input for the rest of the process.
 
-  <rect x="586" y="36" width="132" height="78" rx="10" fill="#131a21" stroke="#22303a"/>
-  <text x="652" y="60" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="13" font-weight="600">Close</text>
-  <text x="652" y="80" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="11">curar</text>
-  <text x="652" y="98" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">openspec-review</text>
+### 2. Review the contract before coding
 
-  <path d="M 652 118 C 652 180, 76 180, 76 122" fill="none" stroke="#f0b429" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ex1)"/>
-  <text x="380" y="196" text-anchor="middle" fill="#f0b429" font-family="system-ui" font-size="11">the next pass starts with better rules</text>
-</svg>
+**Command:** `/openspec-review notes`
 
-## The sequence
+**What happens:** the spec reviewer reads proposal, spec, design and tasks. It does not look at code. It looks for contradictions: a capability without a spec, a task without verification or a decision that no task reflects.
 
-1. **Plan** — `/opsx-propose notes`. OpenSpec creates proposal, spec, design and tasks. No code is touched. Evidence: `openspec/changes/notes/`.
-2. **First task** — `/implementar notes 1.1`. The main session writes the brief and launches `implementer` with the `[HARD]` model; it implements, tests, mutates and commits in `paralelo/notes-1`. Evidence: commit with `Brief-*`, build, tests and 2 red mutations.
-3. **Review** — `/revisar notes 1.1`. `reviewer` reviews `main..feat/notes-1` in a frozen copy; if there are findings, the delta goes back to the same implementer. Evidence: verdict and `Review-*` in the review commit.
-4. **Close block** — `/coordinar notes 1`. `docs-sync --plan notes` gives the order; it chains 1.2 and 1.3, reviews the block, pushes the branch and stops at the PR. Evidence: `feat/notes-1` branch, full suite, CI and PR.
-5. **Curate** — `/curar notes 1`. Reads the trace and proposes 0–3 rows per batch for `docs/harness.md`; the human approves. Evidence: row with gap, decision, destination and commit.
-6. **Review spec** — `/openspec-review notes`. Checks that proposal, spec, design and tasks still tell the same story. Evidence: verdict on the contract.
-7. **Verify and archive** — `/opsx-verify notes`, `/opsx-sync notes` and `/opsx-archive notes`. Verifies the implementation matches, syncs the specs and archives the change. Evidence: archived change.
+**What you look at:** a verdict and, if there are findings, a list with file and line. If the plan is incoherent, fix it before implementing.
 
-## What it teaches
+**Why now:** changing the plan is cheap; changing code built on a wrong plan is not.
 
-- The **contract** is written before the code: without `tasks.md` there is no `/implementar`.
-- The **main session** does not implement or review: it writes the brief, launches subagents and decides the stops.
-- The **worktree** belongs to the block, not the task: 1.1, 1.2 and 1.3 share `paralelo/notes-1`.
-- **Review** is by commit range, not by uncommitted tree.
-- The **curator** does not change code: it changes the rule that allowed the failure.
-- The **change** is archived when the block is merged and the specs are synced.
+### 3. Implement the `[HARD]` task of block 1
 
-## A failure in the example
+**Command:** `/implementar notes 1.1`
 
-In 1.2, the endpoint returns `200` when validation fails. The reviewer catches it. No new task is created: 1.2 is reopened, fixed, marked again, and the review of the fix is recorded as `1.2 (delta)`. In `/curar notes 1`, the question is "which rule allowed the brief not to specify the status code?". The answer may be a row:
+**What happens:** the coordinator creates the block worktree (`paralelo/notes-1`) and branch (`feat/notes-1`). It then writes the brief for `1.1` and launches the `implementer` with the `[HARD]` model. The implementer writes the model, migration and repository, adds tests, runs the gates, deliberately breaks the code to check that the test fails and reverts it. At the end it commits.
+
+**What you look at:** task `1.1` marked `[x]`, a `feat(notes): 1.1 — …` commit, the trace with agent, cost and result, and a clean tree.
+
+**Why now:** `1.1` is `[HARD]`: it touches data. It runs alone and is reviewed alone so a database mistake does not leak into the next tasks.
+
+### 4. Review `1.1`
+
+**Command:** `/revisar notes 1.1`
+
+**What happens:** the `reviewer` reviews the commit range of the branch, not the uncommitted tree. It reads the requirements, runs the gates and mutations in a frozen copy and issues a verdict.
+
+**What you look at:** `VEREDICTO: APROBADO` or `VEREDICTO: CAMBIOS NECESARIOS`. If there are findings, the delta goes back to the same implementer, the task is fixed and reviewed again. The maximum is three rounds.
+
+**Why now:** `[HARD]` is reviewed per task. It is better to find a bug in `1.1` than in the block PR.
+
+### 5. Finish block 1
+
+**Command:** `/coordinar notes 1`
+
+**What happens:** the coordinator reads the plan, sees that `1.1` is done and chains `1.2` to `1.6`. It groups the `NORMAL` and `[FAST]` tasks, launches the implementer and reviewer, and stops before opening the PR. When the block closes it runs the full suite and `docs-sync`.
+
+**What you look at:** `1.2` to `1.6` marked, their commits and the block review. Branch `feat/notes-1` is ready for the PR.
+
+**Why now:** it is the shortcut for tasks that are not `[HARD]`. If you run `/coordinar notes 1` from the start, it would do `1.1` and stop after its `[HARD]` review; that is why the example does `1.1` by hand and leaves the rest to the coordinator.
+
+If you prefer to control each batch, use `/implementar notes 1.2-1.3`, `/revisar notes 1.2-1.3`, `/implementar notes 1.4-1.6` and `/revisar notes 1.4-1.6`. It is the same work with more calls.
+
+### 6. Open and merge the block 1 PR
+
+**What happens:** branch `feat/notes-1` becomes a PR against `main`. CI runs the full suite. When it is green and the review is recorded, it is merged with a merge commit, never squash: the brief trailers would be lost.
+
+**What you look at:** green CI, merged PR and the block deployed. A block is a deployment window; do not mix two blocks in the same PR.
+
+### 7. Curate block 1
+
+**Command:** `/curar notes 1`
+
+**What happens:** the curator does not review code. It reads the block trace: reviews, causes, stops and reopened tasks. It proposes up to three rows for `docs/harness.md`, each with the gap, decision, destination and commit. The human approves or rejects.
+
+**What you look at:** a short proposal. If there is not enough evidence, it must say "nothing to curate". No rule changes without approval.
+
+**Why now:** you just closed a block and the trace is fresh. Curating per task would be noise; curating at the end of the change would be too late.
+
+### 8. Implement the `[HARD]` task of block 2
+
+**Commands:** `/implementar notes 2.1` and then `/revisar notes 2.1`
+
+**What happens:** the pattern of `1.1` repeats, now in worktree `paralelo/notes-2` and branch `feat/notes-2`. `2.1` edits a note without losing changes: it is `[HARD]` because a mistake can overwrite data.
+
+**What you look at:** the same kind of evidence: marked task, commit, tests, mutations and verdict. If the reviewer asks for changes, fix them before moving on.
+
+### 9. Finish block 2
+
+**Command:** `/coordinar notes 2`
+
+**What happens:** it chains `2.2` to `2.5`, groups the `NORMAL` and `[FAST]` tasks, reviews the block and stops before the PR. Then the PR is opened, CI is awaited and it is merged.
+
+**What you look at:** the five block tasks closed, the full suite green and the PR merged.
+
+### 10. Curate block 2 and close the change
+
+**Command:** `/curar notes 2`
+
+Then, with the change implemented and merged:
+
+```text
+/openspec-review notes
+/opsx-verify notes
+/opsx-sync notes
+/opsx-archive notes
+```
+
+**What happens:** `/openspec-review` checks that specs, design and tasks still tell the same story. `/opsx-verify` verifies that the implementation matches. `/opsx-sync` updates the living specs. `/opsx-archive` archives the change.
+
+**What you look at:** the change under `openspec/changes/archive/`, the updated specs and synchronized documentation. If the trace left something important, `/curar notes` may propose one last batch before archiving.
+
+## The failure that teaches more than the happy path
+
+During block 1, the reviewer finds that `1.2` returns `200` when validation fails. The path is not to create a new task or fix it quietly:
+
+1. The verdict is `CAMBIOS NECESARIOS` and the cause is recorded as `test`: the test did not cover the status code.
+2. Task `1.2` is reopened (`[ ]`), the endpoint and the test are fixed, and it is marked again.
+3. The review of the fix is recorded as `1.2 (delta)`. No new requirements are added; the same thing is checked, better.
+4. In `/curar notes 1`, the question is: "which rule allowed the brief not to specify the status code?"
+
+The answer may be a row:
 
 | Date | Origin | Gap | Decision | Where | Commit |
 |---|---|---|---|---|---|
 | 24-nov | Incident | The brief did not specify the validation status code | Add the HTTP contract to the acceptance criterion | `implementar` | `pending` |
 
 That is curation: not patching the symptom, closing the gap that made it possible.
+
+## What you would not do in this example
+
+- **Do not start with `/implementar`** before creating and reading `tasks.md`.
+- **Do not run `/coordinar notes 1` expecting it to skip the `[HARD]` stop**: it will stop after reviewing `1.1`.
+- **Do not run `/curar` for every task**: it runs at block close, weekly or change close.
+- **Do not merge with red CI** or with a pending review.
+- **Do not fix a finding by weakening the test** or changing the rule so the verdict passes.
+- **Do not mix two blocks in the same PR**: each block has its branch and deployment window.
+
+## Minimal glossary
+
+| Term | What it means |
+|---|---|
+| **Change** | The whole job that starts as a proposal and ends archived. |
+| **Block** | A deliverable phase of the change. It deploys on its own and ends in a PR. |
+| **Task** | A small, observable step inside a block. |
+| **Level** | `[HARD]`, `NORMAL` or `[FAST]`; it decides model, batch size and review cadence. |
+| **Brief** | The closed instruction the implementer receives. |
+| **Worktree** | A separate working copy for the block, without touching `main`. |
+| **Gate** | A mandatory check: build, tests, format or spec. |
+| **Mutation** | Deliberately breaking the code to verify that the test catches the failure. |
+| **Verdict** | The reviewer's decision: `APROBADO` or `CAMBIOS NECESARIOS`. |
+| **Delta** | The fix of a task after a verdict with findings. |
+| **Trace** | The record of what was done, with which agent, cost and result. |
+| **Curator** | The role that turns the trace into proposals to improve the harness. |
