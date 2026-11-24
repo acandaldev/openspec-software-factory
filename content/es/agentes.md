@@ -48,7 +48,7 @@ Lee el plan, elige la tarea lista y **transcribe** el brief cerrado desde `tasks
 
 ## Implementer
 
-Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gates, aplica una mutación y la revierte, y commitea cuando todo está en verde. Marca la tarea y deja la traza con agente, coste y resultado. No empuja. No decide el nivel, el bloque ni el plan.
+Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gates, aplica las mutaciones que fija el nivel y las revierte, y commitea cuando todo está en verde. Marca la tarea y deja la traza con agente, coste y resultado. No empuja. No decide el nivel, el bloque ni el plan.
 
 ## Reviewer
 
