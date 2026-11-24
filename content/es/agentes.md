@@ -40,7 +40,7 @@ El método separa cinco responsabilidades que un agente único mezcla: coordinar
   <circle id="task-dot" r="4" fill="#6ee7a8" opacity="0" aria-hidden="true"/>
 </svg>
 
-> El reviewer de specs y el curador no aparecen en el flujo de tarea: el primero se usa antes de codificar, al cerrar un cambio o cuando cambia una especificación; el segundo, al cerrar un bloque, una vez por semana o al cerrar un cambio.
+> El reviewer de specs y el curador no aparecen en el flujo de tarea: el primero se usa antes de codificar, al cerrar un cambio o cuando cambia una especificación; el segundo, al cerrar un bloque o cambio; `--semana` es opcional.
 
 ## Coordinador
 
@@ -64,11 +64,11 @@ Revisa la coherencia entre proposal, specs, design y tasks. No toca código ni t
 |---|---|---|---|
 | Antes de codificar, cambio de spec o cierre | `/openspec-review` | ¿El contrato es coherente? | Veredicto sobre proposal, specs, design y tasks |
 | Tarea o bloque | `/revisar` | ¿La implementación cumple el contrato? | Veredicto y hallazgos sobre código y tests |
-| Cierre de bloque, semana o cambio | `/curar` | ¿Qué regla del harness debe cambiar? | 0–3 propuestas para `docs/harness.md` |
+| Cierre de bloque o cambio; `--semana` opcional | `/curar` | ¿Qué regla del harness debe cambiar? | 0–3 propuestas para `docs/harness.md` |
 
 ## Curador
 
-No es un subagente: lo ejecuta la sesión principal con `/curar`. Convierte la traza de un bloque, cambio o semana en 0–3 propuestas para `docs/harness.md`. No revisa código, no cambia reglas sin aprobación y no se ejecuta por tarea. Cadencia: al cerrar un bloque, una vez por semana o al cerrar un cambio.
+No es un subagente: lo ejecuta la sesión principal con `/curar`. Convierte la traza de un bloque o cambio, o de los últimos 7 días con `--semana`, en 0–3 propuestas para `docs/harness.md`. No revisa código, no cambia reglas sin aprobación y no se ejecuta por tarea. Cadencia: al cerrar un bloque o cambio; `--semana` es opcional.
 
 ## Quién asigna el nivel y el bloque
 

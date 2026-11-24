@@ -61,12 +61,12 @@ El registro no guarda cualquier cambio. Guarda **decisiones**: lo que cambió el
 El curador no se ejecuta por inspiración. La cadencia recomendada es:
 
 - **Al cerrar un bloque**, si hubo un incidente o un patrón.
-- **Una vez por semana**, leyendo paradas, deltas y causas.
 - **Al cerrar un cambio**, antes de archivar.
+- **Opcionalmente una vez por semana**, si no ha habido cierres recientes y hay traza acumulada.
 
-El comando es `/curar <cambio> [bloque]` o `/curar --semana`. Propone 0–3 filas por tanda y no cambia una regla sin aprobación.
+El comando es `/curar <cambio> [bloque]` o `/curar --semana` como barrido opcional. Propone 0–3 filas por tanda y no cambia una regla sin aprobación.
 
-No hay un cron que cure: el cron semanal solo valida la documentación. La curación es una revisión humana.
+No hay un cron que cure: la comprobación periódica solo valida la documentación. La curación es una revisión humana.
 
 Diez minutos bastan si la traza existe. Sin traza, el curador adivina, y un curador que adivina es otro generador de deuda.
 

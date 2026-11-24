@@ -41,7 +41,7 @@ CI fails if a document does not declare its type, if the index does not match, o
 
 ## Expiry
 
-A review date is not bureaucracy: it is how you detect a runbook that no longer describes the server. The weekly cron exists to find an expired document without anyone touching anything.
+A review date is not bureaucracy: it is how you detect a runbook that no longer describes the server. The periodic documentation check exists to find an expired document without anyone touching anything.
 
 ## What is not documented
 

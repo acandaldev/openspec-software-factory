@@ -198,7 +198,7 @@ Eso es curar: no parchear el síntoma, cerrar el hueco que lo hizo posible.
 
 - **No empezar por `/implementar`** sin haber creado y leído `tasks.md`.
 - **No lanzar `/coordinar notas 1` esperando que salte la parada `[HARD]`**: parará después de revisar `1.1`.
-- **No ejecutar `/curar` por cada tarea**: se ejecuta al cerrar bloque, semana o cambio.
+- **No ejecutar `/curar` por cada tarea**: se ejecuta al cerrar bloque o cambio; `--semana` es un barrido opcional.
 - **No mergear con el CI en rojo** ni con la revisión pendiente.
 - **No arreglar un hallazgo debilitando el test** o cambiando la regla para que el veredicto pase.
 - **No mezclar dos bloques en la misma PR**: cada bloque tiene su rama y su ventana de despliegue.

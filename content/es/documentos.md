@@ -41,7 +41,7 @@ El CI falla si un documento no declara su tipo, si el índice no coincide o si u
 
 ## La caducidad
 
-Una fecha de revisión no es burocracia: es la forma de detectar un runbook que ya no describe el servidor. El cron semanal existe para encontrar un documento vencido sin que nadie haya tocado nada.
+Una fecha de revisión no es burocracia: es la forma de detectar un runbook que ya no describe el servidor. La comprobación periódica de documentación existe para encontrar un documento vencido sin que nadie haya tocado nada.
 
 ## Lo que no se documenta
 

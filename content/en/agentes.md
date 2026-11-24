@@ -40,7 +40,7 @@ The method separates five responsibilities that a single agent mixes: coordinate
   <circle id="task-dot" r="4" fill="#6ee7a8" opacity="0" aria-hidden="true"/>
 </svg>
 
-> The spec reviewer and the curator do not appear in the task flow: the former is used before coding, when closing a change or when a specification changes; the latter when closing a block, once a week or when closing a change.
+> The spec reviewer and the curator do not appear in the task flow: the former is used before coding, when closing a change or when a specification changes; the latter when closing a block or change; `--semana` is optional.
 
 ## Coordinator
 
@@ -64,11 +64,11 @@ Checks coherence between proposal, specs, design and tasks. It touches neither c
 |---|---|---|---|
 | Before coding, spec change or closure | `/openspec-review` | Is the contract coherent? | Verdict on proposal, specs, design and tasks |
 | Task or block | `/revisar` | Does the implementation meet the contract? | Verdict and findings on code and tests |
-| Block, week or change closure | `/curar` | Which harness rule should change? | 0–3 proposals for `docs/harness.md` |
+| Block or change closure; `--semana` optional | `/curar` | Which harness rule should change? | 0–3 proposals for `docs/harness.md` |
 
 ## Curator
 
-Not a subagent: the main session runs it with `/curar`. It turns the trace of a block, change or week into 0–3 proposals for `docs/harness.md`. It does not review code, does not change rules without approval and does not run per task. Cadence: block close, once a week or change close.
+Not a subagent: the main session runs it with `/curar`. It turns the trace of a block or change, or the last 7 days with `--semana`, into 0–3 proposals for `docs/harness.md`. It does not review code, does not change rules without approval and does not run per task. Cadence: block or change close; `--semana` is optional.
 
 ## Who assigns the level and the block
 

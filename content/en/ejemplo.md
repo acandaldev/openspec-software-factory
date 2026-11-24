@@ -198,7 +198,7 @@ That is curation: not patching the symptom, closing the gap that made it possibl
 
 - **Do not start with `/implementar`** before creating and reading `tasks.md`.
 - **Do not run `/coordinar notes 1` expecting it to skip the `[HARD]` stop**: it will stop after reviewing `1.1`.
-- **Do not run `/curar` for every task**: it runs at block close, weekly or change close.
+- **Do not run `/curar` for every task**: it runs at block or change close; `--semana` is an optional sweep.
 - **Do not merge with red CI** or with a pending review.
 - **Do not fix a finding by weakening the test** or changing the rule so the verdict passes.
 - **Do not mix two blocks in the same PR**: each block has its branch and deployment window.

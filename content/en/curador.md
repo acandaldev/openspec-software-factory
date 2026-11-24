@@ -61,12 +61,12 @@ The record does not keep every change. It keeps **decisions**: what changed the 
 The curator does not run on inspiration. The recommended cadence is:
 
 - **When a block closes**, if there was an incident or a pattern.
-- **Once a week**, reading stops, deltas and causes.
 - **When a change closes**, before archiving.
+- **Optionally once a week**, if there have been no recent closures and there is accumulated trace.
 
-The command is `/curar <change> [block]` or `/curar --semana`. It proposes 0–3 rows per batch and does not change a rule without approval.
+The command is `/curar <change> [block]` or `/curar --semana` as an optional sweep. It proposes 0–3 rows per batch and does not change a rule without approval.
 
-No cron cures: the weekly cron only validates documentation. Curation is a human review.
+No cron cures: the periodic check only validates documentation. Curation is a human review.
 
 Ten minutes are enough if the trace exists. Without a trace, the curator guesses, and a curator that guesses is another source of debt.
 
