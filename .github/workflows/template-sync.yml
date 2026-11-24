@@ -1,0 +1,28 @@
+name: Sincronía con el template
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Cada 6 horas mientras el template está en 0.x. Cuando se estabilice,
+    # pasar a diario o semanal.
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Manifiesto y versión
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Comparar con el template
+        run: node scripts/check-template-sync.mjs

@@ -15,10 +15,19 @@ El template ejecutable vive en
 [acandaldev/openspec-software-factory-template](https://github.com/acandaldev/openspec-software-factory-template).
 Este repositorio solo publica el sitio: no contiene el código que se copia a los proyectos.
 
+### Sincronía con el template
+
+`data/template.json` es una copia fijada del manifiesto del template. `scripts/check-template-sync.mjs`
+compara esa copia con el `template.json` publicado y comprueba que `data/metrics.json`,
+`TEMPLATE.md` y las páginas de adopción apuntan a la misma versión. El workflow
+`template-sync.yml` lo ejecuta en cada push y cada 6 horas. Si el template cambia su
+manifiesto, el check falla hasta que el sitio se actualice.
+
 ## Construir y validar
 
 ```bash
 node scripts/check-secrets.mjs   # falla si hay credenciales o datos prohibidos
+node scripts/check-template-sync.mjs   # requiere red; compara con el manifiesto del template
 node build.mjs                   # genera dist/
 ```
 

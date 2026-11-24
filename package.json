@@ -5,6 +5,7 @@
   "scripts": {
     "build": "node build.mjs",
     "check": "node scripts/check-secrets.mjs",
+    "check:template": "node scripts/check-template-sync.mjs",
     "test": "node scripts/check-secrets.mjs && node build.mjs"
   }
 }
