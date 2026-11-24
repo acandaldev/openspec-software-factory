@@ -33,6 +33,17 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+.progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 30;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
 .top {
   position: sticky;
   top: 0;
@@ -164,6 +175,7 @@ svg { max-width: 100%; height: auto; display: block; margin: 28px auto; }
 .toc li { margin: 8px 0; }
 .toc a { color: var(--muted); }
 .toc a:hover { color: var(--text); text-decoration: none; }
+.toc a.active, .toc-mobile a.active { color: var(--accent); }
 
 .toc-mobile { display: none; }
 
@@ -175,16 +187,9 @@ footer {
   text-align: center;
 }
 
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes gate-mutation {
-  0%, 35% { fill: var(--accent); }
-  45%, 65% { fill: var(--danger); }
-  85%, 100% { fill: var(--accent); }
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] { opacity: 0; transform: translateY(10px); }
 }
-
-.js .diagram .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.js .diagram.in-view .draw { animation: draw 1s ease forwards; }
-.js .diagram.in-view .gate-state { animation: gate-mutation 3.2s ease-in-out 1; }
 
 @media (max-width: 980px) {
   .shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 40px 24px 70px; }
@@ -219,6 +224,4 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .diagram .draw { stroke-dasharray: none; stroke-dashoffset: 0; animation: none; }
-  .js .diagram.in-view .gate-state { animation: none; }
 }

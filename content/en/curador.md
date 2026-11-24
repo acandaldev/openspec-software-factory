@@ -2,6 +2,8 @@
 
 Without a curator, a factory does work. With a curator, **the system that does the work improves**. The difference between the two is the difference between a workflow and a factory.
 
+> In v1, the curator is a review by the main session guided by the `docs/harness.md` record; it is not an autonomous agent.
+
 <svg class="diagram" viewBox="0 40 760 170" role="img" aria-label="From trace to record and rule">
   <defs>
     <marker id="c1-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

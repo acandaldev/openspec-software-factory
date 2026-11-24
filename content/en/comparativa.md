@@ -42,7 +42,7 @@ OpenSpec already solves specification: proposal, requirements, scenarios and tas
 The four-part architecture —context, agent, trace and curator— appears across the industry under different names. This method applies it to a real project with OpenSpec as the contract, subagents as executors and git as traceability.
 
 - **Software factory**: the thesis that the team builds the system that writes software, not the software line by line.
-- **LLM Wiki**: the idea that knowledge is compiled once and kept current, instead of re-derived on every query.
+- **LLM Wiki**: the idea that knowledge is compiled once and kept current, instead of re-derived on every query. Here it inspires an **optional layer**, not the template core.
 - **Meta-harness**: the idea that the harness is installed with a visible plan and can be audited.
 
 The difference is the starting point: here the contract is OpenSpec and the goal is for the agent to execute it without losing the evidence.

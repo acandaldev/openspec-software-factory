@@ -1,6 +1,8 @@
 # Quién hace qué
 
-El método separa tres responsabilidades que un agente único mezcla: coordinar, implementar y revisar. Cada una tiene su contexto, su modelo y sus límites.
+El método separa cuatro responsabilidades que un agente único mezcla: coordinar, implementar, revisar código y revisar especificaciones. Cada una tiene su contexto, su modelo y sus límites.
+
+> El coordinador es la **sesión principal**, no un subagente: es la única que puede pedir permisos y hablar con el usuario. Los subagentes son `implementer`, `reviewer` y `openspec-reviewer`.
 
 <svg class="diagram" viewBox="0 0 760 330" role="img" aria-label="Secuencia: coordinador, implementer, gates y reviewer">
   <defs>
@@ -34,6 +36,8 @@ El método separa tres responsabilidades que un agente único mezcla: coordinar,
   <rect x="18" y="220" width="720" height="80" rx="12" fill="#10161c" stroke="#22303a"/>
   <text x="40" y="250" fill="#93a4b3" font-family="system-ui" font-size="12">Regla</text>
   <text x="40" y="272" fill="#e6edf3" font-family="system-ui" font-size="13">el coordinador no implementa ni revisa; el reviewer no escribe código de producción</text>
+  <path id="task-flow" d="M 93 105 L 283 105 L 473 105 L 663 105 C 663 160, 283 160, 283 104" fill="none" stroke="none" aria-hidden="true"/>
+  <circle id="task-dot" r="4" fill="#6ee7a8" opacity="0" aria-hidden="true"/>
 </svg>
 
 ## Coordinador
@@ -47,6 +51,10 @@ Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gate
 ## Reviewer
 
 Revisa el rango de commits, no el árbol sin commitear. Lee los requisitos, comprueba la evidencia, ejecuta las mutaciones en una copia congelada y emite un veredicto. No escribe código de producción.
+
+## Reviewer de specs
+
+Revisa la coherencia entre proposal, specs, design y tasks. No toca código ni tests: su salida es un veredicto sobre el contrato. Se usa al cerrar un cambio o cuando una especificación cambia.
 
 ## Modelos por nivel
 

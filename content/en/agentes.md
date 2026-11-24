@@ -1,6 +1,8 @@
 # Who does what
 
-The method separates three responsibilities that a single agent mixes: coordinate, implement and review. Each has its own context, model and limits.
+The method separates four responsibilities that a single agent mixes: coordinate, implement, review code and review specifications. Each has its own context, model and limits.
+
+> The coordinator is the **main session**, not a subagent: it is the only one that can ask for permissions and talk to the user. The subagents are `implementer`, `reviewer` and `openspec-reviewer`.
 
 <svg class="diagram" viewBox="0 0 760 330" role="img" aria-label="Sequence: coordinator, implementer, gates and reviewer">
   <defs>
@@ -34,6 +36,8 @@ The method separates three responsibilities that a single agent mixes: coordinat
   <rect x="18" y="220" width="720" height="80" rx="12" fill="#10161c" stroke="#22303a"/>
   <text x="40" y="250" fill="#93a4b3" font-family="system-ui" font-size="12">Rule</text>
   <text x="40" y="272" fill="#e6edf3" font-family="system-ui" font-size="13">the coordinator does not implement or review; the reviewer does not write production code</text>
+  <path id="task-flow" d="M 93 105 L 283 105 L 473 105 L 663 105 C 663 160, 283 160, 283 104" fill="none" stroke="none" aria-hidden="true"/>
+  <circle id="task-dot" r="4" fill="#6ee7a8" opacity="0" aria-hidden="true"/>
 </svg>
 
 ## Coordinator
@@ -47,6 +51,10 @@ Works in the block's worktree. Implements, writes the test, runs the gates, appl
 ## Reviewer
 
 Reviews the commit range, not the uncommitted tree. Reads the requirements, checks the evidence, runs mutations in a frozen copy and issues a verdict. It does not write production code.
+
+## Spec reviewer
+
+Checks coherence between proposal, specs, design and tasks. It touches neither code nor tests: its output is a verdict on the contract. It is used when closing a change or when a specification changes.
 
 ## Models per level
 

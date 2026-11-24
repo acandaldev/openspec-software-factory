@@ -106,7 +106,7 @@ function markdown(md, ctx, toc) {
         while (i < lines.length && lines[i].trim()) buf.push(lines[i++]);
       }
       const raw = subst(buf.join("\n"), ctx);
-      out.push(open ? `<div class="diagram-wrap">${raw}</div>` : raw);
+      out.push(open ? `<div class="diagram-wrap" data-reveal>${raw}</div>` : raw);
       continue;
     }
     const h = /^(#{1,4})\s+(.*)$/.exec(line);
@@ -120,7 +120,8 @@ function markdown(md, ctx, toc) {
         id = n === 1 ? base : `${base}-${n}`;
         if (level === 2) toc.push({ id, text: h[2] });
       }
-      out.push(`<h${level}${id ? ` id="${id}"` : ""}>${inline(h[2], ctx)}</h${level}>`);
+      const reveal = level === 2 ? " data-reveal" : "";
+      out.push(`<h${level}${id ? ` id="${id}"` : ""}${reveal}>${inline(h[2], ctx)}</h${level}>`);
       i += 1;
       continue;
     }
@@ -203,6 +204,7 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
 <link rel="alternate" hreflang="${other}" href="../${other}/${page.slug}.html">
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">▦</span> OpenSpec <em>Software Factory</em></a>
   <nav>${nav}<a class="ext" href="${DATA.repo}" target="_blank" rel="noopener">GitHub</a></nav>
@@ -217,7 +219,9 @@ ${mainBody}
 <footer>
   <p>MIT · <a href="${DATA.repo}">GitHub</a> · ${lang === "es" ? "Documentación viva del método" : "Living documentation of the method"}</p>
 </footer>
-<script src="../assets/site.js" defer></script>
+<script src="../assets/vendor/gsap.min.js" defer></script>
+<script src="../assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="../assets/motion.js" defer></script>
 </body>
 </html>
 `;

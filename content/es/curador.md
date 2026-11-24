@@ -2,6 +2,8 @@
 
 Sin curador, una fábrica hace trabajo. Con curador, **mejora el sistema que hace el trabajo**. La diferencia entre las dos es la misma que entre un workflow y una fábrica.
 
+> En la v1, el curador es una revisión de la sesión principal guiada por el registro de `docs/harness.md`; no es un agente autónomo.
+
 <svg class="diagram" viewBox="0 40 760 170" role="img" aria-label="De la traza al registro y a la regla">
   <defs>
     <marker id="c1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

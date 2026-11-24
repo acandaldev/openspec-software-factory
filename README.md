@@ -4,8 +4,9 @@ Sitio público del método: **OpenSpec + subagentes + gates + traza + curador**.
 
 - `content/es/`, `content/en/` — fuente de las páginas en markdown.
 - `content/pages.json` — tres páginas largas y los fragmentos que las componen; las URLs antiguas se generan como redirects.
+- `TEMPLATE.md` — estado del template, huecos y especificación del módulo wiki.
 - `data/metrics.json` — cifras saneadas y enlace al repo.
-- `site/assets/` — CSS, favicon.
+- `site/assets/` — CSS, favicon, JS de movimiento y GSAP self-hosted.
 - `build.mjs` — generador estático **sin dependencias**.
 
 ## Construir y validar
@@ -35,7 +36,7 @@ https://acandaldev.github.io/openspec-software-factory/
   `%USERPROFILE%\.config\...`) o de `OPENSPEC_FORBIDDEN_FILE`, fuera del repositorio.
 - Cifras agregadas y redondeadas; si cambian, se actualiza `data/metrics.json`.
 - Cada página existe en ES y EN con el mismo slug.
-- Los diagramas son SVG inline: sin CDN ni JavaScript de terceros.
+- Los diagramas son SVG inline. Las animaciones usan GSAP + ScrollTrigger self-hosted en `site/assets/vendor/`.
 
 ## Licencia
 
