@@ -42,6 +42,7 @@ OpenSpec ya resuelve la especificación: propuesta, requisitos, escenarios y tar
 La arquitectura de cuatro piezas —contexto, agente, traza y curador— aparece en la industria con distintos nombres. Este método la aplica a un proyecto real con OpenSpec como contrato, subagentes como ejecutores y git como trazabilidad.
 
 - **Software factory**: la tesis de que el equipo construye el sistema que escribe el software, no el software línea a línea.
+- **Factory loop**: en 2026, [Tomasz Tunguz](https://tomtunguz.com/what-kind-of-factory-will-you-build/) describe la misma secuencia —contexto, agente, traza y curador— aplicada a código y a conocimiento. Es una convergencia de arquitectura, no una validación empírica: el propio artículo advierte que no incluye benchmark.
 - **LLM Wiki**: la idea de que el conocimiento se compila una vez y se mantiene, en vez de re-derivarse en cada consulta. Aquí inspira una **capa opcional**, no el núcleo del template.
 - **Meta-harness**: la idea de que el harness se instala con un plan visible y se puede auditar.
 

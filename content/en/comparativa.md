@@ -42,6 +42,7 @@ OpenSpec already solves specification: proposal, requirements, scenarios and tas
 The four-part architecture —context, agent, trace and curator— appears across the industry under different names. This method applies it to a real project with OpenSpec as the contract, subagents as executors and git as traceability.
 
 - **Software factory**: the thesis that the team builds the system that writes software, not the software line by line.
+- **Factory loop**: in 2026, [Tomasz Tunguz](https://tomtunguz.com/what-kind-of-factory-will-you-build/) describes the same sequence —context, agent, trace and curator— for code and knowledge. It is an architectural convergence, not empirical validation: the article itself notes that it includes no benchmark.
 - **LLM Wiki**: the idea that knowledge is compiled once and kept current, instead of re-derived on every query. Here it inspires an **optional layer**, not the template core.
 - **Meta-harness**: the idea that the harness is installed with a visible plan and can be audited.
 

@@ -29,7 +29,7 @@
       "en": "How to adopt it in a project, what it adds to OpenSpec and how to verify it really controls."
     },
     "intro": "adopcion",
-    "sources": ["comparativa"],
+    "sources": ["ejemplo", "comparativa"],
     "redirects": ["comparativa"]
   }
 ]
