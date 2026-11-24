@@ -1,8 +1,8 @@
 # Quién hace qué
 
-El método separa cuatro responsabilidades que un agente único mezcla: coordinar, implementar, revisar código y revisar especificaciones. Cada una tiene su contexto, su modelo y sus límites.
+El método separa cinco responsabilidades que un agente único mezcla: coordinar, implementar, revisar código, revisar especificaciones y curar el harness. Las tres primeras forman el bucle de tarea; las otras dos se ejecutan fuera de él. Cada una tiene su contexto, su modelo y sus límites.
 
-> El coordinador es la **sesión principal**, no un subagente: es la única que puede pedir permisos y hablar con el usuario. Los subagentes son `implementer`, `reviewer` y `openspec-reviewer`.
+> El **coordinador** y el **curador** son **sesión principal**, no subagentes: son los únicos que pueden pedir permisos y hablar con el usuario. Los subagentes son `implementer`, `reviewer` y `openspec-reviewer`.
 
 <svg class="diagram" viewBox="0 0 760 330" role="img" aria-label="Secuencia: coordinador, implementer, gates y reviewer">
   <defs>
@@ -40,15 +40,15 @@ El método separa cuatro responsabilidades que un agente único mezcla: coordina
   <circle id="task-dot" r="4" fill="#6ee7a8" opacity="0" aria-hidden="true"/>
 </svg>
 
-> El reviewer de specs no aparece en el flujo de tarea: se usa al cerrar un cambio o cuando cambia una especificación.
+> El reviewer de specs y el curador no aparecen en el flujo de tarea: el primero se usa antes de codificar, al cerrar un cambio o cuando cambia una especificación; el segundo, al cerrar un bloque, una vez por semana o al cerrar un cambio.
 
 ## Coordinador
 
-Lee el plan, elige la tarea lista y escribe un **brief cerrado**: cambio, tareas, nivel, modelo, criterio de aceptación y ficheros esperados. Lanza al implementer, verifica los gates, empuja la rama y espera el CI. No toca el código.
+Lee el plan, elige la tarea lista y **transcribe** el brief cerrado desde `tasks.md`: cambio, tareas, bloque, nivel, modelo, criterio de aceptación y ficheros esperados. No decide el nivel ni el bloque. Lanza al implementer, verifica los gates, empuja la rama y espera el CI. No toca el código.
 
 ## Implementer
 
-Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gates, aplica una mutación y la revierte, y commitea cuando todo está en verde. Marca la tarea y deja la traza con agente, coste y resultado. No empuja.
+Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gates, aplica una mutación y la revierte, y commitea cuando todo está en verde. Marca la tarea y deja la traza con agente, coste y resultado. No empuja. No decide el nivel, el bloque ni el plan.
 
 ## Reviewer
 
@@ -56,7 +56,25 @@ Revisa el rango de commits, no el árbol sin commitear. Lee los requisitos, comp
 
 ## Reviewer de specs
 
-Revisa la coherencia entre proposal, specs, design y tasks. No toca código ni tests: su salida es un veredicto sobre el contrato. Se usa al cerrar un cambio o cuando una especificación cambia.
+Revisa la coherencia entre proposal, specs, design y tasks. No toca código ni tests: su salida es un veredicto sobre el contrato. Se usa antes de codificar, al cerrar un cambio o cuando una especificación cambia.
+
+## Los tres momentos
+
+| Momento | Comando | Pregunta | Salida |
+|---|---|---|---|
+| Antes de codificar, cambio de spec o cierre | `/openspec-review` | ¿El contrato es coherente? | Veredicto sobre proposal, specs, design y tasks |
+| Tarea o bloque | `/revisar` | ¿La implementación cumple el contrato? | Veredicto y hallazgos sobre código y tests |
+| Cierre de bloque, semana o cambio | `/curar` | ¿Qué regla del harness debe cambiar? | 0–3 propuestas para `docs/harness.md` |
+
+## Curador
+
+No es un subagente: lo ejecuta la sesión principal con `/curar`. Convierte la traza de un bloque, cambio o semana en 0–3 propuestas para `docs/harness.md`. No revisa código, no cambia reglas sin aprobación y no se ejecuta por tarea. Cadencia: al cerrar un bloque, una vez por semana o al cerrar un cambio.
+
+## Quién asigna el nivel y el bloque
+
+El **bloque** es el encabezado `## N.` de `tasks.md`; el **nivel** es la etiqueta de cada tarea. Ambos se escriben al planificar, normalmente con `/opsx-propose` y revisión humana, no al coordinar.
+
+El coordinador lee el bloque que se le pide y copia el nivel de la tarea en el brief; no los inventa. Si falta la etiqueta, la tarea se trata como `NORMAL`. Si una tarea es demasiado grande, se parte antes de empezar y lo aprueba el usuario. Un bloque es una fase entregable: su rama y su PR.
 
 ## Modelos por nivel
 

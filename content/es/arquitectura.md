@@ -45,7 +45,7 @@ La regla es «un hecho, un sitio». Si un dato vive en dos documentos, uno de lo
 
 ## 2. Agentes con gates
 
-El trabajo se delega con un **brief cerrado**: cambio, tareas, nivel, modelo, criterio de aceptación y ficheros esperados. El subagente implementa; no decide el plan.
+El trabajo se delega con un **brief cerrado**: cambio, tareas, nivel, modelo, criterio de aceptación y ficheros esperados. El subagente implementa; no decide el plan. El nivel y el bloque se escriben en `tasks.md` al planificar; el coordinador los lee, no los decide.
 
 Antes de commitear, los gates deciden por él:
 

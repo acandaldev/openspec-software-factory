@@ -45,7 +45,7 @@ The rule is "one fact, one place". If a piece of data lives in two documents, on
 
 ## 2. Agents with gates
 
-Work is delegated with a **closed brief**: change, tasks, level, model, acceptance criterion and expected files. The subagent implements; it does not decide the plan.
+Work is delegated with a **closed brief**: change, tasks, level, model, acceptance criterion and expected files. The subagent implements; it does not decide the plan. The level and block are written in `tasks.md` during planning; the coordinator reads them, it does not decide them.
 
 Before committing, gates decide for it:
 

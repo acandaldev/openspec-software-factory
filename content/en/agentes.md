@@ -1,8 +1,8 @@
 # Who does what
 
-The method separates four responsibilities that a single agent mixes: coordinate, implement, review code and review specifications. Each has its own context, model and limits.
+The method separates five responsibilities that a single agent mixes: coordinate, implement, review code, review specifications and curate the harness. The first three form the task loop; the other two run outside it. Each has its own context, model and limits.
 
-> The coordinator is the **main session**, not a subagent: it is the only one that can ask for permissions and talk to the user. The subagents are `implementer`, `reviewer` and `openspec-reviewer`.
+> The **coordinator** and the **curator** are the **main session**, not subagents: they are the only ones that can ask for permissions and talk to the user. The subagents are `implementer`, `reviewer` and `openspec-reviewer`.
 
 <svg class="diagram" viewBox="0 0 760 330" role="img" aria-label="Sequence: coordinator, implementer, gates and reviewer">
   <defs>
@@ -40,15 +40,15 @@ The method separates four responsibilities that a single agent mixes: coordinate
   <circle id="task-dot" r="4" fill="#6ee7a8" opacity="0" aria-hidden="true"/>
 </svg>
 
-> The spec reviewer does not appear in the task flow: it is used when closing a change or when a specification changes.
+> The spec reviewer and the curator do not appear in the task flow: the former is used before coding, when closing a change or when a specification changes; the latter when closing a block, once a week or when closing a change.
 
 ## Coordinator
 
-Reads the plan, picks the ready task and writes a **closed brief**: change, tasks, level, model, acceptance criterion and expected files. Launches the implementer, checks the gates, pushes the branch and waits for CI. It does not touch code.
+Reads the plan, picks the ready task and **transcribes** the closed brief from `tasks.md`: change, tasks, block, level, model, acceptance criterion and expected files. It does not decide the level or the block. Launches the implementer, checks the gates, pushes the branch and waits for CI. It does not touch code.
 
 ## Implementer
 
-Works in the block's worktree. Implements, writes the test, runs the gates, applies a mutation and reverts it, and commits when everything is green. Marks the task and leaves the trace with agent, cost and result. It does not push.
+Works in the block's worktree. Implements, writes the test, runs the gates, applies a mutation and reverts it, and commits when everything is green. Marks the task and leaves the trace with agent, cost and result. It does not push. It does not decide the level, block or plan.
 
 ## Reviewer
 
@@ -56,7 +56,25 @@ Reviews the commit range, not the uncommitted tree. Reads the requirements, chec
 
 ## Spec reviewer
 
-Checks coherence between proposal, specs, design and tasks. It touches neither code nor tests: its output is a verdict on the contract. It is used when closing a change or when a specification changes.
+Checks coherence between proposal, specs, design and tasks. It touches neither code nor tests: its output is a verdict on the contract. It is used before coding, when closing a change or when a specification changes.
+
+## The three moments
+
+| Moment | Command | Question | Output |
+|---|---|---|---|
+| Before coding, spec change or closure | `/openspec-review` | Is the contract coherent? | Verdict on proposal, specs, design and tasks |
+| Task or block | `/revisar` | Does the implementation meet the contract? | Verdict and findings on code and tests |
+| Block, week or change closure | `/curar` | Which harness rule should change? | 0–3 proposals for `docs/harness.md` |
+
+## Curator
+
+Not a subagent: the main session runs it with `/curar`. It turns the trace of a block, change or week into 0–3 proposals for `docs/harness.md`. It does not review code, does not change rules without approval and does not run per task. Cadence: block close, once a week or change close.
+
+## Who assigns the level and the block
+
+The **block** is the `## N.` heading in `tasks.md`; the **level** is each task's label. Both are written during planning, normally with `/opsx-propose` and human review, not while coordinating.
+
+The coordinator reads the requested block and copies the task level into the brief; it does not invent them. Without a label, the task is treated as `NORMAL`. If a task is too large, it is split before starting and the user approves it. A block is a deliverable phase: its branch and PR.
 
 ## Models per level
 
