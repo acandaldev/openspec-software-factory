@@ -1,0 +1,10 @@
+{
+  "name": "openspec-software-factory",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node scripts/check-secrets.mjs",
+    "test": "node scripts/check-secrets.mjs && node build.mjs"
+  }
+}

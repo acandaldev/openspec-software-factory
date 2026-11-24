@@ -1,0 +1,15 @@
+dist/
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Secretos y credenciales: nunca entran al repositorio
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.secrets*
+data/forbidden.local.json
