@@ -64,7 +64,7 @@ El curador no se ejecuta por inspiración. La cadencia recomendada es:
 - **Una vez por semana**, leyendo paradas, deltas y causas.
 - **Al cerrar un cambio**, antes de archivar.
 
-El comando es `/curar <cambio> [bloque]` o `/curar --semana`. Propone 0–3 filas y no cambia una regla sin aprobación.
+El comando es `/curar <cambio> [bloque]` o `/curar --semana`. Propone 0–3 filas por tanda y no cambia una regla sin aprobación.
 
 No hay un cron que cure: el cron semanal solo valida la documentación. La curación es una revisión humana.
 

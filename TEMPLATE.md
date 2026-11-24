@@ -46,7 +46,7 @@ duplica la sesión principal y añade un paso de selección. No es núcleo.
 
 La referencia ya tiene el comando `/curar` y el registro de `docs/harness.md`.
 El curador no es un agente autónomo: lo ejecuta la sesión principal, propone
-0–3 filas y el humano aprueba. Lo que falta es extraerlo al template:
+0–3 filas por tanda y el humano aprueba. Lo que falta es extraerlo al template:
 
 - plantilla de `docs/harness.md` con la tabla de decisiones;
 - comando `/curar` en `.opencode/commands/`;

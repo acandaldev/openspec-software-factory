@@ -64,7 +64,7 @@ The curator does not run on inspiration. The recommended cadence is:
 - **Once a week**, reading stops, deltas and causes.
 - **When a change closes**, before archiving.
 
-The command is `/curar <change> [block]` or `/curar --semana`. It proposes 0–3 rows and does not change a rule without approval.
+The command is `/curar <change> [block]` or `/curar --semana`. It proposes 0–3 rows per batch and does not change a rule without approval.
 
 No cron cures: the weekly cron only validates documentation. Curation is a human review.
 
