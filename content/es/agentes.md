@@ -52,7 +52,7 @@ Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gate
 
 ## Reviewer
 
-Revisa el rango de commits, no el árbol sin commitear. Lee los requisitos, comprueba la evidencia, ejecuta las mutaciones en una copia congelada y emite un veredicto. No escribe código de producción.
+Revisa el rango de commits, no el árbol sin commitear. Lee los requisitos, comprueba la evidencia, ejecuta la mutación del bloque o verifica las de `[HARD]` en una copia congelada y emite un veredicto. No escribe código de producción.
 
 ## Reviewer de specs
 

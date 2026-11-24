@@ -92,7 +92,7 @@ Un commit no puede contener marcadores de mutación ni apoyarse en un verde ante
 
 - **Durante la tarea** se ejecuta el filtro de las clases tocadas. La suite completa es demasiado lenta para cada paso.
 - **Al cerrar el bloque** se ejecuta la suite completa, antes de la PR.
-- **El reviewer** repite los gates que apliquen al lado tocado y añade las mutaciones en una copia congelada.
+- **El reviewer** repite los gates que apliquen al lado tocado y añade la mutación del bloque en NORMAL/`[FAST]` —o verifica las de `[HARD]`— en una copia congelada.
 
 ## CI
 

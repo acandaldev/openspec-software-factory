@@ -92,7 +92,7 @@ A commit cannot contain mutation markers or rely on a green pass from before the
 
 - **During the task** the filter for the classes touched runs. The full suite is too slow for every step.
 - **When closing the block** the full suite runs, before the PR.
-- **The reviewer** repeats the gates that apply to the side touched and adds mutations in a frozen copy.
+- **The reviewer** repeats the gates that apply to the side touched and adds the block mutation in NORMAL/`[FAST]` —or verifies the `[HARD]` ones— in a frozen copy.
 
 ## CI
 

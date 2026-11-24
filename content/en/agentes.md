@@ -52,7 +52,7 @@ Works in the block's worktree. Implements, writes the test, runs the gates, appl
 
 ## Reviewer
 
-Reviews the commit range, not the uncommitted tree. Reads the requirements, checks the evidence, runs mutations in a frozen copy and issues a verdict. It does not write production code.
+Reviews the commit range, not the uncommitted tree. Reads the requirements, checks the evidence, runs the block mutation or verifies the `[HARD]` ones in a frozen copy and issues a verdict. It does not write production code.
 
 ## Spec reviewer
 
