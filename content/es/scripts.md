@@ -28,7 +28,7 @@ node scripts/docs-sync.mjs --plan <cambio> # imprime el plan en JSON
 
 Recorre los ficheros de texto y falla si encuentra una credencial, una ruta de usuario o un término de la lista prohibida. Es el gate que impide que el template arrastre datos del proyecto del que salió.
 
-Vive en el sitio y en el template; la implementación de referencia todavía no lo tiene conectado a su CI.
+Vive en el sitio y en el template. Un gate de secretos que no corre en CI no protege: conéctalo al workflow de documentación.
 
 ```bash
 node scripts/check-secrets.mjs   # falla con el hallazgo y su línea

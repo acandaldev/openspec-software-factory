@@ -28,7 +28,7 @@ node scripts/docs-sync.mjs --plan <change> # print the plan as JSON
 
 Walks the text files and fails if it finds a credential, a user path or a term from the forbidden list. It is the gate that prevents the template from carrying data from the project it came from.
 
-It lives in the site and in the template; the reference implementation does not have it wired into CI yet.
+It lives in the site and in the template. A secrets gate that does not run in CI protects nothing: wire it into the documentation workflow.
 
 ```bash
 node scripts/check-secrets.mjs   # fails with the finding and its line
