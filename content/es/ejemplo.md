@@ -106,7 +106,7 @@ Esta es la secuencia de comandos del ejemplo, de principio a fin:
 
 **Comando:** `/revisar notas 1.1`
 
-**Qué pasa:** el `reviewer` revisa el rango de commits de la rama, no el árbol sin commitear. Lee los requisitos, ejecuta los gates y las mutaciones en una copia congelada y emite un veredicto.
+**Qué pasa:** el `reviewer` revisa el rango de commits de la rama, no el árbol sin commitear. Lee los requisitos, ejecuta los gates y la mutación del bloque —o verifica las de `[HARD]`— en una copia congelada y emite un veredicto.
 
 **Qué miras:** `VEREDICTO: APROBADO` o `VEREDICTO: CAMBIOS NECESARIOS`. Si hay cambios, el delta vuelve al mismo implementer, se corrige la tarea y se revisa otra vez. El máximo son tres rondas.
 
@@ -146,7 +146,7 @@ Si prefieres controlar cada lote, puedes usar `/implementar notas 1.2-1.3`, `/re
 
 **Qué pasa:** se repite el patrón de `1.1`, ahora en el worktree `paralelo/notas-2` y la rama `feat/notas-2`. `2.1` edita una nota sin perder cambios: es `[HARD]` porque un error puede pisar datos.
 
-**Qué miras:** el mismo tipo de evidencia: tarea marcada, commit, tests, mutaciones y veredicto. Si el revisor pide cambios, se corrige antes de seguir.
+**Qué miras:** el mismo tipo de evidencia: tarea marcada, commit, tests, mutación y veredicto. Si el revisor pide cambios, se corrige antes de seguir.
 
 ### 9. Terminar el bloque 2
 

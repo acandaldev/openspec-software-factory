@@ -106,7 +106,7 @@ This is the command sequence for the example, from start to finish:
 
 **Command:** `/revisar notes 1.1`
 
-**What happens:** the `reviewer` reviews the commit range of the branch, not the uncommitted tree. It reads the requirements, runs the gates and mutations in a frozen copy and issues a verdict.
+**What happens:** the `reviewer` reviews the commit range of the branch, not the uncommitted tree. It reads the requirements, runs the gates and the block mutation —or verifies the `[HARD]` ones— in a frozen copy and issues a verdict.
 
 **What you look at:** `VEREDICTO: APROBADO` or `VEREDICTO: CAMBIOS NECESARIOS`. If there are findings, the delta goes back to the same implementer, the task is fixed and reviewed again. The maximum is three rounds.
 
@@ -146,7 +146,7 @@ If you prefer to control each batch, use `/implementar notes 1.2-1.3`, `/revisar
 
 **What happens:** the pattern of `1.1` repeats, now in worktree `paralelo/notes-2` and branch `feat/notes-2`. `2.1` edits a note without losing changes: it is `[HARD]` because a mistake can overwrite data.
 
-**What you look at:** the same kind of evidence: marked task, commit, tests, mutations and verdict. If the reviewer asks for changes, fix them before moving on.
+**What you look at:** the same kind of evidence: marked task, commit, tests, mutation and verdict. If the reviewer asks for changes, fix them before moving on.
 
 ### 9. Finish block 2
 
