@@ -41,7 +41,7 @@ La lista pública (`data/forbidden.json`) solo lleva ejemplos. Los términos del
 Convierte las tareas en algo que una máquina puede consultar:
 
 ```json
-{ "id": "9.18b", "bloque": 9, "nivel": "NORMAL", "estado": "pendiente", "deps": ["9.18a"] }
+{ "id": "1.2", "bloque": 1, "nivel": "NORMAL", "estado": "pendiente", "deps": ["1.1"] }
 ```
 
 Responde a «¿qué toca ahora?» sin interpretar prosa.

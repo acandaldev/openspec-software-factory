@@ -41,7 +41,7 @@ The public list (`data/forbidden.json`) only holds examples. The terms for the c
 Turns tasks into something a machine can query:
 
 ```json
-{ "id": "9.18b", "block": 9, "level": "NORMAL", "state": "pending", "deps": ["9.18a"] }
+{ "id": "1.2", "block": 1, "level": "NORMAL", "state": "pending", "deps": ["1.1"] }
 ```
 
 It answers "what is next?" without interpreting prose.

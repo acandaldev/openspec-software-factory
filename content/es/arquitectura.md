@@ -64,12 +64,12 @@ Un rojo mutado es la única prueba de que un test prueba algo. Se revierte siemp
 Cada tarea deja una línea con agente, coste y resultado. Cada revisión deja veredicto, modelo y causa. Y el commit guarda el brief en trailers:
 
 ```
-feat(reservas): 9.18b reembolso devuelve 202
+feat(notas): 1.2 crear nota devuelve 201
 
-Brief-Cambio: reservas
+Brief-Cambio: notas
 Brief-Nivel: NORMAL
-Brief-Modelo: opencode/deepseek-v4.1-flash-1017#high
-Brief-Aceptacion: repetir la idempotency-key devuelve 202 sin duplicar el evento
+Brief-Modelo: opencode/<modelo-intermedio>
+Brief-Aceptacion: repetir la creación con la misma idempotency-key devuelve 201 sin duplicar la nota
 ```
 
 La traza no es un log: es la materia prima del curador.

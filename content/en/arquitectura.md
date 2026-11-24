@@ -64,12 +64,12 @@ A red mutation is the only proof that a test proves something. It is always reve
 Every task leaves a line with agent, cost and result. Every review leaves verdict, model and cause. And the commit stores the brief in trailers:
 
 ```
-feat(bookings): 9.18b refund returns 202
+feat(notes): 1.2 create note returns 201
 
-Brief-Change: bookings
+Brief-Change: notes
 Brief-Level: NORMAL
-Brief-Model: opencode/deepseek-v4.1-flash-1017#high
-Brief-Acceptance: repeating the idempotency key returns 202 without duplicating the event
+Brief-Model: opencode/<intermediate-model>
+Brief-Acceptance: repeating creation with the same idempotency key returns 201 without duplicating the note
 ```
 
 The trace is not a log: it is the raw material of the curator.
