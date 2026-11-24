@@ -48,7 +48,7 @@ Reads the plan, picks the ready task and **transcribes** the closed brief from `
 
 ## Implementer
 
-Works in the block's worktree. Implements, writes the test, runs the gates, applies the mutations set by the level and reverts them, and commits when everything is green. Marks the task and leaves the trace with agent, cost and result. It does not push. It does not decide the level, block or plan.
+Works in the block's worktree. Implements, writes the test, runs the gates and applies the task mutations set by the level and reverts them; the block's manual mutation is run by the reviewer. Commits when everything is green. Marks the task and leaves the trace with agent, cost and result. It does not push. It does not decide the level, block or plan.
 
 ## Reviewer
 
