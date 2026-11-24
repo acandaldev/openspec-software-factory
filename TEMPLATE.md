@@ -13,7 +13,7 @@ El `template/` ejecutable **todavía no existe**. Lo que hay:
 | Implementación de referencia | repositorio del proyecto real | Funcionando |
 | Contrato global y reglas | `AGENTS.md` de referencia | Listo para extraer |
 | Agentes | `.opencode/agents/` de referencia | 3 subagentes |
-| Comandos propios | `.opencode/commands/` | 4 propios + `opsx-*` de OpenSpec |
+| Comandos propios | `.opencode/commands/` | 5 propios + `opsx-*` de OpenSpec |
 | `docs-sync` + tests | `scripts/` de referencia | Implementado |
 | Gate de secretos | este repositorio | Implementado |
 | Workflows | referencia | Específicos del proyecto |
@@ -44,14 +44,12 @@ duplica la sesión principal y añade un paso de selección. No es núcleo.
 
 ### Curador
 
-El sitio describe al curador como una pieza, pero la referencia **no tiene**
-ni comando `/curar`, ni agente, ni plantilla de registro. Solo existe el
-registro manual de `docs/harness.md` y la revisión humana.
-
-Esto es un hueco real de la v1:
+La referencia ya tiene el comando `/curar` y el registro de `docs/harness.md`.
+El curador no es un agente autónomo: lo ejecuta la sesión principal, propone
+0–3 filas y el humano aprueba. Lo que falta es extraerlo al template:
 
 - plantilla de `docs/harness.md` con la tabla de decisiones;
-- comando `/curar` para convertir traza y paradas en filas;
+- comando `/curar` en `.opencode/commands/`;
 - cadencia: al cerrar bloque, semanal y al cerrar cambio;
 - no automatizar la decisión: el agente propone, el humano acepta.
 
@@ -83,31 +81,29 @@ solo nombra al reviewer de código. Hay que documentar los dos:
 
 | Hueco | Riesgo | Acción |
 |---|---|---|
-| Sin curador | La fábrica no aprende | `/curar` + plantilla de registro + cadencia |
+| Curador solo en la referencia | El template no lo instala | Extraer `/curar`, la plantilla de registro y la cadencia |
 | Modelos duplicados en prosa | Deriva entre `AGENTS.md`, comandos y config | Una tabla/fuente y el comando la consulta |
 | `opsx-*` y skills copiados | Se desactualizan con OpenSpec | Depender del CLI de OpenSpec; no vendorizar |
 | Faltan plantillas de `docs/` | El usuario no sabe qué escribir | `docs/index`, `arquitectura`, `api`, `runbook`, `evals`, `harness`, `fuera-de-mvp` |
 | Falta plantilla de `MEMORY.md` | Estado inventado | Seis secciones y techo de líneas |
 | Wiki solo documentada | Promesa sin implementación | Módulo opcional (ver §5) |
-| Copy del sitio desalineado | El sitio y el template cuentan cosas distintas | Aclarar coordinador, revisores y LLM Wiki |
 | Sin validación de configuración | Un campo mal puesto falla tarde | `bootstrap --check` y schema |
 
 ### Copy del sitio: estado
 
-- **Alinear en esta rama**: el sitio ya dice que el coordinador es la sesión
-  principal, añade el reviewer de specs y aclara que LLM Wiki es una capa
-  opcional.
-- **Pendiente en el template**: el curador no tiene `/curar` ni plantilla de
-  registro; el gate de secretos está solo en el sitio; “todo vive en un solo
-  fichero de configuración” aún no se cumple (faltan URLs, CI, versiones y
-  modelos OpenCode).
-- **Aclarar en el sitio**: la mutación se ejecuta en la revisión del agente, no
-  en el CI; no es un gate que corra en cada push. El CI confirma build, tests,
-  formato y spec.
+- **Alineado en el sitio**: el coordinador es la sesión principal, el reviewer
+  de specs está documentado, LLM Wiki es una capa opcional, el template v1 se
+  presenta como no publicado, la mutación se explica fuera del CI y el estado
+  usa el límite real de 85 líneas.
+- **Pendiente en el template**: extraer `/curar` y la plantilla de registro (el
+  comando ya existe en la referencia); incorporar `check-secrets`; unificar la
+  configuración (URLs, CI, versiones y modelos OpenCode) para que “todo vive en
+  un solo fichero” sea cierto, no un objetivo.
 
 ### P2: hardening
 
 - Comprobar enlaces y anchors del sitio en CI.
+- Comprobar que el copy del sitio sigue el estado del template.
 - Plantilla de PR y checklist de merge.
 - Protección de `main` y revisión obligatoria.
 - Fijar versiones de Node, OpenSpec y acciones.
