@@ -2,7 +2,7 @@
 
 Sin curador, una fábrica hace trabajo. Con curador, **mejora el sistema que hace el trabajo**. La diferencia entre las dos es la misma que entre un workflow y una fábrica.
 
-> El curador no es un agente autónomo: es una revisión de la sesión principal guiada por el registro de `docs/harness.md`.
+> El curador no es un agente autónomo: es el comando `/curar` de la sesión principal, guiado por el registro de `docs/harness.md`.
 
 <svg class="diagram" viewBox="0 40 760 170" role="img" aria-label="De la traza al registro y a la regla">
   <defs>
@@ -63,6 +63,8 @@ El curador no se ejecuta por inspiración. La cadencia recomendada es:
 - **Al cerrar un bloque**, si hubo un incidente o un patrón.
 - **Una vez por semana**, leyendo paradas, deltas y causas.
 - **Al cerrar un cambio**, antes de archivar.
+
+El comando es `/curar <cambio> [bloque]` o `/curar --semana`. Propone 0–3 filas y no cambia una regla sin aprobación.
 
 No hay un cron que cure: el cron semanal solo valida la documentación. La curación es una revisión humana.
 

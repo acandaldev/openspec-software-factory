@@ -2,7 +2,7 @@
 
 Without a curator, a factory does work. With a curator, **the system that does the work improves**. The difference between the two is the difference between a workflow and a factory.
 
-> The curator is not an autonomous agent: it is a review by the main session guided by the `docs/harness.md` record.
+> The curator is not an autonomous agent: it is the main session's `/curar` command, guided by the `docs/harness.md` record.
 
 <svg class="diagram" viewBox="0 40 760 170" role="img" aria-label="From trace to record and rule">
   <defs>
@@ -63,6 +63,8 @@ The curator does not run on inspiration. The recommended cadence is:
 - **When a block closes**, if there was an incident or a pattern.
 - **Once a week**, reading stops, deltas and causes.
 - **When a change closes**, before archiving.
+
+The command is `/curar <change> [block]` or `/curar --semana`. It proposes 0–3 rows and does not change a rule without approval.
 
 No cron cures: the weekly cron only validates documentation. Curation is a human review.
 
