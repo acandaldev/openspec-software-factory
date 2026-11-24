@@ -52,11 +52,4 @@ Las herramientas de diagnóstico personal —medir tiempos, listar tests lentos�
 
 ## Workflows
 
-Los workflows no son scripts: son el esqueleto del CI. La tabla describe patrones de la implementación de referencia, no un contrato: cada proyecto define sus workflows y sus rutas. El núcleo del template es el workflow de documentación y el gate de secretos; los gates de PR y despliegue se añaden en cada proyecto.
-
-| Workflow | Disparador |
-|---|---|
-| Backend / Front | Pull request |
-| Docs | Push, PR y cron |
-| Pre-deploy | Push a `main` |
-| Production | Manual |
+Los workflows no son scripts: son el esqueleto del CI. Cada proyecto define los suyos; la tabla de patrones y disparadores vive en [Gates → CI](index.html#ci).

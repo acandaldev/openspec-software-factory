@@ -44,11 +44,11 @@ It is the agent's unit of work. Its question is "what do I do now and how do I k
 
 The task label decides the model and the batch size. It is not a preference: it is a policy.
 
-| Level | Execution | Review | Review model |
-|---|---|---|---|
-| `[HARD]` | 1 to 1 | per task | the most capable available |
-| NORMAL | batches of 1–3 | per block | intermediate model |
-| `[FAST]` | batches of 3–5 | per block | economical model |
+| Level | When | Execution | Review | Review model |
+|---|---|---|---|---|
+| `[HARD]` | data, concurrency, money or something hard to undo | 1 to 1 | per task | the most capable available |
+| NORMAL | a normal feature without special risk | batches of 1–3 | per block | intermediate model |
+| `[FAST]` | small, repetitive or visual | batches of 3–5 | per block | economical model |
 
 `[HARD]` does not authorize large tasks: it changes the review and the model, not the size. A task is split before starting if it meets two or more of: it touches more than 3 production files, mixes two independent flows, crosses more than one external system or has more than 5 separately verifiable scenarios.
 

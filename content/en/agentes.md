@@ -78,13 +78,7 @@ The coordinator reads the requested block and copies the task level into the bri
 
 ## Models per level
 
-The task level decides the model and the batch size. Levels are not mixed: the highest one sets the model.
-
-| Level | Implementation | Review |
-|---|---|---|
-| `[HARD]` | 1 to 1, the most capable model | 1 to 1, the most capable model |
-| NORMAL | batches of 1–3, intermediate model | per block, intermediate model |
-| `[FAST]` | batches of 3–5, economical model | per block, economical model |
+The task level decides the model and the batch size. Levels are not mixed: the highest one sets the model. The canonical table — when it applies, execution, review and model — lives in [Level and review](#level-and-review).
 
 ## Permissions
 

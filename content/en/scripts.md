@@ -52,11 +52,4 @@ Personal diagnostic tools —measuring time, listing slow tests— have no CI co
 
 ## Workflows
 
-Workflows are not scripts: they are the CI skeleton. The table describes patterns from the reference implementation, not a contract: each project defines its workflows and paths. The template core is the documentation workflow and the secrets gate; PR and deployment gates are added per project.
-
-| Workflow | Trigger |
-|---|---|
-| Backend / Front | Pull request |
-| Docs | Push, PR and cron |
-| Pre-deploy | Push to `main` |
-| Production | Manual |
+Workflows are not scripts: they are the CI skeleton. Each project defines its own; the table of patterns and triggers lives in [Gates → CI](index.html#ci).

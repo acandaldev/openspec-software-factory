@@ -78,13 +78,7 @@ El coordinador lee el bloque que se le pide y copia el nivel de la tarea en el b
 
 ## Modelos por nivel
 
-El nivel de la tarea decide el modelo y el tamaño del lote. No se mezclan niveles: el modelo lo fija el más alto.
-
-| Nivel | Implementación | Revisión |
-|---|---|---|
-| `[HARD]` | 1 a 1, el modelo más capaz | 1 a 1, el modelo más capaz |
-| NORMAL | lotes de 1–3, modelo intermedio | por bloque, modelo intermedio |
-| `[FAST]` | lotes de 3–5, modelo económico | por bloque, modelo económico |
+El nivel de la tarea decide el modelo y el tamaño del lote. No se mezclan niveles: el modelo lo fija el más alto. La tabla canónica —cuándo aplica, ejecución, revisión y modelo— vive en [Nivel y revisión](#nivel-y-revision).
 
 ## Permisos
 

@@ -44,11 +44,11 @@ Es la unidad de trabajo del agente. Su pregunta es «¿qué hago ahora y cómo s
 
 La etiqueta de la tarea decide el modelo y el tamaño del lote. No es una preferencia: es una política.
 
-| Nivel | Ejecución | Revisión | Modelo de revisión |
-|---|---|---|---|
-| `[HARD]` | 1 a 1 | por tarea | el más capaz disponible |
-| NORMAL | lotes de 1–3 | por bloque | modelo intermedio |
-| `[FAST]` | lotes de 3–5 | por bloque | modelo económico |
+| Nivel | Cuándo | Ejecución | Revisión | Modelo de revisión |
+|---|---|---|---|---|
+| `[HARD]` | datos, concurrencia, dinero o algo difícil de revertir | 1 a 1 | por tarea | el más capaz disponible |
+| NORMAL | funcionalidad normal, sin riesgo especial | lotes de 1–3 | por bloque | modelo intermedio |
+| `[FAST]` | pequeño, repetitivo o visual | lotes de 3–5 | por bloque | modelo económico |
 
 `[HARD]` no autoriza tareas grandes: cambia la revisión y el modelo, no el tamaño. Una tarea se parte antes de empezar si cumple dos o más de: toca más de 3 ficheros de producción, mezcla dos flujos independientes, cruza más de un sistema externo o tiene más de 5 escenarios verificables por separado.
 

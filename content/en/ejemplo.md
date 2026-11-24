@@ -46,11 +46,7 @@ The `tasks.md` for the example looks like this:
 
 ### How to read the levels
 
-| Level | When it is used | How it is worked |
-|---|---|---|
-| `[HARD]` | Touches data, concurrency, money or something hard to undo. | One task per run, the most capable model and a review when that task ends. |
-| `NORMAL` | A normal feature without special risk. | Batches of 1 to 3 tasks and a review when the block closes. |
-| `[FAST]` | Small, repetitive or visual. | Batches of 3 to 5 tasks, an economical model and a review when the block closes. |
+Levels decide the model, the batch size and when the review happens; the canonical table is in [Level and review](index.html#level-and-review). In this example, `1.1` and `2.1` are `[HARD]`; `1.2`, `1.3` and `2.2` are `NORMAL`; the rest are `[FAST]`.
 
 Blocks and levels are **written during planning**, normally with `/opsx-propose` and human review. The coordinator does not invent them: it reads the requested block and copies the task level. If a label is missing, the task is treated as `NORMAL`.
 

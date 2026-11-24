@@ -46,11 +46,7 @@ El `tasks.md` del ejemplo queda así:
 
 ### Cómo se leen los niveles
 
-| Nivel | Cuándo se usa | Cómo se trabaja |
-|---|---|---|
-| `[HARD]` | Toca datos, concurrencia, dinero o algo difícil de revertir. | Una tarea por ejecución, el modelo más capaz y revisión al terminar esa tarea. |
-| `NORMAL` | Es una funcionalidad normal, sin riesgo especial. | Lotes de 1 a 3 tareas y revisión al cerrar el bloque. |
-| `[FAST]` | Es pequeño, repetitivo o visual. | Lotes de 3 a 5 tareas, modelo económico y revisión al cerrar el bloque. |
+Los niveles deciden el modelo, el tamaño del lote y cuándo se revisa; la tabla canónica está en [Nivel y revisión](index.html#nivel-y-revision). En este ejemplo, `1.1` y `2.1` son `[HARD]`; `1.2`, `1.3` y `2.2` son `NORMAL`; el resto son `[FAST]`.
 
 Los bloques y los niveles **los escribe la planificación**, normalmente con `/opsx-propose` y revisión humana. El coordinador no los inventa: lee el bloque que se le pide y copia el nivel de la tarea. Si una etiqueta falta, la tarea se trata como `NORMAL`.
 
