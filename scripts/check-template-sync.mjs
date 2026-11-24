@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 // Comprueba que el sitio sigue coordinado con el template:
 //   - data/template.json es una copia exacta del manifiesto publicado;
-//   - data/metrics.json enlaza al repositorio del manifiesto;
 //   - TEMPLATE.md apunta a ese repositorio;
 //   - las páginas de adopción mencionan la versión vigente.
 //
@@ -48,7 +47,6 @@ async function fetchManifest() {
 }
 
 const expected = await readJson("data/template.json");
-const metrics = await readJson("data/metrics.json");
 const actual = await fetchManifest();
 const problems = [];
 
@@ -58,10 +56,6 @@ for (const key of new Set([...Object.keys(expected), ...Object.keys(actual)])) {
       `${key}: el sitio espera ${JSON.stringify(expected[key])} y el template publica ${JSON.stringify(actual[key])}`,
     );
   }
-}
-
-if (metrics.repo !== expected.repository) {
-  problems.push(`data/metrics.json: "repo" debe ser ${expected.repository}`);
 }
 
 const templateMd = await readText("TEMPLATE.md");

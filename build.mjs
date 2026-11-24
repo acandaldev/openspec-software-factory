@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Generador estático sin dependencias.
 //   node build.mjs
-// Lee content/<lang>/<slug>.md, data/metrics.json y site/assets, y escribe dist/.
+// Lee content/<lang>/<slug>.md, data/template.json y site/assets, y escribe dist/.
 
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -11,7 +11,7 @@ const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(ROOT, "dist");
 const LANGS = ["es", "en"];
 const PAGES = JSON.parse(readFileSync(path.join(ROOT, "content", "pages.json"), "utf8"));
-const DATA = JSON.parse(readFileSync(path.join(ROOT, "data", "metrics.json"), "utf8"));
+const TEMPLATE = JSON.parse(readFileSync(path.join(ROOT, "data", "template.json"), "utf8"));
 
 function subst(s, ctx) {
   return s.replace(/\{\{([\w.]+)\}\}/g, (_, k) => {
@@ -207,7 +207,7 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
 <div class="progress" aria-hidden="true"></div>
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">▦</span> OpenSpec <em>Software Factory</em></a>
-  <nav>${nav}<a class="ext" href="${DATA.repo}" target="_blank" rel="noopener">GitHub</a></nav>
+  <nav>${nav}<a class="ext" href="${TEMPLATE.repository}" target="_blank" rel="noopener">GitHub</a></nav>
   <a class="lang" href="../${other}/${page.slug}.html" hreflang="${other}">${langLabel}</a>
 </header>
 <div class="shell">
@@ -217,7 +217,7 @@ ${mainBody}
   ${desktopToc}
 </div>
 <footer>
-  <p>MIT · <a href="${DATA.repo}">GitHub</a> · ${lang === "es" ? "Documentación viva del método" : "Living documentation of the method"}</p>
+  <p>MIT · <a href="${TEMPLATE.repository}">GitHub</a> · ${lang === "es" ? "Documentación viva del método" : "Living documentation of the method"}</p>
 </footer>
 <script src="../assets/vendor/gsap.min.js" defer></script>
 <script src="../assets/vendor/ScrollTrigger.min.js" defer></script>
@@ -256,7 +256,7 @@ for (const lang of LANGS) {
     const sources = (page.sources ?? []).map((source) =>
       demote(readFileSync(path.join(ROOT, "content", lang, `${source}.md`), "utf8")),
     );
-    const ctx = { ...DATA.metrics, repo: DATA.repo };
+    const ctx = { repo: TEMPLATE.repository };
     const toc = [];
     const body = markdown([intro, ...sources].join("\n\n"), ctx, toc);
     const html = layout({
