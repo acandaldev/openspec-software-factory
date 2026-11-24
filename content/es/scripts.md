@@ -28,7 +28,7 @@ node scripts/docs-sync.mjs --plan <cambio> # imprime el plan en JSON
 
 Recorre los ficheros de texto y falla si encuentra una credencial, una ruta de usuario o un término de la lista prohibida. Es el gate que impide que el template arrastre datos del proyecto del que salió.
 
-Hoy vive en el repositorio de este sitio, no en la implementación de referencia: es un requisito pendiente del template.
+Vive en el sitio y en el template; la implementación de referencia todavía no lo tiene conectado a su CI.
 
 ```bash
 node scripts/check-secrets.mjs   # falla con el hallazgo y su línea
@@ -52,7 +52,7 @@ Las herramientas de diagnóstico personal —medir tiempos, listar tests lentos�
 
 ## Workflows
 
-Los workflows no son scripts: son el esqueleto del CI. Gates en PR, despliegue de pre en `main`, producción manual y un cron semanal para la documentación.
+Los workflows no son scripts: son el esqueleto del CI. La tabla describe la implementación de referencia. El template v0.1 solo trae el workflow de documentación; los gates de PR y despliegue se añaden en cada proyecto.
 
 | Workflow | Disparador |
 |---|---|

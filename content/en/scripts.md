@@ -28,7 +28,7 @@ node scripts/docs-sync.mjs --plan <change> # print the plan as JSON
 
 Walks the text files and fails if it finds a credential, a user path or a term from the forbidden list. It is the gate that prevents the template from carrying data from the project it came from.
 
-It currently lives in this site's repository, not in the reference implementation: it is a pending requirement for the template.
+It lives in the site and in the template; the reference implementation does not have it wired into CI yet.
 
 ```bash
 node scripts/check-secrets.mjs   # fails with the finding and its line
@@ -52,7 +52,7 @@ Personal diagnostic tools —measuring time, listing slow tests— have no CI co
 
 ## Workflows
 
-Workflows are not scripts: they are the CI skeleton. Gates on PR, pre deploy on `main`, manual production and a weekly cron for documentation.
+Workflows are not scripts: they are the CI skeleton. The table describes the reference implementation. Template v0.1 only ships the documentation workflow; PR and deployment gates are added per project.
 
 | Workflow | Trigger |
 |---|---|
