@@ -37,7 +37,7 @@ Adoption consists in creating the project from the template, configuring it with
     <circle cx="446" cy="50" r="14" fill="#131a21" stroke="#6ee7a8" stroke-width="2"/>
     <text x="446" y="55" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12" font-weight="600">4</text>
     <text x="446" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Config</text>
-    <text x="446" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">8 fields</text>
+    <text x="446" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">bootstrap</text>
   </g>
 
   <g class="fade" style="animation-delay:.33s">
@@ -62,6 +62,7 @@ Adoption consists in creating the project from the template, configuring it with
 - **OpenSpec** for specifications and tasks.
 - **Git** and a CI (GitHub Actions in the reference implementation).
 - **OpenCode** as the v0.1 harness: subagents, per-agent permissions and commands.
+- **Bash** (Git Bash on Windows or WSL): agents run the gates there; PowerShell is not supported.
 - **Node 22+** for bootstrap, documentation scripts and the plan.
 
 ## Project fields

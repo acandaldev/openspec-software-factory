@@ -37,7 +37,7 @@ La adopción consiste en crear el proyecto desde el template, configurarlo con u
     <circle cx="446" cy="50" r="14" fill="#131a21" stroke="#6ee7a8" stroke-width="2"/>
     <text x="446" y="55" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12" font-weight="600">4</text>
     <text x="446" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Config</text>
-    <text x="446" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">8 campos</text>
+    <text x="446" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">bootstrap</text>
   </g>
 
   <g class="fade" style="animation-delay:.33s">
@@ -62,6 +62,7 @@ La adopción consiste en crear el proyecto desde el template, configurarlo con u
 - **OpenSpec** para las especificaciones y las tareas.
 - **Git** y un CI (GitHub Actions en la implementación de referencia).
 - **OpenCode** como harness de la v0.1: subagentes, permisos por agente y comandos.
+- **Bash** (Git Bash en Windows o WSL): los agentes ejecutan ahí los gates; PowerShell no está soportado.
 - **Node 22+** para el bootstrap, los scripts de documentación y el plan.
 
 ## Los campos del proyecto
