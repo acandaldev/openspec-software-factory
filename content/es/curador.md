@@ -52,7 +52,7 @@ Un registro real tiene esta forma. Ejemplo de fila:
 
 | Fecha | Origen | Hueco | Decisión | Dónde | Commit |
 |---|---|---|---|---|---|
-| 21-nov | Incidente | Una tarea crítica tocó 6 ficheros y agotó el contexto | Partir si toca >3 ficheros o mezcla flujos | AGENTS.md | `a1b2c3d` |
+| 21-nov | Incidente | La regla se actualizó en `AGENTS.md` pero siguió vieja en un comando | Fuente única y referencias, no copias | AGENTS.md, comandos | `a1b2c3d` |
 
 El registro no guarda cualquier cambio. Guarda **decisiones**: lo que cambió el comportamiento del sistema. Un ajuste de presupuesto o una versión de paquete no entran; si entraran, el registro dejaría de servir para entender por qué el sistema es como es.
 

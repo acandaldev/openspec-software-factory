@@ -50,7 +50,7 @@ La etiqueta de la tarea decide el modelo y el tamaño del lote. No es una prefer
 | NORMAL | lotes de 1–3 | por bloque | modelo intermedio |
 | `[FAST]` | lotes de 3–5 | por bloque | modelo económico |
 
-`[HARD]` no autoriza tareas grandes: cambia la revisión y el modelo, no el tamaño. Una tarea se parte antes de empezar si toca más de tres ficheros de producción o mezcla flujos independientes.
+`[HARD]` no autoriza tareas grandes: cambia la revisión y el modelo, no el tamaño. Una tarea se parte antes de empezar si cumple dos o más de: toca más de 3 ficheros de producción, mezcla dos flujos independientes, cruza más de un sistema externo o tiene más de 5 escenarios verificables por separado.
 
 ## Dónde para el bucle
 

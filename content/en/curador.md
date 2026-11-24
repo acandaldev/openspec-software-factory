@@ -52,7 +52,7 @@ A real record looks like this. Example row:
 
 | Date | Origin | Gap | Decision | Where | Commit |
 |---|---|---|---|---|---|
-| 21-nov | Incident | A critical task touched 6 files and exhausted context | Split if it touches >3 files or mixes flows | AGENTS.md | `a1b2c3d` |
+| 21-nov | Incident | The rule was updated in `AGENTS.md` but stayed stale in a command | Single source and references, not copies | AGENTS.md, commands | `a1b2c3d` |
 
 The record does not keep every change. It keeps **decisions**: what changed the behaviour of the system. A budget adjustment or a package version does not go in; if it did, the record would stop explaining why the system is the way it is.
 

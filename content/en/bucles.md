@@ -50,7 +50,7 @@ The task label decides the model and the batch size. It is not a preference: it 
 | NORMAL | batches of 1–3 | per block | intermediate model |
 | `[FAST]` | batches of 3–5 | per block | economical model |
 
-`[HARD]` does not authorize large tasks: it changes the review and the model, not the size. A task is split before starting if it touches more than three production files or mixes independent flows.
+`[HARD]` does not authorize large tasks: it changes the review and the model, not the size. A task is split before starting if it meets two or more of: it touches more than 3 production files, mixes two independent flows, crosses more than one external system or has more than 5 separately verifiable scenarios.
 
 ## Where the loop stops
 
