@@ -1,6 +1,6 @@
 # The wiki layer: optional, not a requirement
 
-The LLM wiki pattern is powerful: immutable sources, generated pages, index, log and lint. But not every project needs a wiki, and a project with good documentation can get worse if you add another layer.
+The LLM wiki pattern is powerful: immutable sources, generated pages, index, log and lint. But not every project needs a wiki, and a project with good documentation can get worse if you add another layer. In the current version the wiki is design only: there is no module to turn on.
 
 ## When it makes sense
 
@@ -52,4 +52,4 @@ If the project already has mature `docs/`, the wiki starts as a **research folde
 
 ## Recommendation
 
-The wiki is not a part of the method: it is an optional module. Turn it on only if you accumulate external sources and need traceability; if your operational documentation is already mature, leave it off.
+The wiki is not a part of the method: it is an optional module. Adopt it only if you accumulate external sources and need traceability; if your operational documentation is already mature, do not add the layer.

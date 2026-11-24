@@ -1,6 +1,6 @@
 # La capa wiki: opcional, no un requisito
 
-El patrón de wiki con LLM es potente: fuentes inmutables, páginas generadas, índice, registro y lint. Pero no todo proyecto necesita una wiki, y un proyecto con buena documentación puede empeorar si le añades otra capa.
+El patrón de wiki con LLM es potente: fuentes inmutables, páginas generadas, índice, registro y lint. Pero no todo proyecto necesita una wiki, y un proyecto con buena documentación puede empeorar si le añades otra capa. En la versión actual la wiki es solo diseño: no hay módulo que activar.
 
 ## Cuándo tiene sentido
 
@@ -52,4 +52,4 @@ Si el proyecto ya tiene `docs/` maduro, la wiki empieza como **carpeta de invest
 
 ## Recomendación
 
-La wiki no es una pieza del método: es un módulo opcional. Enciéndela solo si acumulas fuentes externas y necesitas trazabilidad; si tu documentación operativa ya es madura, déjala apagada.
+La wiki no es una pieza del método: es un módulo opcional. Adóptala solo si acumulas fuentes externas y necesitas trazabilidad; si tu documentación operativa ya es madura, no añadas la capa.
