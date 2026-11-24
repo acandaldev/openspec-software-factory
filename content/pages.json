@@ -1,98 +1,35 @@
 [
   {
     "slug": "index",
-    "nav": { "es": "Inicio", "en": "Home" },
+    "nav": { "es": "Cómo funciona", "en": "How it works" },
     "description": {
-      "es": "Una fábrica de software sobre OpenSpec: especificaciones, subagentes, gates y un registro que mejora el sistema.",
-      "en": "A software factory on top of OpenSpec: specifications, subagents, gates and a record that improves the system."
-    }
+      "es": "El problema, las cuatro piezas, los bucles, los agentes y los gates: cómo funciona la fábrica.",
+      "en": "The problem, the four parts, the loops, the agents and the gates: how the factory works."
+    },
+    "intro": "index",
+    "sources": ["problema", "arquitectura", "bucles", "agentes", "gates"],
+    "redirects": ["problema", "arquitectura", "bucles", "agentes", "gates"]
   },
   {
-    "slug": "problema",
-    "nav": { "es": "Problema", "en": "Problem" },
+    "slug": "operacion",
+    "nav": { "es": "Cómo se opera", "en": "How it runs" },
     "description": {
-      "es": "Por qué un buen prompt no escala: contexto perdido, humano en medio y un sistema que no aprende.",
-      "en": "Why a good prompt does not scale: lost context, a human in the middle and a system that does not learn."
-    }
-  },
-  {
-    "slug": "arquitectura",
-    "nav": { "es": "Arquitectura", "en": "Architecture" },
-    "description": {
-      "es": "Las cuatro piezas de la fábrica: contexto compartido, agentes, traza y curador.",
-      "en": "The four parts of the factory: shared context, agents, trace and curator."
-    }
-  },
-  {
-    "slug": "bucles",
-    "nav": { "es": "Bucles", "en": "Loops" },
-    "description": {
-      "es": "Los cuatro bucles: proyecto, cambio, bloque y tarea.",
-      "en": "The four loops: project, change, block and task."
-    }
-  },
-  {
-    "slug": "agentes",
-    "nav": { "es": "Agentes", "en": "Agents" },
-    "description": {
-      "es": "Quién implementa, quién revisa y con qué modelo: delegación con contrato y modelos por nivel.",
-      "en": "Who implements, who reviews and with which model: delegation by contract and models per level."
-    }
-  },
-  {
-    "slug": "gates",
-    "nav": { "es": "Gates", "en": "Gates" },
-    "description": {
-      "es": "Build, tests, formato, spec y mutación: la evidencia que decide si hay commit.",
-      "en": "Build, tests, format, spec and mutation: the evidence that decides whether there is a commit."
-    }
-  },
-  {
-    "slug": "documentos",
-    "nav": { "es": "Documentos", "en": "Documents" },
-    "description": {
-      "es": "Qué es fuente, qué es síntesis y qué caduca: el mapa documental del método.",
-      "en": "What is source, what is synthesis and what expires: the method's document map."
-    }
-  },
-  {
-    "slug": "scripts",
-    "nav": { "es": "Scripts", "en": "Scripts" },
-    "description": {
-      "es": "Los pocos scripts que sostienen el método, sus modos y quién los invoca.",
-      "en": "The few scripts that hold the method together, their modes and who invokes them."
-    }
-  },
-  {
-    "slug": "curador",
-    "nav": { "es": "Curador", "en": "Curator" },
-    "description": {
-      "es": "Cómo la traza se convierte en reglas: el registro de decisiones y su cadencia.",
-      "en": "How the trace becomes rules: the decision record and its cadence."
-    }
-  },
-  {
-    "slug": "comparativa",
-    "nav": { "es": "Comparativa", "en": "Comparison" },
-    "description": {
-      "es": "Qué añade la fábrica a OpenSpec, sin vender humo ni inventar métricas.",
-      "en": "What the factory adds to OpenSpec, without hype or invented metrics."
-    }
+      "es": "Documentos, scripts, curador y wiki: cómo se mantiene el método sin que se pudra.",
+      "en": "Documents, scripts, curator and wiki: how the method is kept from rotting."
+    },
+    "intro": "operacion",
+    "sources": ["documentos", "scripts", "curador", "wiki"],
+    "redirects": ["documentos", "scripts", "curador", "wiki"]
   },
   {
     "slug": "adopcion",
-    "nav": { "es": "Adopción", "en": "Adoption" },
+    "nav": { "es": "Cómo se adopta", "en": "How to adopt" },
     "description": {
-      "es": "Cómo se instala el método en un proyecto nuevo, con los campos, el harness de OpenCode y sus límites.",
-      "en": "How to install the method in a new project, with its fields, the OpenCode harness and its limits."
-    }
-  },
-  {
-    "slug": "wiki",
-    "nav": { "es": "Wiki", "en": "Wiki" },
-    "description": {
-      "es": "La capa opcional de conocimiento: raw, wiki y lint determinista.",
-      "en": "The optional knowledge layer: raw, wiki and deterministic lint."
-    }
+      "es": "Cómo se instala en un proyecto, qué añade a OpenSpec y cómo verificar que controla de verdad.",
+      "en": "How to install it in a project, what it adds to OpenSpec and how to verify it really controls."
+    },
+    "intro": "adopcion",
+    "sources": ["comparativa"],
+    "redirects": ["comparativa"]
   }
 ]

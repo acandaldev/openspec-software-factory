@@ -2,7 +2,7 @@
 
 The method is understood through its loops. Each has a cadence, an artifact and a gate. What changes between them is not the tool: it is the level of decision.
 
-<svg viewBox="0 0 760 380" role="img" aria-label="Nested loops: project, change, block and task">
+<svg class="diagram" viewBox="0 0 760 380" role="img" aria-label="Nested loops: project, change, block and task">
   <rect x="10" y="10" width="740" height="360" rx="18" fill="#10161c" stroke="#22303a"/>
   <text x="34" y="38" fill="#93a4b3" font-family="system-ui" font-size="13">PROJECT · months</text>
   <text x="720" y="38" text-anchor="end" fill="#6ee7a8" font-family="system-ui" font-size="12">state · decisions</text>

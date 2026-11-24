@@ -2,7 +2,7 @@
 
 El método se entiende por sus bucles. Cada uno tiene una cadencia, un artefacto y una puerta. Lo que cambia entre ellos no es la herramienta: es el nivel de decisión.
 
-<svg viewBox="0 0 760 380" role="img" aria-label="Bucles anidados: proyecto, cambio, bloque y tarea">
+<svg class="diagram" viewBox="0 0 760 380" role="img" aria-label="Bucles anidados: proyecto, cambio, bloque y tarea">
   <rect x="10" y="10" width="740" height="360" rx="18" fill="#10161c" stroke="#22303a"/>
   <text x="34" y="38" fill="#93a4b3" font-family="system-ui" font-size="13">PROYECTO · meses</text>
   <text x="720" y="38" text-anchor="end" fill="#6ee7a8" font-family="system-ui" font-size="12">estado · decisiones</text>

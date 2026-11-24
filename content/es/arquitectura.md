@@ -2,7 +2,7 @@
 
 La tesis es sencilla: un agente no mejora por tener un modelo mejor, sino por tener un sistema alrededor que le diga qué leer, qué producir, cómo demostrarlo y qué corregir después.
 
-<svg viewBox="0 0 760 320" role="img" aria-label="Ciclo: contexto, agentes, traza y curador">
+<svg class="diagram" viewBox="0 90 760 220" role="img" aria-label="Ciclo: contexto, agentes, traza y curador">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#6ee7a8"/>
@@ -24,9 +24,9 @@ La tesis es sencilla: un agente no mejora por tener un modelo mejor, sino por te
   <text x="668" y="145" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="16" font-weight="600">Curador</text>
   <text x="668" y="168" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="12">regla · commit</text>
 
-  <line x1="180" y1="153" x2="204" y2="153" stroke="#6ee7a8" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="370" y1="153" x2="394" y2="153" stroke="#6ee7a8" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="560" y1="153" x2="584" y2="153" stroke="#6ee7a8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line class="draw" pathLength="1" x1="180" y1="153" x2="204" y2="153" stroke="#6ee7a8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line class="draw" pathLength="1" x1="370" y1="153" x2="394" y2="153" stroke="#6ee7a8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line class="draw" pathLength="1" x1="560" y1="153" x2="584" y2="153" stroke="#6ee7a8" stroke-width="2" marker-end="url(#arrow)"/>
 
   <path d="M 668 198 C 668 268, 98 268, 98 200" fill="none" stroke="#f0b429" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
   <text x="383" y="288" text-anchor="middle" fill="#f0b429" font-family="system-ui" font-size="12">la siguiente pasada empieza con mejores reglas</text>

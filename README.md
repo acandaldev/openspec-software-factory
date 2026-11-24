@@ -3,6 +3,7 @@
 Sitio público del método: **OpenSpec + subagentes + gates + traza + curador**.
 
 - `content/es/`, `content/en/` — fuente de las páginas en markdown.
+- `content/pages.json` — tres páginas largas y los fragmentos que las componen; las URLs antiguas se generan como redirects.
 - `data/metrics.json` — cifras saneadas y enlace al repo.
 - `site/assets/` — CSS, favicon.
 - `build.mjs` — generador estático **sin dependencias**.

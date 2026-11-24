@@ -2,7 +2,7 @@
 
 The method separates three responsibilities that a single agent mixes: coordinate, implement and review. Each has its own context, model and limits.
 
-<svg viewBox="0 0 760 330" role="img" aria-label="Sequence: coordinator, implementer, gates and reviewer">
+<svg class="diagram" viewBox="0 0 760 330" role="img" aria-label="Sequence: coordinator, implementer, gates and reviewer">
   <defs>
     <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#6ee7a8"/>
@@ -24,9 +24,9 @@ The method separates three responsibilities that a single agent mixes: coordinat
   <text x="663" y="60" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="15" font-weight="600">Reviewer</text>
   <text x="663" y="80" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="11">evidence · verdict</text>
 
-  <line x1="170" y1="65" x2="204" y2="65" stroke="#6ee7a8" stroke-width="2" marker-end="url(#a3)"/>
-  <line x1="360" y1="65" x2="394" y2="65" stroke="#6ee7a8" stroke-width="2" marker-end="url(#a3)"/>
-  <line x1="550" y1="65" x2="584" y2="65" stroke="#6ee7a8" stroke-width="2" marker-end="url(#a3)"/>
+  <line class="draw" pathLength="1" x1="170" y1="65" x2="204" y2="65" stroke="#6ee7a8" stroke-width="2" marker-end="url(#a3)"/>
+  <line class="draw" pathLength="1" x1="360" y1="65" x2="394" y2="65" stroke="#6ee7a8" stroke-width="2" marker-end="url(#a3)"/>
+  <line class="draw" pathLength="1" x1="550" y1="65" x2="584" y2="65" stroke="#6ee7a8" stroke-width="2" marker-end="url(#a3)"/>
 
   <path d="M 663 104 C 663 160, 283 160, 283 104" fill="none" stroke="#f0b429" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a3)"/>
   <text x="473" y="180" text-anchor="middle" fill="#f0b429" font-family="system-ui" font-size="12">if there are findings, the delta goes back to the same implementer</text>

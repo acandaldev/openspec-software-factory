@@ -32,6 +32,39 @@ function inline(s, ctx) {
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 }
 
+function plain(s) {
+  return s
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+}
+
+function slugify(s) {
+  return plain(s)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "seccion";
+}
+
+// Convierte un H1 de fragmento en H2, su H2 en H3, etc. No toca bloques de código.
+function demote(md) {
+  let fenced = false;
+  return md
+    .split("\n")
+    .map((line) => {
+      if (line.trimStart().startsWith("```")) {
+        fenced = !fenced;
+        return line;
+      }
+      if (fenced) return line;
+      return line.replace(/^(#{1,4})\s/, (_, hashes) => `${hashes}# `);
+    })
+    .join("\n");
+}
+
 function renderTable(rows, ctx) {
   const cells = (r) => r.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
   const head = cells(rows[0]);
@@ -43,9 +76,10 @@ function renderTable(rows, ctx) {
   return `<div class="table-wrap"><table><thead><tr>${th}</tr></thead><tbody>${tb}</tbody></table></div>`;
 }
 
-function markdown(md, ctx) {
+function markdown(md, ctx, toc) {
   const lines = md.replace(/\r\n/g, "\n").split("\n");
   const out = [];
+  const usedIds = new Map();
   let i = 0;
   while (i < lines.length) {
     const line = lines[i];
@@ -71,13 +105,22 @@ function markdown(md, ctx) {
       } else {
         while (i < lines.length && lines[i].trim()) buf.push(lines[i++]);
       }
-      out.push(subst(buf.join("\n"), ctx));
+      const raw = subst(buf.join("\n"), ctx);
+      out.push(open ? `<div class="diagram-wrap">${raw}</div>` : raw);
       continue;
     }
-    const h = /^(#{1,3})\s+(.*)$/.exec(line);
+    const h = /^(#{1,4})\s+(.*)$/.exec(line);
     if (h) {
       const level = h[1].length;
-      out.push(`<h${level}>${inline(h[2], ctx)}</h${level}>`);
+      let id = "";
+      if (level === 2 || level === 3) {
+        const base = slugify(h[2]);
+        const n = (usedIds.get(base) ?? 0) + 1;
+        usedIds.set(base, n);
+        id = n === 1 ? base : `${base}-${n}`;
+        if (level === 2) toc.push({ id, text: h[2] });
+      }
+      out.push(`<h${level}${id ? ` id="${id}"` : ""}>${inline(h[2], ctx)}</h${level}>`);
       i += 1;
       continue;
     }
@@ -112,7 +155,7 @@ function markdown(md, ctx) {
     while (
       i < lines.length &&
       lines[i].trim() &&
-      !/^(#{1,3} |\||- |\d+\. |> |```|<)/.test(lines[i])
+      !/^(#{1,4} |\||- |\d+\. |> |```|<)/.test(lines[i])
     ) {
       buf.push(lines[i++]);
     }
@@ -126,18 +169,33 @@ function titleOf(md) {
   return m ? m[1].replace(/\{\{[^}]+\}\}/g, "").trim() : "OpenSpec Software Factory";
 }
 
-function layout({ lang, page, title, description, body }) {
+function tocList(toc, ctx) {
+  return `<ol>${toc.map((x) => `<li><a href="#${x.id}">${inline(x.text, ctx)}</a></li>`).join("")}</ol>`;
+}
+
+function layout({ lang, page, title, description, body, toc, ctx }) {
   const other = lang === "es" ? "en" : "es";
   const nav = PAGES.map((p) => {
     const active = p.slug === page.slug ? ' class="active"' : "";
     return `<a href="${p.slug}.html"${active}>${p.nav[lang]}</a>`;
   }).join("");
   const langLabel = lang === "es" ? "EN" : "ES";
+  const tocLabel = lang === "es" ? "En esta página" : "On this page";
+  const mobileToc = toc.length
+    ? `<details class="toc-mobile"><summary>${tocLabel}</summary>${tocList(toc, ctx)}</details>`
+    : "";
+  const desktopToc = toc.length
+    ? `<aside class="toc"><p>${tocLabel}</p>${tocList(toc, ctx)}</aside>`
+    : "";
+  const mainBody = body.includes("<!-- TOC -->")
+    ? body.replace("<!-- TOC -->", mobileToc)
+    : mobileToc + body;
   return `<!doctype html>
 <html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0e12">
 <title>${esc(title)} · OpenSpec Software Factory</title>
 <meta name="description" content="${esc(description)}">
 <link rel="stylesheet" href="../assets/style.css">
@@ -147,15 +205,36 @@ function layout({ lang, page, title, description, body }) {
 <body>
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">▦</span> OpenSpec <em>Software Factory</em></a>
-  <nav>${nav}</nav>
+  <nav>${nav}<a class="ext" href="${DATA.repo}" target="_blank" rel="noopener">GitHub</a></nav>
   <a class="lang" href="../${other}/${page.slug}.html" hreflang="${other}">${langLabel}</a>
 </header>
-<main>
-${body}
-</main>
+<div class="shell">
+  <main>
+${mainBody}
+  </main>
+  ${desktopToc}
+</div>
 <footer>
   <p>MIT · <a href="${DATA.repo}">GitHub</a> · ${lang === "es" ? "Documentación viva del método" : "Living documentation of the method"}</p>
 </footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>
+`;
+}
+
+function redirectPage(lang, target) {
+  return `<!doctype html>
+<html lang="${lang}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=${target}">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${target}">
+<title>Redirigiendo…</title>
+</head>
+<body>
+<p>Esta página se ha movido a <a href="${target}">${target}</a>.</p>
 </body>
 </html>
 `;
@@ -165,20 +244,37 @@ rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
 cpSync(path.join(ROOT, "site", "assets"), path.join(DIST, "assets"), { recursive: true });
 
+let redirectCount = 0;
 for (const lang of LANGS) {
   mkdirSync(path.join(DIST, lang), { recursive: true });
   for (const page of PAGES) {
-    const file = path.join(ROOT, "content", lang, `${page.slug}.md`);
-    const md = readFileSync(file, "utf8");
+    const intro = readFileSync(path.join(ROOT, "content", lang, `${page.intro}.md`), "utf8");
+    const sources = (page.sources ?? []).map((source) =>
+      demote(readFileSync(path.join(ROOT, "content", lang, `${source}.md`), "utf8")),
+    );
     const ctx = { ...DATA.metrics, repo: DATA.repo };
+    const toc = [];
+    const body = markdown([intro, ...sources].join("\n\n"), ctx, toc);
     const html = layout({
       lang,
       page,
-      title: titleOf(md),
+      title: titleOf(intro),
       description: page.description[lang],
-      body: markdown(md, ctx),
+      body,
+      toc,
+      ctx,
     });
     writeFileSync(path.join(DIST, lang, `${page.slug}.html`), html, "utf8");
+  }
+  for (const page of PAGES) {
+    for (const from of page.redirects ?? []) {
+      writeFileSync(
+        path.join(DIST, lang, `${from}.html`),
+        redirectPage(lang, `${page.slug}.html`),
+        "utf8",
+      );
+      redirectCount += 1;
+    }
   }
 }
 
@@ -188,4 +284,6 @@ writeFileSync(
   "utf8",
 );
 
-console.log(`Generado dist/: ${PAGES.length} páginas × ${LANGS.length} idiomas`);
+console.log(
+  `Generado dist/: ${PAGES.length} páginas × ${LANGS.length} idiomas + ${redirectCount} redirecciones`,
+);
