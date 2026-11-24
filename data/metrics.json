@@ -1,5 +1,5 @@
 {
-  "repo": "https://github.com/acandaldev/openspec-software-factory",
+  "repo": "https://github.com/acandaldev/openspec-software-factory-template",
   "metrics": {
     "loops": 4,
     "agents": 3,

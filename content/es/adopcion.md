@@ -1,8 +1,8 @@
 # Cómo se adopta
 
-> El template ejecutable (v1) todavía no está publicado. Esta página describe cómo se adoptará el método; el estado real está en el `TEMPLATE.md` del repositorio.
+> El template ejecutable v0.1 ya está publicado: [openspec-software-factory-template](https://github.com/acandaldev/openspec-software-factory-template). Esta página describe cómo se adopta el método.
 
-La adopción consiste en copiar el método a un proyecto, configurarlo con unos pocos datos y verificarlo. No es una instalación de plataforma: es un repositorio con reglas y gates.
+La adopción consiste en crear el proyecto desde el template, configurarlo con unos pocos datos y verificarlo. No es una instalación de plataforma: es un repositorio con reglas y gates.
 
 <svg class="diagram" viewBox="0 20 760 90" role="img" aria-label="Seis pasos para adoptar el método">
   <line x1="50" y1="50" x2="710" y2="50" stroke="#22303a" stroke-width="2"/>
@@ -57,39 +57,38 @@ La adopción consiste en copiar el método a un proyecto, configurarlo con unos 
 
 - **OpenSpec** para las especificaciones y las tareas.
 - **Git** y un CI (GitHub Actions en la implementación de referencia).
-- **OpenCode** como harness de la v1: subagentes, permisos por agente y comandos.
-- **Node** para los scripts de documentación y plan.
+- **OpenCode** como harness de la v0.1: subagentes, permisos por agente y comandos.
+- **Node 22+** para el bootstrap, los scripts de documentación y el plan.
 
 ## Los campos del proyecto
 
 | Campo | Ejemplo |
 |---|---|
-| Nombre y slug | `acme-booking` |
-| Solución o proyecto principal | `backend/Acme.sln` |
-| Directorios | `front/`, `backend/` |
-| URLs | producción, pre, API |
-| Modelos por nivel | implementar, revisar `[HARD]`, revisar NORMAL |
-| CI | workflows y comandos de gates |
-| Documentos excluidos por defecto | auditorías, documentación de cliente |
-| Versiones | Node, SDK, OpenSpec |
+| Nombre y slug | `acme-notes` |
+| Descripción y stack | notas internas; Node + TypeScript |
+| Directorios de código | `src/` |
+| Comandos | build, test y formato |
+| Modelos por nivel | implementar y revisar `[HARD]`, NORMAL y `[FAST]` |
+| Copias de revisión | `.review` |
+| Rama principal | `main` |
 
-El objetivo es que todo eso viva en **un solo fichero** de configuración. Si un dato aparece en dos sitios, el generador debe fallar.
+El bootstrap pide esos datos una sola vez y los escribe en `harness.config.json` y en el contrato. Si queda un placeholder sin resolver, falla.
 
 ## Pasos
 
-1. **Crear el proyecto** y su repositorio.
-2. **Inicializar OpenSpec** y escribir la primera propuesta.
-3. **Copiar el core**: contrato, agentes, comandos, scripts y workflows de documentación.
-4. **Rellenar la configuración** con los campos anteriores.
-5. **Instalar el harness de OpenCode**: agentes, comandos, permisos y configuración.
-6. **Verificar**: `docs-sync --check`, `--plan` y un build en seco.
-7. **Primera tarea** con el brief cerrado y los gates.
+1. **Crear el repositorio** desde el template.
+2. **Inicializar OpenSpec** si el proyecto aún no lo tiene (`openspec init`).
+3. **Ejecutar el bootstrap**: `node bootstrap.mjs` (interactivo o con flags).
+4. **Revisar el contrato**: `AGENTS.md`, agentes y comandos sin placeholders.
+5. **Verificar**: `docs-sync --check`, `check-secrets` y los tests.
+6. **Crear el primer cambio** con `/opsx-propose`.
+7. **Primera tarea** con `/implementar` y su revisión.
 
 ## Harness y adaptadores
 
-La v1 se construirá y se probará sobre **OpenCode**. No es una dependencia del método —el contrato, los gates y la traza son ficheros y git—, pero sí de las capacidades que el bucle usa: subagentes, permisos por agente y sesiones reanudables.
+La v0.1 se construye y se prueba sobre **OpenCode**. No es una dependencia del método —el contrato, los gates y la traza son ficheros y git—, pero sí de las capacidades que el bucle usa: subagentes, permisos por agente y sesiones reanudables.
 
-| Harness | Estado en la v1 |
+| Harness | Estado en la v0.1 |
 |---|---|
 | OpenCode | soportado |
 | Claude Code | extensión prevista |

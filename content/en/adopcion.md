@@ -1,8 +1,8 @@
 # How to adopt it
 
-> The executable template (v1) is not published yet. This page describes how the method will be adopted; the real status is in the repository's `TEMPLATE.md`.
+> The executable template v0.1 is published: [openspec-software-factory-template](https://github.com/acandaldev/openspec-software-factory-template). This page describes how the method is adopted.
 
-Adoption consists of copying the method into a project, configuring it with a few fields and verifying it. It is not a platform install: it is a repository with rules and gates.
+Adoption consists in creating the project from the template, configuring it with a few values and verifying it. It is not a platform install: it is a repository with rules and gates.
 
 <svg class="diagram" viewBox="0 20 760 90" role="img" aria-label="Six steps to adopt the method">
   <line x1="50" y1="50" x2="710" y2="50" stroke="#22303a" stroke-width="2"/>
@@ -57,39 +57,38 @@ Adoption consists of copying the method into a project, configuring it with a fe
 
 - **OpenSpec** for specifications and tasks.
 - **Git** and a CI (GitHub Actions in the reference implementation).
-- **OpenCode** as the v1 harness: subagents, per-agent permissions and commands.
-- **Node** for the documentation and plan scripts.
+- **OpenCode** as the v0.1 harness: subagents, per-agent permissions and commands.
+- **Node 22+** for bootstrap, documentation scripts and the plan.
 
 ## Project fields
 
 | Field | Example |
 |---|---|
-| Name and slug | `acme-booking` |
-| Main solution or project | `backend/Acme.sln` |
-| Directories | `front/`, `backend/` |
-| URLs | production, pre, API |
-| Models per level | implement, review `[HARD]`, review NORMAL |
-| CI | workflows and gate commands |
-| Documents excluded by default | audits, client documentation |
-| Versions | Node, SDK, OpenSpec |
+| Name and slug | `acme-notes` |
+| Description and stack | internal notes; Node + TypeScript |
+| Source directories | `src/` |
+| Commands | build, test and format |
+| Models per level | implement and review `[HARD]`, NORMAL and `[FAST]` |
+| Review copies | `.review` |
+| Main branch | `main` |
 
-The goal is for all of that to live in **one configuration file**. If a piece of data appears in two places, the generator must fail.
+Bootstrap asks for those values once and writes them to `harness.config.json` and the contract. If a placeholder is left unresolved, it fails.
 
 ## Steps
 
-1. **Create the project** and its repository.
-2. **Initialize OpenSpec** and write the first proposal.
-3. **Copy the core**: contract, agents, commands, scripts and documentation workflows.
-4. **Fill the configuration** with the fields above.
-5. **Install the OpenCode harness**: agents, commands, permissions and configuration.
-6. **Verify**: `docs-sync --check`, `--plan` and a dry build.
-7. **First task** with a closed brief and gates.
+1. **Create the repository** from the template.
+2. **Initialize OpenSpec** if the project does not use it yet (`openspec init`).
+3. **Run bootstrap**: `node bootstrap.mjs` (interactive or with flags).
+4. **Review the contract**: `AGENTS.md`, agents and commands with no placeholders.
+5. **Verify**: `docs-sync --check`, `check-secrets` and the tests.
+6. **Create the first change** with `/opsx-propose`.
+7. **First task** with `/implementar` and its review.
 
 ## Harness and adapters
 
-v1 will be built and tested on **OpenCode**. It is not a dependency of the method —the contract, gates and trace are files and git— but it is a dependency of the capabilities the loop uses: subagents, per-agent permissions and resumable sessions.
+v0.1 is built and tested on **OpenCode**. It is not a dependency of the method —the contract, gates and trace are files and git— but it is a dependency of the capabilities the loop uses: subagents, per-agent permissions and resumable sessions.
 
-| Harness | v1 status |
+| Harness | v0.1 status |
 |---|---|
 | OpenCode | supported |
 | Claude Code | planned extension |

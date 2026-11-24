@@ -16,8 +16,8 @@ OpenSpec ya resuelve la especificación: propuesta, requisitos, escenarios y tar
 | Brief y veredicto en el commit | — | ✅ |
 | Revisión por rango de commits | — | ✅ |
 | Registro de decisiones y curador | — | ✅ |
-| Harness OpenCode (subagentes y permisos) | — | ✅ (v1) |
-| Adaptadores para otros harness | — | previsto, fuera de la v1 |
+| Harness OpenCode (subagentes y permisos) | — | ✅ (v0.1) |
+| Adaptadores para otros harness | — | previsto, fuera de la v0.1 |
 | Archivo del cambio | ✅ | ✅ |
 
 ## Qué añade cada pieza
@@ -27,7 +27,7 @@ OpenSpec ya resuelve la especificación: propuesta, requisitos, escenarios y tar
 - **La mutación** convierte un test verde en un test que prueba algo.
 - **La traza** convierte el trabajo en datos: qué costó, qué falló y por qué.
 - **El curador** convierte los datos en reglas para la siguiente pasada.
-- **El harness de OpenCode** hace ejecutable el método: subagentes, permisos y comandos nativos. Los adaptadores para otros asistentes quedan como extensión documentada, no como promesa de la v1.
+- **El harness de OpenCode** hace ejecutable el método: subagentes, permisos y comandos nativos. Los adaptadores para otros asistentes quedan como extensión documentada, no como promesa de la v0.1.
 
 ## Lo que no promete
 
