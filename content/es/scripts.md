@@ -52,7 +52,7 @@ Las herramientas de diagnóstico personal —medir tiempos, listar tests lentos�
 
 ## Workflows
 
-Los workflows no son scripts: son el esqueleto del CI. La tabla describe la implementación de referencia. El template v0.1 solo trae el workflow de documentación; los gates de PR y despliegue se añaden en cada proyecto.
+Los workflows no son scripts: son el esqueleto del CI. La tabla describe patrones de la implementación de referencia, no un contrato: cada proyecto define sus workflows y sus rutas. El núcleo del template es el workflow de documentación y el gate de secretos; los gates de PR y despliegue se añaden en cada proyecto.
 
 | Workflow | Disparador |
 |---|---|

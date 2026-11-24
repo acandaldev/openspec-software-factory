@@ -98,15 +98,18 @@ A commit cannot contain mutation markers or rely on a green pass from before the
 
 CI does not replace local gates: it confirms them in a clean environment. A red run nobody looks at is a false green; that is why every push waits for its result before moving on.
 
-Mutation does not run in CI: it runs during the task and in the review, on a frozen copy.
+The mutation gate is local: it runs during the task and in the review, on a frozen copy. A mutation sweep in CI, if one exists, is informational: it observes, it does not approve.
+
+The table describes patterns from the reference implementation, not a contract: each project defines its workflows and paths. The template core is the documentation workflow and the secrets gate; PR and deployment gates are added per project.
 
 | Workflow | When |
 |---|---|
-| Backend | PR touching `backend/` |
-| Front | PR touching `front/` |
+| Backend / Front | PR touching that side |
 | Docs | changes to documentation and harness |
 | Pre-deploy | push to `main`: gates, pre deploy and smoke |
 | Production | manual, with explicit confirmation |
+
+The secrets gate always runs in CI: one that does not run protects nothing.
 
 ## The stops
 

@@ -16,8 +16,8 @@ OpenSpec already solves specification: proposal, requirements, scenarios and tas
 | Brief and verdict in the commit | — | ✅ |
 | Review by commit range | — | ✅ |
 | Decision record and curator | — | ✅ |
-| OpenCode harness (subagents and permissions) | — | ✅ (v0.1) |
-| Adapters for other harnesses | — | planned, outside v0.1 |
+| OpenCode harness (subagents and permissions) | — | ✅ (current version) |
+| Adapters for other harnesses | — | planned, outside the current scope |
 | Change archive | ✅ | ✅ |
 
 ## What each part adds
@@ -27,7 +27,7 @@ OpenSpec already solves specification: proposal, requirements, scenarios and tas
 - **Mutation** turns a green test into a test that proves something.
 - **The trace** turns work into data: what it cost, what failed and why.
 - **The curator** turns data into rules for the next pass.
-- **The OpenCode harness** makes the method executable: subagents, permissions and native commands. Adapters for other assistants remain a documented extension, not a v0.1 promise.
+- **The OpenCode harness** makes the method executable: subagents, permissions and native commands. Adapters for other assistants remain a documented extension, not a promise of the current version.
 
 ## What it does not promise
 
