@@ -1,6 +1,6 @@
 # La fábrica que ejecuta tus especificaciones
 
-OpenSpec define qué debe ser verdad. La fábrica pone el agente que lo ejecuta, los gates que lo demuestran y la revisión que lo corrige.
+OpenSpec define qué debe ser verdad. La fábrica lo convierte en un plan ejecutable, lo implementa con agentes y gates, y lo revisa antes de dejarlo en git.
 
 <div class="story" data-reveal>
   <div class="story-step">
@@ -10,9 +10,15 @@ OpenSpec define qué debe ser verdad. La fábrica pone el agente que lo ejecuta,
   </div>
   <div class="story-arrow" aria-hidden="true">→</div>
   <div class="story-step">
+    <svg class="story-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/><path d="M11 6h9M11 12h9M11 18h9"/></svg>
+    <span class="story-label">Tareas</span>
+    <strong>El plan antes del código</strong>
+  </div>
+  <div class="story-arrow" aria-hidden="true">→</div>
+  <div class="story-step">
     <svg class="story-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg>
-    <span class="story-label">Agente</span>
-    <strong>Implementa y pasa los gates</strong>
+    <span class="story-label">Implementación</span>
+    <strong>Un agente, brief y gates</strong>
   </div>
   <div class="story-arrow" aria-hidden="true">→</div>
   <div class="story-step">
@@ -23,16 +29,21 @@ OpenSpec define qué debe ser verdad. La fábrica pone el agente que lo ejecuta,
   <p class="story-loop"><span aria-hidden="true">↺</span> El curador convierte la traza en regla.</p>
 </div>
 
-Del repo a la primera tarea:
+**Del repo a la primera tarea**
 
-<p class="prereqs">El método necesita <strong>OpenSpec</strong>, <strong>Git</strong> y un CI. La v0.1 añade el adaptador <strong>OpenCode</strong> (<strong>Node 22+</strong>, <strong>Bash</strong>). <a href="adopcion.html#requisitos">Ver requisitos</a>.</p>
+1. **Crea el repositorio** desde el template ([Use this template](https://github.com/acandaldev/openspec-software-factory-template)) o copia su contenido en un proyecto existente.
+2. **Instala los requisitos**: OpenSpec, Git y CI; para la v0.1, OpenCode, Node 22+ y Bash. [Ver requisitos](adopcion.html#requisitos).
+3. **Configura y estrena** el método en tu copia:
 
 ```
+# Inicializa OpenSpec y configura el harness
 openspec init
 node bootstrap.mjs
+
+# Abre OpenCode y estrena el método
 /opsx-propose "notas con etiquetas"
 /implementar
 /revisar
 ```
 
-<p class="actions"><a class="cta" href="metodo.html">Ver el método</a><a class="cta ghost" href="ejemplo.html">Ver el ejemplo</a></p>
+<p class="actions"><a class="cta" href="adopcion.html">Cómo empezar</a><a class="cta ghost" href="metodo.html">Ver el método</a><a class="cta ghost" href="ejemplo.html">Ver el ejemplo</a></p>
