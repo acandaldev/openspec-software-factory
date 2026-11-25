@@ -36,6 +36,15 @@ node scripts/check-secrets.mjs   # falla con el hallazgo y su línea
 
 La lista pública (`data/forbidden.json`) solo lleva ejemplos. Los términos del proyecto concreto se leen de `~/.config/openspec-software-factory/forbidden.json` (o de `OPENSPEC_FORBIDDEN_FILE`), fuera del repositorio: el gate no publica los datos que vigila.
 
+### `worktree-deps.mjs`
+
+Enlaza los directorios pesados declarados en `worktree.sharedDirs` (por ejemplo `node_modules`) dentro de cada worktree o copia de revisión **solo cuando el SHA-256 normalizado del lockfile coincide** con el del árbol principal; si difiere, avisa y exige instalación limpia para no contaminar el árbol principal. Al cerrar (`unlink`), retira solo enlaces simbólicos/junctions y ejecuta `codegraph uninit --force` si existe `.codegraph/`. Sus tests corren en CI.
+
+```bash
+node scripts/worktree-deps.mjs link paralelo/<cambio>-<bloque>
+node scripts/worktree-deps.mjs unlink paralelo/<cambio>-<bloque>
+```
+
 ### `--plan`
 
 Convierte las tareas en algo que una máquina puede consultar:
@@ -52,4 +61,4 @@ Las herramientas de diagnóstico personal —medir tiempos, listar tests lentos�
 
 ## Workflows
 
-Los workflows no son scripts: son el esqueleto del CI. Cada proyecto define los suyos; la tabla de patrones y disparadores vive en [Gates → CI](index.html#ci).
+Los workflows no son scripts: son el esqueleto del CI. Cada proyecto define los suyos; la tabla de patrones y disparadores vive en [Gates → CI](metodo.html#ci).

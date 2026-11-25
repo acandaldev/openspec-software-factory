@@ -67,6 +67,7 @@ Cada tarea deja una línea con agente, coste y resultado. Cada revisión deja ve
 feat(notas): 1.2 crear nota devuelve 201
 
 Brief-Cambio: notas
+Brief-Tareas: 1.2
 Brief-Nivel: NORMAL
 Brief-Modelo: opencode/<modelo-intermedio>
 Brief-Aceptacion: repetir la creación con la misma idempotency-key devuelve 201 sin duplicar la nota

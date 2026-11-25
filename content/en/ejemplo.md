@@ -17,11 +17,11 @@ The change is called `notes`. It has **two blocks** and **eleven tasks**. A bloc
 | **Worktree** | A separate working copy so the block does not mix with `main`. | `paralelo/notes-1` |
 | **Brief** | The closed instruction the coordinator hands to the implementer. | Change, task, level, model and criterion |
 | **Gates** | The checks that must pass before committing. | Build, tests, format and spec |
-| **Mutation** | Deliberately breaking the code to check that the test fails. | One or two per task |
+| **Mutation** | Deliberately breaking the code to check that the test fails. | Two per task in `[HARD]`; one per block for the rest |
 
 ## The plan is written before coding
 
-Everything starts with planning, not code. The command `/opsx-propose notes` creates the proposal, the spec, the design and the tasks. Then a person reviews the result and adjusts blocks and levels.
+Everything starts with a request, not code. You describe what you want with `/opsx-propose "a notes app with tags, search and archive"`; OpenSpec derives the name `notes` and creates the proposal, the spec, the design and the tasks. Then a person reviews the result and adjusts blocks and levels.
 
 The `tasks.md` for the example looks like this:
 
@@ -46,7 +46,7 @@ The `tasks.md` for the example looks like this:
 
 ### How to read the levels
 
-Levels decide the model, the batch size and when the review happens; the canonical table is in [Level and review](index.html#level-and-review). In this example, `1.1` and `2.1` are `[HARD]`; `1.2`, `1.3` and `2.2` are `NORMAL`; the rest are `[FAST]`.
+Levels decide the model, the batch size and when the review happens; the canonical table is in [Level and review](metodo.html#level-and-review). In this example, `1.1` and `2.1` are `[HARD]`; `1.2`, `1.3` and `2.2` are `NORMAL`; the rest are `[FAST]`.
 
 Blocks and levels are **written during planning**, normally with `/opsx-propose` and human review. The coordinator does not invent them: it reads the requested block and copies the task level. If a label is missing, the task is treated as `NORMAL`.
 
@@ -56,11 +56,11 @@ This is the command sequence for the example, from start to finish:
 
 | # | Moment | Command | What happens |
 |---|---|---|---|
-| 1 | Plan | `/opsx-propose notes` | Proposal, spec, design and `tasks.md` are born. |
+| 1 | Plan | `/opsx-propose "a notes app with tags, search and archive"` | Proposal, spec, design and `tasks.md` are born; the change is called `notes`. |
 | 2 | Review the contract | `/openspec-review notes` | The plan pieces are checked for coherence. |
 | 3 | Block 1, `[HARD]` task | `/implementar notes 1.1` | The first task is implemented and committed. |
 | 4 | Review `1.1` | `/revisar notes 1.1` | An independent reviewer issues the verdict for that task. |
-| 5 | Rest of block 1 | `/coordinar notes 1` | `1.2` to `1.6` run with their reviews and stop before the PR. |
+| 5 | Rest of block 1 | `/coordinar notes 1` | `1.2` to `1.6` run, with the block review, and stop before the PR. |
 | 6 | Close block 1 | Open the PR and merge | Green CI, merge and deploy the block. |
 | 7 | Curate block 1 | `/curar notes 1` | The block trace is turned into harness improvements. |
 | 8 | Block 2, `[HARD]` task | `/implementar notes 2.1` | Editing without losing changes is implemented. |
@@ -74,9 +74,9 @@ This is the command sequence for the example, from start to finish:
 
 ### 1. Plan the change
 
-**Command:** `/opsx-propose notes`
+**Command:** `/opsx-propose "a notes app with tags, search and archive"`
 
-**What happens:** OpenSpec creates a folder for the change with four pieces: `proposal.md` (what we want), `specs/notes/spec.md` (what must be true), `design.md` (how it will be done) and `tasks.md` (the work in order).
+**What happens:** OpenSpec derives the name `notes` and creates a folder for the change with four pieces: `proposal.md` (what we want), `specs/notes/spec.md` (what must be true), `design.md` (how it will be done) and `tasks.md` (the work in order).
 
 **What you look at:** `tasks.md` should have clear blocks, small tasks and one label per task. No code is touched yet.
 
@@ -122,7 +122,7 @@ This is the command sequence for the example, from start to finish:
 
 **Why now:** it is the shortcut for tasks that are not `[HARD]`. If you run `/coordinar notes 1` from the start, it would do `1.1` and stop after its `[HARD]` review; that is why the example does `1.1` by hand and leaves the rest to the coordinator.
 
-If you prefer to control each batch, use `/implementar notes 1.2-1.3`, `/revisar notes 1.2-1.3`, `/implementar notes 1.4-1.6` and `/revisar notes 1.4-1.6`. It is the same work with more calls.
+If you prefer to control each batch, use `/implementar notes 1.2-1.3`, `/implementar notes 1.4-1.6` and close with `/revisar notes 1.2-1.6` (also reviewing the first batch when opening a new lane with it). It is the same work with more calls.
 
 ### 6. Open and merge the block 1 PR
 

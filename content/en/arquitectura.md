@@ -66,10 +66,11 @@ Every task leaves a line with agent, cost and result. Every review leaves verdic
 ```
 feat(notes): 1.2 create note returns 201
 
-Brief-Change: notes
-Brief-Level: NORMAL
-Brief-Model: opencode/<intermediate-model>
-Brief-Acceptance: repeating creation with the same idempotency key returns 201 without duplicating the note
+Brief-Cambio: notes
+Brief-Tareas: 1.2
+Brief-Nivel: NORMAL
+Brief-Modelo: opencode/<intermediate-model>
+Brief-Aceptacion: repeating creation with the same idempotency key returns 201 without duplicating the note
 ```
 
 The trace is not a log: it is the raw material of the curator.

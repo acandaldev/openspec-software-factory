@@ -1,12 +1,23 @@
 [
   {
     "slug": "index",
-    "nav": { "es": "Cómo funciona", "en": "How it works" },
+    "nav": null,
     "description": {
-      "es": "El problema, las cuatro piezas, los bucles, los agentes y los gates: cómo funciona la fábrica.",
-      "en": "The problem, the four parts, the loops, the agents and the gates: how the factory works."
+      "es": "De la especificación al commit: qué es la fábrica, cómo funciona una tarea y cómo empezar en 20 minutos.",
+      "en": "From specification to commit: what the factory is, how one task works and how to start in 20 minutes."
     },
     "intro": "index",
+    "sources": [],
+    "redirects": []
+  },
+  {
+    "slug": "metodo",
+    "nav": { "es": "Método", "en": "Method" },
+    "description": {
+      "es": "El problema, las cuatro piezas, los cuatro bucles, los agentes y los gates: la referencia completa del método.",
+      "en": "The problem, the four parts, the four loops, the agents and the gates: the complete reference of the method."
+    },
+    "intro": "metodo",
     "sources": ["problema", "arquitectura", "bucles", "agentes", "gates"],
     "redirects": ["problema", "arquitectura", "bucles", "agentes", "gates"]
   },

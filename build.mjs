@@ -11,6 +11,7 @@ const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(ROOT, "dist");
 const LANGS = ["es", "en"];
 const PAGES = JSON.parse(readFileSync(path.join(ROOT, "content", "pages.json"), "utf8"));
+const NAV_PAGES = PAGES.filter((page) => page.nav);
 const TEMPLATE = JSON.parse(readFileSync(path.join(ROOT, "data", "template.json"), "utf8"));
 const SITE = TEMPLATE.site.replace(/\/+$/, "");
 
@@ -181,7 +182,7 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
   const alternateUrl = `${SITE}/${other}/${page.slug}.html`;
   const defaultUrl = `${SITE}/es/${page.slug}.html`;
   const navLabel = lang === "es" ? "Principal" : "Main";
-  const nav = PAGES.map((p) => {
+  const nav = NAV_PAGES.map((p) => {
     const active = p.slug === page.slug ? ' class="active"' : "";
     return `<a href="${p.slug}.html"${active}>${p.nav[lang]}</a>`;
   }).join("");

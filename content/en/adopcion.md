@@ -8,7 +8,7 @@ Adoption consists in creating the project from the template, configuring it with
 
 > The full walkthrough, with two blocks and eleven tasks, has its own page: [Full example](ejemplo.html). This page stays focused on adoption.
 
-<svg class="diagram" viewBox="0 20 760 90" role="img" aria-label="Six steps to adopt the method">
+<svg class="diagram" viewBox="0 20 760 90" role="img" aria-label="Six steps to set up and start the method">
   <line x1="50" y1="50" x2="710" y2="50" stroke="#22303a" stroke-width="2"/>
   <line class="draw" pathLength="1" x1="50" y1="50" x2="710" y2="50" stroke="#6ee7a8" stroke-width="2"/>
 
@@ -16,7 +16,7 @@ Adoption consists in creating the project from the template, configuring it with
     <circle cx="50" cy="50" r="14" fill="#131a21" stroke="#6ee7a8" stroke-width="2"/>
     <text x="50" y="55" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12" font-weight="600">1</text>
     <text x="50" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Repo</text>
-    <text x="50" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">create</text>
+    <text x="50" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">template</text>
   </g>
 
   <g class="fade" style="animation-delay:.12s">
@@ -29,41 +29,59 @@ Adoption consists in creating the project from the template, configuring it with
   <g class="fade" style="animation-delay:.19s">
     <circle cx="314" cy="50" r="14" fill="#131a21" stroke="#6ee7a8" stroke-width="2"/>
     <text x="314" y="55" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12" font-weight="600">3</text>
-    <text x="314" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Core</text>
-    <text x="314" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">copy</text>
+    <text x="314" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Bootstrap</text>
+    <text x="314" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">config</text>
   </g>
 
   <g class="fade" style="animation-delay:.26s">
     <circle cx="446" cy="50" r="14" fill="#131a21" stroke="#6ee7a8" stroke-width="2"/>
     <text x="446" y="55" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12" font-weight="600">4</text>
-    <text x="446" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Config</text>
-    <text x="446" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">bootstrap</text>
+    <text x="446" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Contract</text>
+    <text x="446" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">review</text>
   </g>
 
   <g class="fade" style="animation-delay:.33s">
     <circle cx="578" cy="50" r="14" fill="#131a21" stroke="#6ee7a8" stroke-width="2"/>
     <text x="578" y="55" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12" font-weight="600">5</text>
-    <text x="578" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">OpenCode</text>
-    <text x="578" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">harness</text>
+    <text x="578" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Verify</text>
+    <text x="578" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">gates</text>
   </g>
 
   <g class="fade" style="animation-delay:.40s">
     <circle cx="710" cy="50" r="14" fill="#131a21" stroke="#6ee7a8" stroke-width="2"/>
     <text x="710" y="55" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12" font-weight="600">6</text>
-    <text x="710" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Verify</text>
-    <text x="710" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">gates</text>
+    <text x="710" y="86" text-anchor="middle" fill="#e6edf3" font-family="system-ui" font-size="12">Change</text>
+    <text x="710" y="102" text-anchor="middle" fill="#93a4b3" font-family="system-ui" font-size="10">propose</text>
   </g>
 </svg>
 
 <!-- TOC -->
 
+## Minimal route
+
+Setting up the harness takes 20–30 minutes. The first change, another 15.
+
+1. **Create the repository** from the template.
+2. **Initialize OpenSpec** if the project does not use it yet (`openspec init`).
+3. **Run bootstrap**: `node bootstrap.mjs` (interactive or with flags).
+4. **Review the contract**: `AGENTS.md`, agents and commands with no placeholders.
+5. **Verify**: `docs-sync --check`, `check-secrets` and the tests.
+6. **Start the method**: `/opsx-propose "<description>"` → `/implementar` → `/revisar`.
+
+`/coordinar` and `/curar` come later; those three commands are enough to start.
+
 ## Requirements
 
-- **OpenSpec** for specifications and tasks.
-- **Git** and a CI (GitHub Actions in the reference implementation).
-- **OpenCode** as the v0.1 harness: subagents, per-agent permissions and commands.
-- **Bash** (Git Bash on Windows or WSL): agents run the gates there; PowerShell is not supported.
-- **Node 22+** for bootstrap, documentation scripts and the plan.
+Before you start, check what needs to be installed and what is assumed. The harness runs on Windows (Git Bash or WSL) and Linux; PowerShell is not supported:
+
+| You need | What to do | Why |
+|---|---|---|
+| **OpenCode** | Install | v0.1 harness: subagents, permissions and commands. |
+| **OpenSpec** | Install | Specifications and tasks; run `openspec init` if the project does not have it yet. |
+| **Node.js 22+** | Install | Harness and CI only: bootstrap, `docs-sync`, `worktree-deps`, plan and tests. The generated product does not need it. |
+| **Git and CI** | Have already | Branches, commits and PRs; GitHub Actions in the reference implementation. |
+| **Bash** | Have already | Git Bash on Windows or WSL; agents run the gates there. PowerShell is not supported. |
+| **OpenCode models** | Configure | The six model IDs from bootstrap must exist in your installation. |
 
 ## Project fields
 
@@ -78,16 +96,6 @@ Adoption consists in creating the project from the template, configuring it with
 | Main branch | `main` |
 
 Bootstrap asks for those values once and writes them to `harness.config.json` and the contract. If a placeholder is left unresolved, it fails.
-
-## Steps
-
-1. **Create the repository** from the template.
-2. **Initialize OpenSpec** if the project does not use it yet (`openspec init`).
-3. **Run bootstrap**: `node bootstrap.mjs` (interactive or with flags).
-4. **Review the contract**: `AGENTS.md`, agents and commands with no placeholders.
-5. **Verify**: `docs-sync --check`, `check-secrets` and the tests.
-6. **Create the first change** with `/opsx-propose`.
-7. **First task** with `/implementar` and its review.
 
 ## Harness and adapters
 

@@ -17,11 +17,11 @@ El cambio se llama `notas`. Tiene **dos bloques** y **once tareas**. Un bloque e
 | **Worktree** | Una copia de trabajo aparte para no mezclar el bloque con `main`. | `paralelo/notas-1` |
 | **Brief** | La instrucción cerrada que el coordinador pasa al implementer. | Cambio, tarea, nivel, modelo y criterio |
 | **Gates** | Las comprobaciones que deben pasar antes de commitear. | Build, tests, formato y spec |
-| **Mutación** | Romper el código a propósito para comprobar que el test falla. | Una o dos por tarea |
+| **Mutación** | Romper el código a propósito para comprobar que el test falla. | Dos por tarea en `[HARD]`; una por bloque en el resto |
 
 ## El plan se escribe antes de programar
 
-Todo empieza con una planificación, no con código. El comando `/opsx-propose notas` crea la propuesta, la spec, el diseño y las tareas. Después, una persona revisa el resultado y ajusta los bloques y los niveles.
+Todo empieza con una petición, no con código. Escribes lo que quieres con `/opsx-propose "una app de notas con etiquetas, búsqueda y archivo"`; OpenSpec deriva el nombre `notas` y crea la propuesta, la spec, el diseño y las tareas. Después, una persona revisa el resultado y ajusta los bloques y los niveles.
 
 El `tasks.md` del ejemplo queda así:
 
@@ -46,7 +46,7 @@ El `tasks.md` del ejemplo queda así:
 
 ### Cómo se leen los niveles
 
-Los niveles deciden el modelo, el tamaño del lote y cuándo se revisa; la tabla canónica está en [Nivel y revisión](index.html#nivel-y-revision). En este ejemplo, `1.1` y `2.1` son `[HARD]`; `1.2`, `1.3` y `2.2` son `NORMAL`; el resto son `[FAST]`.
+Los niveles deciden el modelo, el tamaño del lote y cuándo se revisa; la tabla canónica está en [Nivel y revisión](metodo.html#nivel-y-revision). En este ejemplo, `1.1` y `2.1` son `[HARD]`; `1.2`, `1.3` y `2.2` son `NORMAL`; el resto son `[FAST]`.
 
 Los bloques y los niveles **los escribe la planificación**, normalmente con `/opsx-propose` y revisión humana. El coordinador no los inventa: lee el bloque que se le pide y copia el nivel de la tarea. Si una etiqueta falta, la tarea se trata como `NORMAL`.
 
@@ -56,11 +56,11 @@ Esta es la secuencia de comandos del ejemplo, de principio a fin:
 
 | # | Momento | Comando | Qué ocurre |
 |---|---|---|---|
-| 1 | Planificar | `/opsx-propose notas` | Nacen proposal, spec, design y `tasks.md`. |
+| 1 | Planificar | `/opsx-propose "una app de notas con etiquetas, búsqueda y archivo"` | Nacen proposal, spec, design y `tasks.md`; el cambio se llama `notas`. |
 | 2 | Revisar el contrato | `/openspec-review notas` | Se comprueba que las piezas del plan cuentan lo mismo. |
 | 3 | Bloque 1, tarea `[HARD]` | `/implementar notas 1.1` | Se implementa y se commitea la primera tarea. |
 | 4 | Revisar `1.1` | `/revisar notas 1.1` | Un revisor independiente da el veredicto de esa tarea. |
-| 5 | Resto del bloque 1 | `/coordinar notas 1` | Se ejecutan `1.2` a `1.6`, con sus revisiones, y se para antes de la PR. |
+| 5 | Resto del bloque 1 | `/coordinar notas 1` | Se ejecutan `1.2` a `1.6`, con la revisión del bloque, y se para antes de la PR. |
 | 6 | Cerrar el bloque 1 | Abrir la PR y mergear | CI verde, merge y despliegue del bloque. |
 | 7 | Curar el bloque 1 | `/curar notas 1` | Se propone mejorar el harness con la traza del bloque. |
 | 8 | Bloque 2, tarea `[HARD]` | `/implementar notas 2.1` | Se implementa la edición sin perder cambios. |
@@ -74,9 +74,9 @@ Esta es la secuencia de comandos del ejemplo, de principio a fin:
 
 ### 1. Planificar el cambio
 
-**Comando:** `/opsx-propose notas`
+**Comando:** `/opsx-propose "una app de notas con etiquetas, búsqueda y archivo"`
 
-**Qué pasa:** OpenSpec crea una carpeta para el cambio con cuatro piezas: `proposal.md` (qué se quiere), `specs/notas/spec.md` (qué debe ser verdad), `design.md` (cómo se hará) y `tasks.md` (el trabajo en orden).
+**Qué pasa:** OpenSpec deriva el nombre `notas` y crea una carpeta para el cambio con cuatro piezas: `proposal.md` (qué se quiere), `specs/notas/spec.md` (qué debe ser verdad), `design.md` (cómo se hará) y `tasks.md` (el trabajo en orden).
 
 **Qué miras:** que `tasks.md` tenga bloques claros, tareas pequeñas y una etiqueta por tarea. Todavía no se toca el código.
 
@@ -122,7 +122,7 @@ Esta es la secuencia de comandos del ejemplo, de principio a fin:
 
 **Por qué ahora:** es el atajo para las tareas que no son `[HARD]`. Si lanzas `/coordinar notas 1` desde el principio, haría `1.1` y pararía después de su revisión `[HARD]`; por eso el ejemplo hace `1.1` a mano y deja el resto al coordinador.
 
-Si prefieres controlar cada lote, puedes usar `/implementar notas 1.2-1.3`, `/revisar notas 1.2-1.3`, `/implementar notas 1.4-1.6` y `/revisar notas 1.4-1.6`. Es el mismo trabajo con más llamadas.
+Si prefieres controlar cada lote, puedes usar `/implementar notas 1.2-1.3`, `/implementar notas 1.4-1.6` y cerrar con `/revisar notas 1.2-1.6` (revisando también el primer lote si estrenas el carril con él). Es el mismo trabajo con más llamadas.
 
 ### 6. Abrir y mergear la PR del bloque 1
 

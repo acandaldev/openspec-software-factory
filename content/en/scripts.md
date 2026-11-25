@@ -36,12 +36,21 @@ node scripts/check-secrets.mjs   # fails with the finding and its line
 
 The public list (`data/forbidden.json`) only holds examples. The terms for the concrete project are read from `~/.config/openspec-software-factory/forbidden.json` (or `OPENSPEC_FORBIDDEN_FILE`), outside the repository: the gate does not publish the data it watches for.
 
+### `worktree-deps.mjs`
+
+Links the heavy directories declared in `worktree.sharedDirs` (for instance `node_modules`) into each worktree or review copy **only when the normalized lockfile SHA-256 matches** the main tree; when it differs, it skips the link and asks for a clean install so the main tree is never polluted. On teardown (`unlink`), it removes only symlinks/junctions and runs `codegraph uninit --force` when `.codegraph/` is present. Its test suite runs in CI.
+
+```bash
+node scripts/worktree-deps.mjs link paralelo/<change>-<block>
+node scripts/worktree-deps.mjs unlink paralelo/<change>-<block>
+```
+
 ### `--plan`
 
 Turns tasks into something a machine can query:
 
 ```json
-{ "id": "1.2", "block": 1, "level": "NORMAL", "state": "pending", "deps": ["1.1"] }
+{ "id": "1.2", "bloque": 1, "nivel": "NORMAL", "estado": "pendiente", "deps": ["1.1"] }
 ```
 
 It answers "what is next?" without interpreting prose.
@@ -52,4 +61,4 @@ Personal diagnostic tools —measuring time, listing slow tests— have no CI co
 
 ## Workflows
 
-Workflows are not scripts: they are the CI skeleton. Each project defines its own; the table of patterns and triggers lives in [Gates → CI](index.html#ci).
+Workflows are not scripts: they are the CI skeleton. Each project defines its own; the table of patterns and triggers lives in [Gates → CI](metodo.html#ci).
