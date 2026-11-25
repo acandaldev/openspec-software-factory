@@ -59,7 +59,7 @@ Adoption consists in creating the project from the template, configuring it with
 
 ## Minimal route
 
-Setting up the harness takes 20–30 minutes. The first change, another 15.
+This route sets up the OpenCode adapter for v0.1. Setting up the harness takes 20–30 minutes; the first change, another 15.
 
 1. **Create the repository** from the template.
 2. **Initialize OpenSpec** if the project does not use it yet (`openspec init`).
@@ -72,16 +72,44 @@ Setting up the harness takes 20–30 minutes. The first change, another 15.
 
 ## Requirements
 
-Before you start, check what needs to be installed and what is assumed. The harness runs on Windows (Git Bash or WSL) and Linux; PowerShell is not supported for the gates:
+The method and the v0.1 adapter do not need the same things.
+
+### Method
 
 | You need | How | Why |
 |---|---|---|
-| **OpenCode** | Install: [opencode.ai/docs](https://opencode.ai/docs/) · Windows: standalone binary | v0.1 harness: subagents, permissions and commands. |
 | **OpenSpec** | Install: [openspec.dev/docs/installation](https://openspec.dev/docs/installation) · or `npm i -g @fission-ai/openspec@latest` (Node 22.20+) | Specifications and tasks; run `openspec init` if the project does not have it yet. |
+| **Git and CI** | Have already: [git-scm.com](https://git-scm.com/downloads) and your CI | Branches, commits and PRs; gates run locally and in CI. |
+
+<a id="opencode-adapter"></a>
+
+### OpenCode adapter v0.1
+
+v0.1 is built and tested on **OpenCode**. It is not a dependency of the method —the contract, gates and trace are files and git— but it is a dependency of the capabilities the loop uses: subagents, per-agent permissions and resumable sessions. The adapter runs on Windows (Git Bash or WSL) and Linux; PowerShell is not supported for the gates.
+
+| You need | How | Why |
+|---|---|---|
+| **OpenCode** | Install: [opencode.ai/docs](https://opencode.ai/docs/) · Windows: standalone binary | Harness: subagents, permissions and commands. |
 | **Node.js 22+** | Install: [nodejs.org](https://nodejs.org/) (LTS 22) | Harness and CI only: bootstrap, `docs-sync`, `worktree-deps`, plan and tests. The generated product does not need it. |
-| **Git and CI** | Have already: [git-scm.com](https://git-scm.com/downloads) and your CI | Branches, commits and PRs; GitHub Actions in the reference implementation. |
-| **Bash** | Have already: Git Bash (bundled with Git for Windows) or `wsl --install` | Git Bash on Windows or WSL; agents run the gates there. PowerShell is not supported. |
+| **Bash** | Have already: Git Bash (bundled with Git for Windows) or `wsl --install` | Agents run the gates there. |
 | **OpenCode models** | Configure: `/connect` in OpenCode · [providers](https://opencode.ai/docs/providers) | The six model IDs from bootstrap must exist in your installation. |
+
+| Harness | v0.1 status |
+|---|---|
+| OpenCode | supported |
+| Claude Code | planned extension |
+| Codex | planned extension |
+| Gemini CLI | planned extension |
+
+An adapter translates the same source into each assistant's format. None is implemented until the method is validated: maintaining two harnesses before the first one works doubles the maintenance. If an assistant has no subagents or permissions, the loop degrades to a single agent and the limit is documented.
+
+| Role in the method | In OpenCode |
+|---|---|
+| Coordinator | main session · `/coordinar` |
+| Implementer | `implementer` subagent · `/implementar` |
+| Reviewer | `reviewer` subagent · `/revisar` |
+| Spec reviewer | `openspec-reviewer` subagent · `/openspec-review` |
+| Curator | main session · `/curar` |
 
 ## Project fields
 
@@ -96,19 +124,6 @@ Before you start, check what needs to be installed and what is assumed. The harn
 | Main branch | `main` |
 
 Bootstrap asks for those values once and writes them to `harness.config.json` and the contract. If a placeholder is left unresolved, it fails.
-
-## Harness and adapters
-
-v0.1 is built and tested on **OpenCode**. It is not a dependency of the method —the contract, gates and trace are files and git— but it is a dependency of the capabilities the loop uses: subagents, per-agent permissions and resumable sessions.
-
-| Harness | v0.1 status |
-|---|---|
-| OpenCode | supported |
-| Claude Code | planned extension |
-| Codex | planned extension |
-| Gemini CLI | planned extension |
-
-An adapter translates the same source into each assistant's format. None is implemented until the method is validated: maintaining two harnesses before the first one works doubles the maintenance. If an assistant has no subagents or permissions, the loop degrades to a single agent and the limit is documented.
 
 ## What not to copy
 

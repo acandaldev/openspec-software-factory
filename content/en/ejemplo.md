@@ -4,6 +4,8 @@
 
 `acme-notes` is a small notes app: an API, a UI and a two-person team. It is not a real case; it is an imaginary project to show the full sequence without domain noise.
 
+> The commands in this walkthrough are those of the OpenCode adapter for v0.1. The method —spec, gates and trace— is the same with another harness.
+
 The change is called `notes`. It has **two blocks** and **eleven tasks**. A block is a phase that can be deployed on its own; a task is a small piece with its own commit. The example shows when each command is called and what each step leaves behind before moving on.
 
 ## The pieces you will see

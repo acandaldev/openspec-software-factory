@@ -4,6 +4,8 @@
 
 `acme-notes` es una aplicación pequeña de notas: una API, una interfaz y un equipo de dos personas. No es un caso real; es un proyecto imaginario para ver la secuencia completa sin ruido de dominio.
 
+> Los comandos de este recorrido son los del adaptador OpenCode de la v0.1. El método —spec, gates y traza— es el mismo con otro harness.
+
 El cambio se llama `notas`. Tiene **dos bloques** y **once tareas**. Un bloque es una fase que se puede desplegar sola; una tarea es un trozo pequeño con su propio commit. El ejemplo enseña cuándo se llama a cada comando y qué deja cada paso antes de pasar al siguiente.
 
 ## Las piezas que vas a ver

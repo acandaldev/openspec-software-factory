@@ -4,7 +4,7 @@ The method separates five responsibilities that a single agent mixes: coordinate
 
 > The **coordinator** and the **curator** are the **main session**, not subagents: they are the only ones that can ask for permissions and talk to the user. The subagents are `implementer`, `reviewer` and `openspec-reviewer`.
 
-The names `implementer`, `reviewer` and `openspec-reviewer`, and the `/implementar` and `/revisar` commands, are those of the **OpenCode adapter for v0.1**. The roles —coordinate, implement, review and curate— are part of the method; another harness would have to translate the names and commands. [See the adapter](adopcion.html#harness-and-adapters).
+The names `implementer`, `reviewer` and `openspec-reviewer`, and the `/implementar` and `/revisar` commands, are those of the **OpenCode adapter for v0.1**. The roles —coordinate, implement, review and curate— are part of the method; another harness would have to translate the names and commands. [See the adapter](adopcion.html#opencode-adapter).
 
 <svg class="diagram" viewBox="0 0 760 330" role="img" aria-label="Sequence: coordinator, implementer, gates and reviewer">
   <defs>

@@ -59,7 +59,7 @@ La adopción consiste en crear el proyecto desde el template, configurarlo con u
 
 ## Ruta mínima
 
-Montar el harness lleva 20–30 minutos. El primer cambio, otros 15.
+Esta ruta monta el adaptador OpenCode de la v0.1. Montar el harness lleva 20–30 minutos; el primer cambio, otros 15.
 
 1. **Crea el repositorio** desde el template.
 2. **Inicializa OpenSpec** si el proyecto aún no lo tiene (`openspec init`).
@@ -72,16 +72,44 @@ Montar el harness lleva 20–30 minutos. El primer cambio, otros 15.
 
 ## Requisitos
 
-Antes de empezar, revisa qué hay que instalar y qué se da por hecho. El harness funciona en Windows (Git Bash o WSL) y Linux; PowerShell no está soportado para los gates:
+El método y el adaptador de la v0.1 no piden lo mismo.
+
+### Método
 
 | Necesitas | Cómo | Para qué |
 |---|---|---|
-| **OpenCode** | Instalar: [opencode.ai/docs](https://opencode.ai/docs/) · Windows: binario standalone | Harness de la v0.1: subagentes, permisos y comandos. |
 | **OpenSpec** | Instalar: [openspec.dev/docs/installation](https://openspec.dev/docs/installation) · o `npm i -g @fission-ai/openspec@latest` (Node 22.20+) | Especificaciones y tareas; ejecuta `openspec init` si el proyecto aún no lo tiene. |
+| **Git y CI** | Tener ya: [git-scm.com](https://git-scm.com/downloads) y tu CI | Ramas, commits y PR; los gates se ejecutan en local y en CI. |
+
+<a id="adaptador-opencode"></a>
+
+### Adaptador OpenCode v0.1
+
+La v0.1 se construye y se prueba sobre **OpenCode**. No es una dependencia del método —el contrato, los gates y la traza son ficheros y git—, pero sí de las capacidades que el bucle usa: subagentes, permisos por agente y sesiones reanudables. El adaptador funciona en Windows (Git Bash o WSL) y Linux; PowerShell no está soportado para los gates.
+
+| Necesitas | Cómo | Para qué |
+|---|---|---|
+| **OpenCode** | Instalar: [opencode.ai/docs](https://opencode.ai/docs/) · Windows: binario standalone | Harness: subagentes, permisos y comandos. |
 | **Node.js 22+** | Instalar: [nodejs.org](https://nodejs.org/) (LTS 22) | Solo el harness y el CI: bootstrap, `docs-sync`, `worktree-deps`, plan y tests. El producto generado no lo necesita. |
-| **Git y CI** | Tener ya: [git-scm.com](https://git-scm.com/downloads) y tu CI | Ramas, commits y PR; GitHub Actions en la implementación de referencia. |
-| **Bash** | Tener ya: Git Bash (incluido en Git for Windows) o `wsl --install` | Git Bash en Windows o WSL; los agentes ejecutan ahí los gates. PowerShell no está soportado. |
+| **Bash** | Tener ya: Git Bash (incluido en Git for Windows) o `wsl --install` | Los agentes ejecutan ahí los gates. |
 | **Modelos de OpenCode** | Configurar: `/connect` en OpenCode · [providers](https://opencode.ai/docs/providers) | Los seis IDs de modelo del bootstrap deben existir en tu instalación. |
+
+| Harness | Estado en la v0.1 |
+|---|---|
+| OpenCode | soportado |
+| Claude Code | extensión prevista |
+| Codex | extensión prevista |
+| Gemini CLI | extensión prevista |
+
+Un adaptador traduce la misma fuente al formato de cada asistente. No se implementa ninguno hasta validar el método: mantener dos harness antes de que el primero funcione duplica el mantenimiento. Si un asistente no tiene subagentes o permisos, el bucle se degrada a un agente único y el límite se documenta.
+
+| Rol del método | En OpenCode |
+|---|---|
+| Coordinador | sesión principal · `/coordinar` |
+| Implementador | subagente `implementer` · `/implementar` |
+| Revisor | subagente `reviewer` · `/revisar` |
+| Revisor de specs | subagente `openspec-reviewer` · `/openspec-review` |
+| Curador | sesión principal · `/curar` |
 
 ## Los campos del proyecto
 
@@ -96,19 +124,6 @@ Antes de empezar, revisa qué hay que instalar y qué se da por hecho. El harnes
 | Rama principal | `main` |
 
 El bootstrap pide esos datos una sola vez y los escribe en `harness.config.json` y en el contrato. Si queda un placeholder sin resolver, falla.
-
-## Harness y adaptadores
-
-La v0.1 se construye y se prueba sobre **OpenCode**. No es una dependencia del método —el contrato, los gates y la traza son ficheros y git—, pero sí de las capacidades que el bucle usa: subagentes, permisos por agente y sesiones reanudables.
-
-| Harness | Estado en la v0.1 |
-|---|---|
-| OpenCode | soportado |
-| Claude Code | extensión prevista |
-| Codex | extensión prevista |
-| Gemini CLI | extensión prevista |
-
-Un adaptador traduce la misma fuente al formato de cada asistente. No se implementa ninguno hasta validar el método: mantener dos harness antes de que el primero funcione duplica el mantenimiento. Si un asistente no tiene subagentes o permisos, el bucle se degrada a un agente único y el límite se documenta.
 
 ## Qué no copiar
 
