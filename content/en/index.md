@@ -1,8 +1,10 @@
+<p class="hero-badge"><a href="https://github.com/acandaldev/openspec-software-factory-template"><span class="dot"></span> Template v0.1 · OpenCode</a></p>
+
 # The factory that executes your specifications
 
 OpenSpec defines what must be true. The factory turns it into an executable plan, implements it with agents and gates, and reviews it before it lands in git.
 
-<div class="story" data-reveal>
+<div class="story">
   <div class="story-step">
     <svg class="story-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h5"/></svg>
     <span class="story-label">Spec</span>
@@ -29,7 +31,8 @@ OpenSpec defines what must be true. The factory turns it into an executable plan
   <p class="story-loop"><span aria-hidden="true">↺</span> The curator turns the trace into a rule.</p>
 </div>
 
-**From repo to first task**
+<p class="section-kicker">Start here</p>
+<p class="section-title">From repo to first task</p>
 
 1. **Create the repository** from the template ([Use this template](https://github.com/acandaldev/openspec-software-factory-template)) or copy its contents into an existing project.
 2. **Install the requirements**: OpenSpec, Git and CI; for v0.1, OpenCode, Node 22+ and Bash. [See requirements](adopcion.html#requirements).

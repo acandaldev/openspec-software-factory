@@ -229,7 +229,7 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
   <a class="lang" href="../${other}/${page.slug}.html" hreflang="${other}">${langLabel}</a>
 </header>
 <div class="shell">
-  <main>
+  <main class="page-${page.slug}">
 ${mainBody}
   </main>
   ${desktopToc}

@@ -36,6 +36,72 @@
       );
     }
 
+    // Entrada de la portada: badge, fases, arranque y código.
+    const index = document.querySelector(".page-index");
+    if (index) {
+      const badge = index.querySelector(".hero-badge");
+      if (badge) {
+        gsap.from(badge, { opacity: 0, y: 8, duration: 0.5, ease: "power1.out" });
+      }
+
+      const story = index.querySelector(".story");
+      if (story) {
+        const cards = story.querySelectorAll(".story-step");
+        const arrows = story.querySelectorAll(".story-arrow");
+        const loop = story.querySelector(".story-loop");
+        const clearTargets = [story, ...cards, ...arrows];
+        if (loop) clearTargets.push(loop);
+        const timeline = gsap.timeline({
+          scrollTrigger: { trigger: story, start: "top 86%", once: true },
+          onComplete: () => gsap.set(clearTargets, { clearProps: "transform" }),
+        });
+        timeline
+          .from(story, { opacity: 0, y: 10, duration: 0.35, ease: "power1.out" })
+          .from(cards, { opacity: 0, y: 18, duration: 0.5, stagger: 0.09, ease: "power2.out" }, "-=0.15")
+          .from(arrows, { opacity: 0, x: -8, duration: 0.3, stagger: 0.09, ease: "power1.out" }, "-=0.4");
+        if (loop) {
+          timeline.from(loop, { opacity: 0, duration: 0.3 }, "-=0.15");
+        }
+      }
+
+      const sectionHead = index.querySelectorAll(".section-kicker, .section-title");
+      if (sectionHead.length) {
+        gsap.from(sectionHead, {
+          opacity: 0,
+          y: 8,
+          duration: 0.4,
+          stagger: 0.06,
+          ease: "power1.out",
+          scrollTrigger: { trigger: sectionHead[0], start: "top 90%", once: true },
+        });
+      }
+
+      const setup = index.querySelector(":scope > ol");
+      if (setup) {
+        const items = Array.from(setup.children);
+        gsap.from(items, {
+          opacity: 0,
+          x: -10,
+          duration: 0.4,
+          stagger: 0.08,
+          ease: "power1.out",
+          scrollTrigger: { trigger: setup, start: "top 90%", once: true },
+          onComplete: () => gsap.set(items, { clearProps: "transform" }),
+        });
+      }
+
+      const code = index.querySelector("pre");
+      if (code) {
+        gsap.from(code, {
+          opacity: 0,
+          y: 12,
+          duration: 0.5,
+          ease: "power1.out",
+          scrollTrigger: { trigger: code, start: "top 92%", once: true },
+        });
+      }
+    }
+
     // Diagramas: líneas, estado de mutación, punto de flujo y grupos.
     for (const svg of document.querySelectorAll("main svg.diagram")) {
       const paths = svg.querySelectorAll(".draw");
@@ -119,7 +185,10 @@
   } catch (error) {
     document.documentElement.classList.remove("js");
     try {
-      gsap.set("[data-reveal], main h1", { clearProps: "opacity,transform" });
+      gsap.set(
+        "[data-reveal], main h1, .page-index .hero-badge, .page-index .story, .page-index .story-step, .page-index .story-arrow, .page-index .story-loop, .page-index .section-kicker, .page-index .section-title, .page-index > ol > li, .page-index pre",
+        { clearProps: "opacity,transform" },
+      );
     } catch {
       // Si GSAP ya no responde, el CSS sin .js deja el contenido visible.
     }
