@@ -92,13 +92,15 @@ A commit cannot contain mutation markers or rely on a green pass from before the
 
 - **During the task** the filter for the classes touched runs. The full suite is too slow for every step.
 - **When closing the block** the full suite runs, before the PR.
-- **The reviewer** repeats the gates that apply to the side touched and adds the block mutation in NORMAL/`[FAST]` —or verifies the `[HARD]` ones— in a frozen copy.
+- **The reviewer** runs the minimum gates the copy needs, without repeating the build the test command already does, and adds the block mutation in NORMAL/`[FAST]` —or verifies the `[HARD]` ones— in a frozen copy. If the scope does not touch production logic (docs, tests or verification), there is no mutation: diff, filter and gates.
 
 ## CI
 
 CI does not replace local gates: it confirms them in a clean environment. A red run nobody looks at is a false green; that is why every block or PR push waits for its result before moving on.
 
-The mutation gate is local: `[HARD]` mutates during the task and in the review; NORMAL/`[FAST]` once in the block review. Always on a frozen copy. A mutation sweep in CI, if one exists, is informational: it observes, it does not approve.
+The wait is blocking: `gh run watch <id> --exit-status` on GitHub Actions, or the CI's equivalent command; do not poll with `sleep`.
+
+The mutation gate is local and only applies to production logic: `[HARD]` mutates during the task and in the review; NORMAL/`[FAST]` once in the block review. Always on a frozen copy. A mutation sweep in CI, if one exists, is informational: it observes, it does not approve.
 
 The table describes patterns from the reference implementation, not a contract: each project defines its workflows and paths. The template core is the documentation workflow and the secrets gate; PR and deployment gates are added per project.
 

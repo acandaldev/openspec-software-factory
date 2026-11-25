@@ -92,13 +92,15 @@ Un commit no puede contener marcadores de mutación ni apoyarse en un verde ante
 
 - **Durante la tarea** se ejecuta el filtro de las clases tocadas. La suite completa es demasiado lenta para cada paso.
 - **Al cerrar el bloque** se ejecuta la suite completa, antes de la PR.
-- **El reviewer** repite los gates que apliquen al lado tocado y añade la mutación del bloque en NORMAL/`[FAST]` —o verifica las de `[HARD]`— en una copia congelada.
+- **El reviewer** ejecuta los gates mínimos que la copia necesita, sin repetir el build que el test ya hace, y añade la mutación del bloque en NORMAL/`[FAST]` —o verifica las de `[HARD]`— en una copia congelada. Si el alcance no toca lógica de producción (docs, tests o verificación), no hay mutación: diff, filtro y gates.
 
 ## CI
 
 El CI no sustituye a los gates locales: los confirma en un entorno limpio. Un run rojo que nadie mira es un verde falso; por eso cada push del bloque o de la PR espera su resultado antes de seguir.
 
-El gate de mutación es local: `[HARD]` muta en la tarea y en la revisión; NORMAL/`[FAST]`, una vez en la revisión de bloque. Siempre sobre una copia congelada. Un barrido de mutación en CI, si existe, es informativo: observa, no aprueba.
+La espera es bloqueante: `gh run watch <id> --exit-status` en GitHub Actions, o el comando equivalente del CI; no se sondea con `sleep`.
+
+El gate de mutación es local y solo aplica a lógica de producción: `[HARD]` muta en la tarea y en la revisión; NORMAL/`[FAST]`, una vez en la revisión de bloque. Siempre sobre una copia congelada. Un barrido de mutación en CI, si existe, es informativo: observa, no aprueba.
 
 La tabla describe patrones de la implementación de referencia, no un contrato: cada proyecto define sus workflows y sus rutas. El núcleo del template es el workflow de documentación y el gate de secretos; los gates de PR y despliegue se añaden en cada proyecto.
 

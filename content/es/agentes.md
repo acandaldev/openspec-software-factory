@@ -48,11 +48,11 @@ Lee el plan, elige la tarea lista y **transcribe** el brief cerrado desde `tasks
 
 ## Implementer
 
-Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gates y aplica las mutaciones de tarea que fija el nivel y las revierte; la mutación manual del bloque la ejecuta el reviewer. Commitea cuando todo está en verde. Marca la tarea y deja la traza con agente, coste y resultado. No empuja. No decide el nivel, el bloque ni el plan.
+Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gates y aplica las mutaciones de tarea que fija el nivel —solo si hay lógica de producción— y las revierte; la mutación manual del bloque la ejecuta el reviewer. Commitea cuando todo está en verde. Marca la tarea y deja la traza con agente, coste y resultado. No empuja. No decide el nivel, el bloque ni el plan.
 
 ## Reviewer
 
-Revisa el rango de commits, no el árbol sin commitear. Lee los requisitos, comprueba la evidencia, ejecuta la mutación del bloque o verifica las de `[HARD]` en una copia congelada y emite un veredicto. No escribe código de producción.
+Revisa el rango de commits, no el árbol sin commitear. Lee los requisitos, comprueba la evidencia, ejecuta los gates mínimos sin duplicar el build y, solo si hay lógica de producción, ejecuta la mutación del bloque o verifica las de `[HARD]` en una copia congelada. Emite un veredicto. No escribe código de producción.
 
 ## Reviewer de specs
 

@@ -48,11 +48,11 @@ Reads the plan, picks the ready task and **transcribes** the closed brief from `
 
 ## Implementer
 
-Works in the block's worktree. Implements, writes the test, runs the gates and applies the task mutations set by the level and reverts them; the block's manual mutation is run by the reviewer. Commits when everything is green. Marks the task and leaves the trace with agent, cost and result. It does not push. It does not decide the level, block or plan.
+Works in the block's worktree. Implements, writes the test, runs the gates and applies the task mutations set by the level —only if there is production logic— and reverts them; the block's manual mutation is run by the reviewer. Commits when everything is green. Marks the task and leaves the trace with agent, cost and result. It does not push. It does not decide the level, block or plan.
 
 ## Reviewer
 
-Reviews the commit range, not the uncommitted tree. Reads the requirements, checks the evidence, runs the block mutation or verifies the `[HARD]` ones in a frozen copy and issues a verdict. It does not write production code.
+Reviews the commit range, not the uncommitted tree. Reads the requirements, checks the evidence, runs the minimum gates without duplicating the build and, only if there is production logic, runs the block mutation or verifies the `[HARD]` ones in a frozen copy. It issues a verdict. It does not write production code.
 
 ## Spec reviewer
 
