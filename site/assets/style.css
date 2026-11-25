@@ -89,6 +89,18 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 8px 24px -14px rgba(110, 231, 168, 0.7);
 }
 .top nav a.star svg { width: 14px; height: 14px; margin: 0; fill: currentColor; }
+.star-count {
+  min-width: 18px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(110, 231, 168, 0.14);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+.star-count[hidden] { display: none; }
 .lang {
   border: 1px solid var(--line);
   border-radius: 999px;

@@ -232,7 +232,7 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
 <div class="progress" aria-hidden="true"></div>
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">▦</span> OpenSpec <em>Software Factory</em></a>
-  <nav aria-label="${navLabel}">${nav}<a class="star" href="${TEMPLATE.repository}" target="_blank" rel="noopener" title="${starLabel}" aria-label="${starLabel}">${starIcon}<span>Star</span></a></nav>
+  <nav aria-label="${navLabel}">${nav}<a class="star" href="${TEMPLATE.repository}" target="_blank" rel="noopener" title="${starLabel}" aria-label="${starLabel}">${starIcon}<span>Star</span><span class="star-count" data-github-stars data-github-repo="${TEMPLATE.repository}" hidden></span></a></nav>
   <a class="lang" href="../${other}/${page.slug}.html" hreflang="${other}">${langLabel}</a>
 </header>
 <div class="shell">
@@ -247,6 +247,7 @@ ${pageBadge}${mainBody}
 <script src="../assets/vendor/gsap.min.js" defer></script>
 <script src="../assets/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../assets/motion.js" defer></script>
+<script src="../assets/stars.js" defer></script>
 </body>
 </html>
 `;
