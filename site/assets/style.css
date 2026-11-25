@@ -235,8 +235,6 @@ svg { max-width: 100%; height: auto; display: block; margin: 28px auto; }
 .actions .cta { margin: 0; }
 .cta.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
 .cta.ghost:hover { border-color: var(--accent); }
-.cta.star { color: var(--accent); border-color: rgba(110, 231, 168, 0.35); background: rgba(110, 231, 168, 0.05); }
-.cta.star:hover { border-color: rgba(110, 231, 168, 0.7); box-shadow: 0 10px 30px -14px rgba(110, 231, 168, 0.55); }
 .prereqs { color: var(--muted); font-size: 14px; margin: -4px 0 14px; }
 
 .story {

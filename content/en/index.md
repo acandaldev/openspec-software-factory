@@ -49,4 +49,4 @@ node bootstrap.mjs
 /revisar
 ```
 
-<p class="actions"><a class="cta" href="adopcion.html">Get started</a><a class="cta ghost" href="metodo.html">See the method</a><a class="cta ghost" href="ejemplo.html">See the example</a><a class="cta ghost star" href="https://github.com/acandaldev/openspec-software-factory-template" target="_blank" rel="noopener" title="Star the template on GitHub" aria-label="Star the template on GitHub">★ Star on GitHub</a></p>
+<p class="actions"><a class="cta" href="adopcion.html">Get started</a><a class="cta ghost" href="metodo.html">See the method</a><a class="cta ghost" href="ejemplo.html">See the example</a></p>
