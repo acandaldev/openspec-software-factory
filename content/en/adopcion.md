@@ -72,16 +72,16 @@ Setting up the harness takes 20–30 minutes. The first change, another 15.
 
 ## Requirements
 
-Before you start, check what needs to be installed and what is assumed. The harness runs on Windows (Git Bash or WSL) and Linux; PowerShell is not supported:
+Before you start, check what needs to be installed and what is assumed. The harness runs on Windows (Git Bash or WSL) and Linux; PowerShell is not supported for the gates:
 
-| You need | What to do | Why |
+| You need | How | Why |
 |---|---|---|
-| **OpenCode** | Install | v0.1 harness: subagents, permissions and commands. |
-| **OpenSpec** | Install | Specifications and tasks; run `openspec init` if the project does not have it yet. |
-| **Node.js 22+** | Install | Harness and CI only: bootstrap, `docs-sync`, `worktree-deps`, plan and tests. The generated product does not need it. |
-| **Git and CI** | Have already | Branches, commits and PRs; GitHub Actions in the reference implementation. |
-| **Bash** | Have already | Git Bash on Windows or WSL; agents run the gates there. PowerShell is not supported. |
-| **OpenCode models** | Configure | The six model IDs from bootstrap must exist in your installation. |
+| **OpenCode** | Install: [opencode.ai/docs](https://opencode.ai/docs/) · Windows: standalone binary | v0.1 harness: subagents, permissions and commands. |
+| **OpenSpec** | Install: [openspec.dev/docs/installation](https://openspec.dev/docs/installation) · or `npm i -g @fission-ai/openspec@latest` (Node 22.20+) | Specifications and tasks; run `openspec init` if the project does not have it yet. |
+| **Node.js 22+** | Install: [nodejs.org](https://nodejs.org/) (LTS 22) | Harness and CI only: bootstrap, `docs-sync`, `worktree-deps`, plan and tests. The generated product does not need it. |
+| **Git and CI** | Have already: [git-scm.com](https://git-scm.com/downloads) and your CI | Branches, commits and PRs; GitHub Actions in the reference implementation. |
+| **Bash** | Have already: Git Bash (bundled with Git for Windows) or `wsl --install` | Git Bash on Windows or WSL; agents run the gates there. PowerShell is not supported. |
+| **OpenCode models** | Configure: `/connect` in OpenCode · [providers](https://opencode.ai/docs/providers) | The six model IDs from bootstrap must exist in your installation. |
 
 ## Project fields
 
