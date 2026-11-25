@@ -202,6 +202,8 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
       ? ""
       : `<p class="hero-badge"><span class="dot"></span> ${page.nav[lang]}</p>\n`;
   const starIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5L2.6 9.3l6.5-.9z"/></svg>`;
+  const starLabel =
+    lang === "es" ? "Danos una estrella en el template" : "Star the template on GitHub";
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -230,7 +232,7 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
 <div class="progress" aria-hidden="true"></div>
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">▦</span> OpenSpec <em>Software Factory</em></a>
-  <nav aria-label="${navLabel}">${nav}<a class="star" href="${TEMPLATE.repository}" target="_blank" rel="noopener" aria-label="${lang === "es" ? "Danos una estrella en GitHub" : "Star us on GitHub"}">${starIcon}<span>Star</span></a></nav>
+  <nav aria-label="${navLabel}">${nav}<a class="star" href="${TEMPLATE.repository}" target="_blank" rel="noopener" title="${starLabel}" aria-label="${starLabel}">${starIcon}<span>Star</span></a></nav>
   <a class="lang" href="../${other}/${page.slug}.html" hreflang="${other}">${langLabel}</a>
 </header>
 <div class="shell">
