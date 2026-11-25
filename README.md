@@ -3,7 +3,7 @@
 Sitio público del método: **OpenSpec + subagentes + gates + traza + curador**.
 
 - `content/es/`, `content/en/` — fuente de las páginas en markdown.
-- `content/pages.json` — cuatro páginas largas y los fragmentos que las componen; las URLs antiguas se generan como redirects.
+- `content/pages.json` — cinco páginas (landing, método, ejemplo, operación y adopción) y los fragmentos que las componen; las URLs antiguas se generan como redirects.
 - `TEMPLATE.md` — puntero al repositorio del template ejecutable.
 - `data/template.json` — copia fijada del manifiesto del template (versión, repositorio, comandos y agentes).
 - `site/assets/` — CSS, favicon, JS de movimiento y GSAP self-hosted.
@@ -31,7 +31,7 @@ node scripts/check-template-sync.mjs   # requiere red; compara con el manifiesto
 node build.mjs                   # genera dist/
 ```
 
-Genera `dist/` con `es/`, `en/` y un redirect en la raíz. No requiere instalar nada.
+Genera `dist/` con `es/`, `en/`, un redirect en la raíz, `sitemap.xml`, `robots.txt` y `404.html`. No requiere instalar nada.
 
 ## Publicar
 

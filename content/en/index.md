@@ -25,7 +25,7 @@ OpenSpec defines what must be true. The factory adds the agent that executes it,
 
 From repo to first task:
 
-<p class="prereqs">You need <strong>OpenCode</strong>, <strong>OpenSpec</strong>, <strong>Node 22+</strong>, <strong>Git</strong> and <strong>Bash</strong>. <a href="adopcion.html#requirements">See requirements</a>.</p>
+<p class="prereqs">You need <strong>OpenCode</strong> (v0.1 reference implementation), <strong>OpenSpec</strong>, <strong>Node 22+</strong>, <strong>Git</strong> and <strong>Bash</strong>. <a href="adopcion.html#requirements">See requirements</a>.</p>
 
 ```
 openspec init

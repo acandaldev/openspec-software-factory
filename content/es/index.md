@@ -25,7 +25,7 @@ OpenSpec define qué debe ser verdad. La fábrica pone el agente que lo ejecuta,
 
 Del repo a la primera tarea:
 
-<p class="prereqs">Necesitas <strong>OpenCode</strong>, <strong>OpenSpec</strong>, <strong>Node 22+</strong>, <strong>Git</strong> y <strong>Bash</strong>. <a href="adopcion.html#requisitos">Ver requisitos</a>.</p>
+<p class="prereqs">Necesitas <strong>OpenCode</strong> (implementación de referencia v0.1), <strong>OpenSpec</strong>, <strong>Node 22+</strong>, <strong>Git</strong> y <strong>Bash</strong>. <a href="adopcion.html#requisitos">Ver requisitos</a>.</p>
 
 ```
 openspec init

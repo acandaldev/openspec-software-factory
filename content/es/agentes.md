@@ -4,6 +4,8 @@ El método separa cinco responsabilidades que un agente único mezcla: coordinar
 
 > El **coordinador** y el **curador** son **sesión principal**, no subagentes: son los únicos que pueden pedir permisos y hablar con el usuario. Los subagentes son `implementer`, `reviewer` y `openspec-reviewer`.
 
+Los nombres `implementer`, `reviewer` y `openspec-reviewer`, y los comandos `/implementar` y `/revisar`, son los del **adaptador OpenCode de la v0.1**. Los roles —coordinar, implementar, revisar y curar— son del método; otro harness tendría que traducir nombres y comandos. [Ver adaptador](adopcion.html#harness-y-adaptadores).
+
 <svg class="diagram" viewBox="0 0 760 330" role="img" aria-label="Secuencia: coordinador, implementer, gates y reviewer">
   <defs>
     <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
