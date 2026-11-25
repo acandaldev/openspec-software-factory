@@ -12,6 +12,7 @@ const DIST = path.join(ROOT, "dist");
 const LANGS = ["es", "en"];
 const PAGES = JSON.parse(readFileSync(path.join(ROOT, "content", "pages.json"), "utf8"));
 const TEMPLATE = JSON.parse(readFileSync(path.join(ROOT, "data", "template.json"), "utf8"));
+const SITE = TEMPLATE.site.replace(/\/+$/, "");
 
 function subst(s, ctx) {
   return s.replace(/\{\{([\w.]+)\}\}/g, (_, k) => {
@@ -176,6 +177,10 @@ function tocList(toc, ctx) {
 
 function layout({ lang, page, title, description, body, toc, ctx }) {
   const other = lang === "es" ? "en" : "es";
+  const pageUrl = `${SITE}/${lang}/${page.slug}.html`;
+  const alternateUrl = `${SITE}/${other}/${page.slug}.html`;
+  const defaultUrl = `${SITE}/es/${page.slug}.html`;
+  const navLabel = lang === "es" ? "Principal" : "Main";
   const nav = PAGES.map((p) => {
     const active = p.slug === page.slug ? ' class="active"' : "";
     return `<a href="${p.slug}.html"${active}>${p.nav[lang]}</a>`;
@@ -199,15 +204,27 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
 <meta name="theme-color" content="#0a0e12">
 <title>${esc(title)} · OpenSpec Software Factory</title>
 <meta name="description" content="${esc(description)}">
+<link rel="canonical" href="${pageUrl}">
+<link rel="alternate" hreflang="${lang}" href="${pageUrl}">
+<link rel="alternate" hreflang="${other}" href="${alternateUrl}">
+<link rel="alternate" hreflang="x-default" href="${defaultUrl}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OpenSpec Software Factory">
+<meta property="og:title" content="${esc(title)} · OpenSpec Software Factory">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:url" content="${pageUrl}">
+<meta property="og:locale" content="${lang === "es" ? "es_ES" : "en_US"}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="${esc(title)} · OpenSpec Software Factory">
+<meta name="twitter:description" content="${esc(description)}">
 <link rel="stylesheet" href="../assets/style.css">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="${other}" href="../${other}/${page.slug}.html">
 </head>
 <body>
 <div class="progress" aria-hidden="true"></div>
 <header class="top">
   <a class="brand" href="index.html"><span class="mark">▦</span> OpenSpec <em>Software Factory</em></a>
-  <nav>${nav}<a class="ext" href="${TEMPLATE.repository}" target="_blank" rel="noopener">GitHub</a></nav>
+  <nav aria-label="${navLabel}">${nav}<a class="ext" href="${TEMPLATE.repository}" target="_blank" rel="noopener">GitHub</a></nav>
   <a class="lang" href="../${other}/${page.slug}.html" hreflang="${other}">${langLabel}</a>
 </header>
 <div class="shell">
@@ -234,7 +251,7 @@ function redirectPage(lang, target) {
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="0; url=${target}">
 <meta name="robots" content="noindex">
-<link rel="canonical" href="${target}">
+<link rel="canonical" href="${SITE}/${lang}/${target}">
 <title>Redirigiendo…</title>
 </head>
 <body>
@@ -284,10 +301,45 @@ for (const lang of LANGS) {
 
 writeFileSync(
   path.join(DIST, "index.html"),
-  `<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=es/"><link rel="canonical" href="es/"><title>OpenSpec Software Factory</title>`,
+  `<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=es/"><link rel="canonical" href="${SITE}/es/"><title>OpenSpec Software Factory</title>`,
+  "utf8",
+);
+
+const sitemapUrls = LANGS.flatMap((lang) =>
+  PAGES.map((page) => `  <url><loc>${SITE}/${lang}/${page.slug}.html</loc></url>`),
+).join("\n");
+writeFileSync(
+  path.join(DIST, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls}\n</urlset>\n`,
+  "utf8",
+);
+writeFileSync(
+  path.join(DIST, "robots.txt"),
+  `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`,
+  "utf8",
+);
+writeFileSync(
+  path.join(DIST, "404.html"),
+  `<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>404 · OpenSpec Software Factory</title>
+<link rel="stylesheet" href="${SITE}/assets/style.css">
+</head>
+<body>
+<main style="max-width:720px;margin:15vh auto;padding:0 24px">
+<h1>404</h1>
+<p>Esta página no existe. <a href="${SITE}/es/">Volver en español</a> · <a href="${SITE}/en/">Back in English</a>.</p>
+</main>
+</body>
+</html>
+`,
   "utf8",
 );
 
 console.log(
-  `Generado dist/: ${PAGES.length} páginas × ${LANGS.length} idiomas + ${redirectCount} redirecciones`,
+  `Generado dist/: ${PAGES.length} páginas × ${LANGS.length} idiomas + ${redirectCount} redirecciones + sitemap/robots/404`,
 );
