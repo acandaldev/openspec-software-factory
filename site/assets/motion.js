@@ -36,14 +36,27 @@
       );
     }
 
-    // Entrada de la portada: badge, fases, arranque y código.
+    // Entrada de bloques de contenido.
+    for (const element of document.querySelectorAll(
+      "main .table-wrap, main blockquote, main:not(.page-index) pre",
+    )) {
+      gsap.from(element, {
+        opacity: 0,
+        y: 10,
+        duration: 0.45,
+        ease: "power1.out",
+        scrollTrigger: { trigger: element, start: "top 92%", once: true },
+      });
+    }
+
+    const heroBadge = document.querySelector("main .hero-badge");
+    if (heroBadge) {
+      gsap.from(heroBadge, { opacity: 0, y: 8, duration: 0.5, ease: "power1.out" });
+    }
+
+    // Entrada de la portada: fases, arranque y código.
     const index = document.querySelector(".page-index");
     if (index) {
-      const badge = index.querySelector(".hero-badge");
-      if (badge) {
-        gsap.from(badge, { opacity: 0, y: 8, duration: 0.5, ease: "power1.out" });
-      }
-
       const story = index.querySelector(".story");
       if (story) {
         const cards = story.querySelectorAll(".story-step");
@@ -186,7 +199,7 @@
     document.documentElement.classList.remove("js");
     try {
       gsap.set(
-        "[data-reveal], main h1, .page-index .hero-badge, .page-index .story, .page-index .story-step, .page-index .story-arrow, .page-index .story-loop, .page-index .section-kicker, .page-index .section-title, .page-index > ol > li, .page-index pre",
+        "[data-reveal], main h1, main .hero-badge, main .story, main .story-step, main .story-arrow, main .story-loop, main .section-kicker, main .section-title, main > ol > li, main pre, main .table-wrap, main blockquote",
         { clearProps: "opacity,transform" },
       );
     } catch {

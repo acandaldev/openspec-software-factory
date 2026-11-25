@@ -49,4 +49,4 @@ node bootstrap.mjs
 /revisar
 ```
 
-<p class="actions"><a class="cta" href="adopcion.html">Cómo empezar</a><a class="cta ghost" href="metodo.html">Ver el método</a><a class="cta ghost" href="ejemplo.html">Ver el ejemplo</a></p>
+<p class="actions"><a class="cta" href="adopcion.html">Cómo empezar</a><a class="cta ghost" href="metodo.html">Ver el método</a><a class="cta ghost" href="ejemplo.html">Ver el ejemplo</a><a class="cta ghost star" href="https://github.com/acandaldev/openspec-software-factory-template" target="_blank" rel="noopener">★ Danos una estrella</a></p>
