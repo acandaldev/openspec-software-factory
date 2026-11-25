@@ -6,7 +6,7 @@
 
 > Los comandos de este recorrido son los del adaptador OpenCode de la v0.1. El método —spec, gates y traza— es el mismo con otro harness.
 
-El cambio se llama `notas`. Tiene **dos bloques** y **once tareas**. Un bloque es una fase que se puede desplegar sola; una tarea es un trozo pequeño con su propio commit. El ejemplo enseña cuándo se llama a cada comando y qué deja cada paso antes de pasar al siguiente.
+El cambio se llama `notas`. Tiene **dos bloques** y **once tareas**. Un bloque es una fase que se puede integrar sola; una tarea es un trozo pequeño con su propio commit. El ejemplo enseña cuándo se llama a cada comando y qué deja cada paso antes de pasar al siguiente; el deploy se decide al cerrar el carril.
 
 ## Las piezas que vas a ver
 
@@ -63,12 +63,12 @@ Esta es la secuencia de comandos del ejemplo, de principio a fin:
 | 3 | Bloque 1, tarea `[HARD]` | `/implementar notas 1.1` | Se implementa y se commitea la primera tarea. |
 | 4 | Revisar `1.1` | `/revisar notas 1.1` | Un revisor independiente da el veredicto de esa tarea. |
 | 5 | Resto del bloque 1 | `/coordinar notas 1` | Se ejecutan `1.2` a `1.6`, con la revisión del bloque, y se para antes de la PR. |
-| 6 | Cerrar el bloque 1 | Abrir la PR y mergear | CI verde, merge y despliegue del bloque. |
+| 6 | Cerrar el bloque 1 | Abrir la PR y mergear | CI verde y merge; el deploy espera al cierre del carril. |
 | 7 | Curar el bloque 1 | `/curar notas 1` | Se propone mejorar el harness con la traza del bloque. |
 | 8 | Bloque 2, tarea `[HARD]` | `/implementar notas 2.1` | Se implementa la edición sin perder cambios. |
 | 9 | Revisar `2.1` | `/revisar notas 2.1` | Veredicto de la tarea de datos. |
 | 10 | Resto del bloque 2 | `/coordinar notas 2` | Se ejecutan `2.2` a `2.5` y se para antes de la PR. |
-| 11 | Cerrar el bloque 2 | Abrir la PR y mergear | CI verde, merge y despliegue. |
+| 11 | Cerrar el bloque 2 y el carril | Abrir la PR, mergear y lanzar el deploy del carril | CI verde, merge y un único deploy al cerrar el carril. |
 | 12 | Curar el bloque 2 | `/curar notas 2` | Última tanda de mejoras del harness del cambio. |
 | 13 | Cerrar el cambio | `/openspec-review`, `/opsx-verify`, `/opsx-sync`, `/opsx-archive` | Se revisa, se verifica, se sincronizan las specs y se archiva. |
 
@@ -130,7 +130,7 @@ Si prefieres controlar cada lote, puedes usar `/implementar notas 1.2-1.3`, `/im
 
 **Qué pasa:** la rama `feat/notas-1` se convierte en una PR contra `main`. El CI ejecuta la suite completa. Cuando está en verde y la revisión está registrada, se mergea con merge commit, nunca con squash: los trailers del brief se perderían.
 
-**Qué miras:** CI verde, PR mergeada y el bloque desplegado. Un bloque es una ventana de despliegue; no mezcles dos bloques en la misma PR.
+**Qué miras:** CI verde y PR mergeada; **sin deploy todavía**. El bloque integra en `main`; el despliegue se lanza al cerrar el carril. No mezcles dos bloques en la misma PR.
 
 ### 7. Curar el bloque 1
 
@@ -154,15 +154,15 @@ Si prefieres controlar cada lote, puedes usar `/implementar notas 1.2-1.3`, `/im
 
 **Comando:** `/coordinar notas 2`
 
-**Qué pasa:** encadena `2.2` a `2.5`, agrupa las tareas `NORMAL` y `[FAST]`, revisa el bloque y para antes de la PR. Después se abre la PR, se espera el CI y se mergea.
+**Qué pasa:** encadena `2.2` a `2.5`, agrupa las tareas `NORMAL` y `[FAST]`, revisa el bloque y para antes de la PR. Después se abre la PR, se espera el CI y se mergea. Al cerrar el carril, se lanza **un único deploy** de los dos bloques y se verifica el commit servido.
 
-**Qué miras:** las cinco tareas del bloque cerradas, la suite completa en verde y la PR mergeada.
+**Qué miras:** las cinco tareas del bloque cerradas, la suite completa en verde, la PR mergeada y el deploy del carril en verde.
 
 ### 10. Curar el bloque 2 y cerrar el cambio
 
 **Comando:** `/curar notas 2`
 
-Después, con el cambio ya implementado y mergeado:
+Después, con el cambio ya implementado, mergeado y desplegado en pre:
 
 ```text
 /openspec-review notas
@@ -199,14 +199,14 @@ Eso es curar: no parchear el síntoma, cerrar el hueco que lo hizo posible.
 - **No ejecutar `/curar` por cada tarea**: se ejecuta al cerrar bloque o cambio; `--semana` es un barrido opcional.
 - **No mergear con el CI en rojo** ni con la revisión pendiente.
 - **No arreglar un hallazgo debilitando el test** o cambiando la regla para que el veredicto pase.
-- **No mezclar dos bloques en la misma PR**: cada bloque tiene su rama y su ventana de despliegue.
+- **No mezclar dos bloques en la misma PR**: cada bloque tiene su rama; el despliegue es una ventana de carril.
 
 ## Glosario mínimo
 
 | Término | Qué significa |
 |---|---|
 | **Cambio** | El trabajo completo que empieza en una propuesta y termina archivado. |
-| **Bloque** | Una fase entregable del cambio. Se despliega sola y termina en una PR. |
+| **Bloque** | Una fase entregable del cambio. Se integra sola y termina en una PR; el deploy es del carril. |
 | **Tarea** | Un paso pequeño y observable dentro de un bloque. |
 | **Nivel** | `[HARD]`, `NORMAL` o `[FAST]`; decide modelo, tamaño del lote y cadencia de revisión. |
 | **Brief** | La instrucción cerrada que recibe el implementer. |

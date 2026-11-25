@@ -6,7 +6,7 @@
 
 > The commands in this walkthrough are those of the OpenCode adapter for v0.1. The method —spec, gates and trace— is the same with another harness.
 
-The change is called `notes`. It has **two blocks** and **eleven tasks**. A block is a phase that can be deployed on its own; a task is a small piece with its own commit. The example shows when each command is called and what each step leaves behind before moving on.
+The change is called `notes`. It has **two blocks** and **eleven tasks**. A block is a phase that can be integrated on its own; a task is a small piece with its own commit. The example shows when each command is called and what each step leaves behind before moving on; the deploy is decided when the lane closes.
 
 ## The pieces you will see
 
@@ -63,12 +63,12 @@ This is the command sequence for the example, from start to finish:
 | 3 | Block 1, `[HARD]` task | `/implementar notes 1.1` | The first task is implemented and committed. |
 | 4 | Review `1.1` | `/revisar notes 1.1` | An independent reviewer issues the verdict for that task. |
 | 5 | Rest of block 1 | `/coordinar notes 1` | `1.2` to `1.6` run, with the block review, and stop before the PR. |
-| 6 | Close block 1 | Open the PR and merge | Green CI, merge and deploy the block. |
+| 6 | Close block 1 | Open the PR and merge | Green CI and merge; the deploy waits for the lane close. |
 | 7 | Curate block 1 | `/curar notes 1` | The block trace is turned into harness improvements. |
 | 8 | Block 2, `[HARD]` task | `/implementar notes 2.1` | Editing without losing changes is implemented. |
 | 9 | Review `2.1` | `/revisar notes 2.1` | Verdict for the data task. |
 | 10 | Rest of block 2 | `/coordinar notes 2` | `2.2` to `2.5` run and stop before the PR. |
-| 11 | Close block 2 | Open the PR and merge | Green CI, merge and deploy. |
+| 11 | Close block 2 and the lane | Open the PR, merge and launch the lane deploy | Green CI, merge and a single deploy at lane close. |
 | 12 | Curate block 2 | `/curar notes 2` | Final harness batch for the change. |
 | 13 | Close the change | `/openspec-review`, `/opsx-verify`, `/opsx-sync`, `/opsx-archive` | Review, verify, sync specs and archive. |
 
@@ -130,7 +130,7 @@ If you prefer to control each batch, use `/implementar notes 1.2-1.3`, `/impleme
 
 **What happens:** branch `feat/notes-1` becomes a PR against `main`. CI runs the full suite. When it is green and the review is recorded, it is merged with a merge commit, never squash: the brief trailers would be lost.
 
-**What you look at:** green CI, merged PR and the block deployed. A block is a deployment window; do not mix two blocks in the same PR.
+**What you look at:** green CI and a merged PR; **no deploy yet**. The block integrates into `main`; the deploy is launched at lane close. Do not mix two blocks in the same PR.
 
 ### 7. Curate block 1
 
@@ -154,15 +154,15 @@ If you prefer to control each batch, use `/implementar notes 1.2-1.3`, `/impleme
 
 **Command:** `/coordinar notes 2`
 
-**What happens:** it chains `2.2` to `2.5`, groups the `NORMAL` and `[FAST]` tasks, reviews the block and stops before the PR. Then the PR is opened, CI is awaited and it is merged.
+**What happens:** it chains `2.2` to `2.5`, groups the `NORMAL` and `[FAST]` tasks, reviews the block and stops before the PR. Then the PR is opened, CI is awaited and it is merged. At lane close, **one single deploy** of both blocks is launched and the served commit is verified.
 
-**What you look at:** the five block tasks closed, the full suite green and the PR merged.
+**What you look at:** the five block tasks closed, the full suite green, the PR merged and the lane deploy green.
 
 ### 10. Curate block 2 and close the change
 
 **Command:** `/curar notes 2`
 
-Then, with the change implemented and merged:
+Then, with the change implemented, merged and deployed to pre:
 
 ```text
 /openspec-review notes
@@ -199,14 +199,14 @@ That is curation: not patching the symptom, closing the gap that made it possibl
 - **Do not run `/curar` for every task**: it runs at block or change close; `--semana` is an optional sweep.
 - **Do not merge with red CI** or with a pending review.
 - **Do not fix a finding by weakening the test** or changing the rule so the verdict passes.
-- **Do not mix two blocks in the same PR**: each block has its branch and deployment window.
+- **Do not mix two blocks in the same PR**: each block has its branch; the deploy is a lane window.
 
 ## Minimal glossary
 
 | Term | What it means |
 |---|---|
 | **Change** | The whole job that starts as a proposal and ends archived. |
-| **Block** | A deliverable phase of the change. It deploys on its own and ends in a PR. |
+| **Block** | A deliverable phase of the change. It integrates on its own and ends in a PR; the deploy belongs to the lane. |
 | **Task** | A small, observable step inside a block. |
 | **Level** | `[HARD]`, `NORMAL` or `[FAST]`; it decides model, batch size and review cadence. |
 | **Brief** | The closed instruction the implementer receives. |

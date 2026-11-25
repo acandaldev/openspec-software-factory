@@ -13,7 +13,7 @@ The method is understood through its loops. Each has a cadence, an artifact and 
 
   <rect x="58" y="96" width="644" height="224" rx="12" fill="#0d1319" stroke="#22303a"/>
   <text x="80" y="122" fill="#93a4b3" font-family="system-ui" font-size="13">BLOCK · days</text>
-  <text x="680" y="122" text-anchor="end" fill="#6ee7a8" font-family="system-ui" font-size="12">branch · PR · deploy</text>
+  <text x="680" y="122" text-anchor="end" fill="#6ee7a8" font-family="system-ui" font-size="12">branch · PR</text>
 
   <rect x="82" y="138" width="596" height="156" rx="10" fill="#0a0e12" stroke="#22303a"/>
   <text x="104" y="166" fill="#e6edf3" font-family="system-ui" font-size="15" font-weight="600">TASK · hours</text>
@@ -34,7 +34,7 @@ It is a product unit with its own specification: proposal, requirements, design 
 
 ## Block
 
-It is a deliverable phase. One branch, one worktree, several tasks and one PR. Its question is "what can be deployed together without breaking anything?". The block merge is the deploy window.
+It is a deliverable phase. One branch, one worktree, several tasks and one PR. Its question is "what can be integrated together without breaking anything?". The block merge integrates into `main`; the deploy belongs to the lane, not to each block.
 
 ## Task
 
@@ -63,6 +63,7 @@ Autonomy is not "never ask". It is knowing exactly when to stop:
 - A file colliding with another lane.
 - A red CI that the retry does not fix.
 - The end of the block: the PR.
+- The lane close: the deploy and its verification.
 - The context threshold, before the model loses the thread.
 
 Everything else keeps going. And every stop leaves a reason, so the curator can fix the cause.

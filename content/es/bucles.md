@@ -13,7 +13,7 @@ El método se entiende por sus bucles. Cada uno tiene una cadencia, un artefacto
 
   <rect x="58" y="96" width="644" height="224" rx="12" fill="#0d1319" stroke="#22303a"/>
   <text x="80" y="122" fill="#93a4b3" font-family="system-ui" font-size="13">BLOQUE · días</text>
-  <text x="680" y="122" text-anchor="end" fill="#6ee7a8" font-family="system-ui" font-size="12">rama · PR · despliegue</text>
+  <text x="680" y="122" text-anchor="end" fill="#6ee7a8" font-family="system-ui" font-size="12">rama · PR</text>
 
   <rect x="82" y="138" width="596" height="156" rx="10" fill="#0a0e12" stroke="#22303a"/>
   <text x="104" y="166" fill="#e6edf3" font-family="system-ui" font-size="15" font-weight="600">TAREA · horas</text>
@@ -34,7 +34,7 @@ Es una unidad de producto con especificación propia: propuesta, requisitos, dis
 
 ## Bloque
 
-Es una fase entregable. Una rama, un worktree, varias tareas y una PR. Su pregunta es «¿qué se puede desplegar junto sin romper nada?». El merge del bloque es la ventana de despliegue.
+Es una fase entregable. Una rama, un worktree, varias tareas y una PR. Su pregunta es «¿qué se puede integrar junto sin romper nada?». El merge del bloque integra en `main`; el despliegue es del carril, no de cada bloque.
 
 ## Tarea
 
@@ -63,6 +63,7 @@ La autonomía no es «no preguntar nunca». Es saber exactamente cuándo parar:
 - Un fichero en colisión con otro carril.
 - Un CI rojo que el reintento no arregla.
 - El fin del bloque: la PR.
+- El cierre del carril: el deploy y su verificación.
 - El umbral de contexto, antes de que el modelo pierda el hilo.
 
 Todo lo demás sigue solo. Y cada parada deja motivo, para que el curador pueda corregir la causa.
