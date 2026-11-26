@@ -56,16 +56,20 @@ Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gate
 
 Revisa el rango de commits, no el árbol sin commitear. Lee los requisitos, comprueba la evidencia, ejecuta los gates mínimos sin duplicar el build y, solo si hay lógica de producción, ejecuta la mutación del bloque o verifica las de `[HARD]` en una copia congelada. Emite un veredicto. No escribe código de producción.
 
+Su informe incluye una matriz **escenario → evidencia → estado**: cada escenario del alcance debe tener test, mutación o evidencia manual. Si el escenario o su requisito exige entregar, enviar o notificar, un test que solo comprueba el encolado no cuenta: la evidencia debe llegar al borde de entrega. Todo punto de integración nuevo se valida con una mutación de omisión: se quita el cableado y se exige un test rojo.
+
 ## Reviewer de specs
 
 Revisa la coherencia entre proposal, specs, design y tasks. No toca código ni tests: su salida es un veredicto sobre el contrato. Se usa antes de codificar, al cerrar un cambio o cuando una especificación cambia.
+
+Su informe incluye la matriz **escenario → tarea**: un escenario sin tarea ni cobertura delegada citada (cambio, tarea y dueño) es `CRITICAL`. El `SHALL`/`MUST` manda sobre el escenario: si exige entregar, enviar o notificar y ningún escenario lo refleja, también es `CRITICAL`.
 
 ## Los tres momentos
 
 | Momento | Comando | Pregunta | Salida |
 |---|---|---|---|
-| Antes de codificar, cambio de spec o cierre | `/openspec-review` | ¿El contrato es coherente? | Veredicto sobre proposal, specs, design y tasks |
-| Tarea o bloque | `/revisar` | ¿La implementación cumple el contrato? | Veredicto y hallazgos sobre código y tests |
+| Antes de codificar, cambio de spec o cierre | `/openspec-review` | ¿El contrato es coherente? | Veredicto y matriz escenario → tarea |
+| Tarea o bloque | `/revisar` | ¿La implementación cumple el contrato? | Veredicto y matriz escenario → evidencia |
 | Cierre de bloque o cambio; `--semana` opcional | `/curar` | ¿Qué regla del harness debe cambiar? | 0–3 propuestas para `docs/harness.md` |
 
 ## Curador

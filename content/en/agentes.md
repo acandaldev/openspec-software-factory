@@ -56,16 +56,20 @@ Works in the block's worktree. Implements, writes the test, runs the gates and a
 
 Reviews the commit range, not the uncommitted tree. Reads the requirements, checks the evidence, runs the minimum gates without duplicating the build and, only if there is production logic, runs the block mutation or verifies the `[HARD]` ones in a frozen copy. It issues a verdict. It does not write production code.
 
+Its report includes a **scenario → evidence → status** matrix: every scenario in scope must have a test, a mutation or manual evidence. If the scenario or its requirement calls for delivering, sending or notifying, a test that only checks enqueueing does not count: the evidence must reach the delivery boundary. Every new integration point is validated with an omission mutation: remove the wiring and require a red test.
+
 ## Spec reviewer
 
 Checks coherence between proposal, specs, design and tasks. It touches neither code nor tests: its output is a verdict on the contract. It is used before coding, when closing a change or when a specification changes.
+
+Its report includes the **scenario → task** matrix: a scenario with no task and no cited delegated coverage (change, task and owner) is `CRITICAL`. The `SHALL`/`MUST` prevails over the scenario: if it calls for delivering, sending or notifying and no scenario reflects it, that is also `CRITICAL`.
 
 ## The three moments
 
 | Moment | Command | Question | Output |
 |---|---|---|---|
-| Before coding, spec change or closure | `/openspec-review` | Is the contract coherent? | Verdict on proposal, specs, design and tasks |
-| Task or block | `/revisar` | Does the implementation meet the contract? | Verdict and findings on code and tests |
+| Before coding, spec change or closure | `/openspec-review` | Is the contract coherent? | Verdict and scenario → task matrix |
+| Task or block | `/revisar` | Does the implementation meet the contract? | Verdict and scenario → evidence matrix |
 | Block or change closure; `--semana` optional | `/curar` | Which harness rule should change? | 0–3 proposals for `docs/harness.md` |
 
 ## Curator
