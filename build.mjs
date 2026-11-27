@@ -200,7 +200,7 @@ function layout({ lang, page, title, description, body, toc, ctx }) {
   const pageBadge =
     page.slug === "index"
       ? ""
-      : `<p class="hero-badge"><span class="dot"></span> ${page.nav[lang]}</p>\n`;
+      : `<p class="hero-badge"><span class="dot"></span> ${page.nav?.[lang] ?? title}</p>\n`;
   const starIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5L2.6 9.3l6.5-.9z"/></svg>`;
   const starLabel =
     lang === "es" ? "Danos una estrella en el template" : "Star the template on GitHub";

@@ -23,7 +23,7 @@
   },
   {
     "slug": "ejemplo",
-    "nav": { "es": "Ejemplo completo", "en": "Full example" },
+    "nav": { "es": "Ejemplo", "en": "Example" },
     "description": {
       "es": "Un cambio completo de acme-notes: dos bloques, once tareas y el orden exacto de los comandos.",
       "en": "A complete acme-notes change: two blocks, eleven tasks and the exact command order."
@@ -34,7 +34,7 @@
   },
   {
     "slug": "operacion",
-    "nav": { "es": "Cómo se opera", "en": "How it runs" },
+    "nav": null,
     "description": {
       "es": "Documentos, scripts, curador y una capa wiki opcional: cómo se mantiene el método sin que se pudra.",
       "en": "Documents, scripts, curator and an optional wiki layer: how the method is kept from rotting."
@@ -45,7 +45,7 @@
   },
   {
     "slug": "adopcion",
-    "nav": { "es": "Cómo se adopta", "en": "How to adopt" },
+    "nav": { "es": "Adoptar", "en": "Adopt" },
     "description": {
       "es": "Cómo se adopta en un proyecto, qué añade a OpenSpec y cómo verificar que controla de verdad.",
       "en": "How to adopt it in a project, what it adds to OpenSpec and how to verify it really controls."

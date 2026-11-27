@@ -1,5 +1,7 @@
 # Full example: acme-notes, from idea to archived change
 
+> **In 30 seconds.** One `acme-notes` change in two blocks and eleven tasks: `/opsx-propose` → `/openspec-review` → `/implementar`/`/coordinar` → `/revisar` → `/curar` → `/opsx-archive`. Here you see the exact order, what each step leaves behind and why.
+
 > This walkthrough assumes you already created the repository from the template and ran `node bootstrap.mjs`. If you have not, start with [How to adopt it](adopcion.html).
 
 `acme-notes` is a small notes app: an API, a UI and a two-person team. It is not a real case; it is an imaginary project to show the full sequence without domain noise.

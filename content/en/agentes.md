@@ -82,6 +82,9 @@ The **block** is the `## N.` heading in `tasks.md`; the **level** is each task's
 
 The coordinator reads the requested block and copies the task level into the brief; it does not invent them. Without a label, the task is treated as `NORMAL`. If a task is too large, it is split before starting and the user approves it. A block is a deliverable phase: its branch and PR.
 
+<details class="deep-dive">
+<summary>Models and permissions</summary>
+
 ## Models per level
 
 The task level decides the model and the batch size. Levels are not mixed: the highest one sets the model. The canonical table — when it applies, execution, review and model — lives in [Level and review](#level-and-review).
@@ -89,3 +92,5 @@ The task level decides the model and the batch size. Levels are not mixed: the h
 ## Permissions
 
 A subagent cannot approve a confirmation: there is no user in its session. That is why what it may run is defined in advance. Irreversible actions are denied; routine ones are allowed; doubtful ones are escalated to the human in the coordinator.
+
+</details>

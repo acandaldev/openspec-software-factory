@@ -50,3 +50,4 @@ node bootstrap.mjs
 ```
 
 <p class="actions"><a class="cta" href="adopcion.html">Cómo empezar</a><a class="cta ghost" href="metodo.html">Ver el método</a><a class="cta ghost" href="ejemplo.html">Ver el ejemplo</a></p>
+<p class="actions-note">¿No sabes qué comando toca? <a href="faq.html"><code>/estado</code></a> te devuelve la tabla y el siguiente comando.</p>

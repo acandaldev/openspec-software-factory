@@ -245,9 +245,13 @@ svg { max-width: 100%; height: auto; display: block; margin: 28px auto; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 14px; }
 .actions .cta { margin: 0; }
+.actions-note { color: var(--muted); font-size: 14px; margin: -4px 0 14px; }
 .cta.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
 .cta.ghost:hover { border-color: var(--accent); }
 .prereqs { color: var(--muted); font-size: 14px; margin: -4px 0 14px; }
+.deep-dive { margin: 24px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: var(--radius); }
+.deep-dive summary { cursor: pointer; color: var(--text); font-weight: 600; }
+.deep-dive[open] summary { margin-bottom: 8px; }
 
 .story {
   display: flex;

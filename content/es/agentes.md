@@ -82,6 +82,9 @@ El **bloque** es el encabezado `## N.` de `tasks.md`; el **nivel** es la etiquet
 
 El coordinador lee el bloque que se le pide y copia el nivel de la tarea en el brief; no los inventa. Si falta la etiqueta, la tarea se trata como `NORMAL`. Si una tarea es demasiado grande, se parte antes de empezar y lo aprueba el usuario. Un bloque es una fase entregable: su rama y su PR.
 
+<details class="deep-dive">
+<summary>Modelos y permisos</summary>
+
 ## Modelos por nivel
 
 El nivel de la tarea decide el modelo y el tamaño del lote. No se mezclan niveles: el modelo lo fija el más alto. La tabla canónica —cuándo aplica, ejecución, revisión y modelo— vive en [Nivel y revisión](#nivel-y-revision).
@@ -89,3 +92,5 @@ El nivel de la tarea decide el modelo y el tamaño del lote. No se mezclan nivel
 ## Permisos
 
 Un subagente no puede aprobar una confirmación: no hay usuario en su sesión. Por eso se define por adelantado qué puede ejecutar y qué no. Lo irreversible se deniega; lo rutinario se permite; lo dudoso se pregunta al humano en el coordinador.
+
+</details>
