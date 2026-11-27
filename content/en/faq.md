@@ -34,10 +34,10 @@ The commands do not compete: each has a different scope.
 |---|---|---|---|---|---|---|---|
 | `acme-notes` | 11/11 | 2 | — | — | — | completo | — |
 | `acme-billing` | 3/7 | 1 | `feat/acme-billing-1` | #12 | verde | listo | — |
-COMANDO: /curar acme-notes
+COMANDO: /opsx-archive acme-notes
 ```
 
-`ESTADO` has five fixed values: `completo`, `listo`, `aparcado`, `esperando` and `bloqueado`. A change blocked by red CI, a dirty tree or CI in progress leaves `COMANDO: —`: the human decides the next step. The table never uses the last `main` CI as if it were the lane's; without a PR, `CI` is `—`.
+`ESTADO` has five fixed values: `completo`, `listo`, `aparcado`, `esperando` and `bloqueado`. A change blocked by red CI, a dirty tree or CI in progress leaves `COMANDO: —`: the human decides the next step. A `completo` change recommends `/opsx-archive`: verifying and curating are prior steps enforced at archive time. The table never uses the last `main` CI as if it were the lane's; without a PR, `CI` is `—`.
 
 ## Is `/coordinar` always first?
 

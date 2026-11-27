@@ -34,10 +34,10 @@ Los comandos no compiten: cada uno tiene un ámbito distinto.
 |---|---|---|---|---|---|---|---|
 | `acme-notes` | 11/11 | 2 | — | — | — | completo | — |
 | `acme-billing` | 3/7 | 1 | `feat/acme-billing-1` | #12 | verde | listo | — |
-COMANDO: /curar acme-notes
+COMANDO: /opsx-archive acme-notes
 ```
 
-`ESTADO` tiene cinco valores fijos: `completo`, `listo`, `aparcado`, `esperando` y `bloqueado`. Un cambio bloqueado por CI rojo, árbol sucio o CI en curso deja `COMANDO: —`: el humano decide el siguiente paso. La tabla no usa el último CI de `main` como si fuera el del carril; sin PR, la columna `CI` es `—`.
+`ESTADO` tiene cinco valores fijos: `completo`, `listo`, `aparcado`, `esperando` y `bloqueado`. Un cambio bloqueado por CI rojo, árbol sucio o CI en curso deja `COMANDO: —`: el humano decide el siguiente paso. Un cambio `completo` recomienda `/opsx-archive`: verificar y curar son pasos previos que se exigen al archivar. La tabla no usa el último CI de `main` como si fuera el del carril; sin PR, la columna `CI` es `—`.
 
 ## ¿`/coordinar` es siempre el primero?
 
