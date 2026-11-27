@@ -61,7 +61,7 @@ A red mutation is the only proof that a test proves something. It is always reve
 
 ## 3. Trace
 
-Every task leaves a line with agent, cost and result. Every review leaves verdict, model and cause. And the commit stores the brief in trailers:
+Every task leaves a line with agent, cost and result. Every review leaves verdict, model and cause, including an urgent fix with no OpenSpec change: in that case the trace lives only in the `chore: registra revisión` commit. And the commit stores the brief in trailers:
 
 ```
 feat(notes): 1.2 create note returns 201

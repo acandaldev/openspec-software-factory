@@ -61,7 +61,7 @@ Un rojo mutado es la única prueba de que un test prueba algo. Se revierte siemp
 
 ## 3. Traza
 
-Cada tarea deja una línea con agente, coste y resultado. Cada revisión deja veredicto, modelo y causa. Y el commit guarda el brief en trailers:
+Cada tarea deja una línea con agente, coste y resultado. Cada revisión deja veredicto, modelo y causa, también cuando es una urgencia sin cambio OpenSpec: en ese caso la traza va solo en el commit `chore: registra revisión`. Y el commit guarda el brief en trailers:
 
 ```
 feat(notas): 1.2 crear nota devuelve 201

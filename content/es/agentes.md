@@ -56,7 +56,7 @@ Trabaja en el worktree del bloque. Implementa, escribe el test, ejecuta los gate
 
 Revisa el rango de commits, no el árbol sin commitear. Lee los requisitos, comprueba la evidencia, ejecuta los gates mínimos sin duplicar el build y, solo si hay lógica de producción, ejecuta la mutación del bloque o verifica las de `[HARD]` en una copia congelada. Emite un veredicto. No escribe código de producción.
 
-Su informe incluye una matriz **escenario → evidencia → estado**: cada escenario del alcance debe tener test, mutación o evidencia manual. Si el escenario o su requisito exige entregar, enviar o notificar, un test que solo comprueba el encolado no cuenta: la evidencia debe llegar al borde de entrega. Todo punto de integración nuevo se valida con una mutación de omisión: se quita el cableado y se exige un test rojo.
+Su informe incluye una matriz **escenario → evidencia → estado**: cada escenario del alcance debe tener test, mutación o evidencia manual. Si el escenario o su requisito exige entregar, enviar o notificar, un test que solo comprueba el encolado no cuenta: la evidencia debe llegar al borde de entrega. Todo punto de integración nuevo se valida con una mutación de omisión: se quita el cableado y se exige un test rojo. Un registro DI nuevo se muta quitando su línea del arranque, y el rojo tiene que venir de un test que resuelva el consumidor desde el `ServiceProvider` real, no de un arnés que registre las dependencias a mano.
 
 ## Reviewer de specs
 

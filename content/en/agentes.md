@@ -56,7 +56,7 @@ Works in the block's worktree. Implements, writes the test, runs the gates and a
 
 Reviews the commit range, not the uncommitted tree. Reads the requirements, checks the evidence, runs the minimum gates without duplicating the build and, only if there is production logic, runs the block mutation or verifies the `[HARD]` ones in a frozen copy. It issues a verdict. It does not write production code.
 
-Its report includes a **scenario → evidence → status** matrix: every scenario in scope must have a test, a mutation or manual evidence. If the scenario or its requirement calls for delivering, sending or notifying, a test that only checks enqueueing does not count: the evidence must reach the delivery boundary. Every new integration point is validated with an omission mutation: remove the wiring and require a red test.
+Its report includes a **scenario → evidence → status** matrix: every scenario in scope must have a test, a mutation or manual evidence. If the scenario or its requirement calls for delivering, sending or notifying, a test that only checks enqueueing does not count: the evidence must reach the delivery boundary. Every new integration point is validated with an omission mutation: remove the wiring and require a red test. A new DI registration is mutated by removing its startup line, and the red must come from a test that resolves the consumer from the real `ServiceProvider`, not from a harness that registers dependencies by hand.
 
 ## Spec reviewer
 
