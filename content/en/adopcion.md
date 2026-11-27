@@ -68,7 +68,7 @@ This route sets up the OpenCode adapter for v0.1. Setting up the harness takes 2
 5. **Verify**: `docs-sync --check`, `check-secrets` and the tests.
 6. **Start the method**: `/opsx-propose "<description>"` → `/implementar` → `/revisar`.
 
-`/coordinar` and `/curar` come later; those three commands are enough to start.
+`/coordinar` and `/curar` come later; those three commands are enough to start. If you do not know what is next, `/estado` tells you.
 
 ## Requirements
 

@@ -68,7 +68,7 @@ Esta ruta monta el adaptador OpenCode de la v0.1. Montar el harness lleva 20–3
 5. **Verifica**: `docs-sync --check`, `check-secrets` y los tests.
 6. **Estrena el método**: `/opsx-propose "<descripción>"` → `/implementar` → `/revisar`.
 
-`/coordinar` y `/curar` llegan después; para empezar bastan esos tres comandos.
+`/coordinar` y `/curar` llegan después; para empezar bastan esos tres comandos. Si no sabes qué toca, `/estado` te lo dice.
 
 ## Requisitos
 
