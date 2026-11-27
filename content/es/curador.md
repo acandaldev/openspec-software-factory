@@ -64,7 +64,7 @@ El curador no se ejecuta por inspiración. La cadencia recomendada es:
 - **Al cerrar un cambio**, antes de archivar.
 - **Opcionalmente una vez por semana**, si no ha habido cierres recientes y hay traza acumulada.
 
-El comando es `/curar <cambio> [bloque]` o `/curar --semana` como barrido opcional. Propone 0–3 filas por tanda y no cambia una regla sin aprobación.
+El comando es `/curar <cambio> [bloque]` o `/curar --semana` como barrido opcional. Propone 0–3 filas por tanda y no cambia una regla sin aprobación. Una fila que toca `AGENTS.md`, un agente o un comando se propaga en la misma tanda al sitio (`data/template.json` y `content/`) y a los readme que lo indexen: un registro sin propagación deja dos verdades.
 
 No hay un cron que cure: la comprobación periódica solo valida la documentación. La curación es una revisión humana.
 

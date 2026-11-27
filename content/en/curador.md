@@ -64,7 +64,7 @@ The curator does not run on inspiration. The recommended cadence is:
 - **When a change closes**, before archiving.
 - **Optionally once a week**, if there have been no recent closures and there is accumulated trace.
 
-The command is `/curar <change> [block]` or `/curar --semana` as an optional sweep. It proposes 0–3 rows per batch and does not change a rule without approval.
+The command is `/curar <change> [block]` or `/curar --semana` as an optional sweep. It proposes 0–3 rows per batch and does not change a rule without approval. A row that touches `AGENTS.md`, an agent or a command is propagated in the same batch to the site (`data/template.json` and `content/`) and to the readmes that index it: a registry without propagation leaves two truths.
 
 No cron cures: the periodic check only validates documentation. Curation is a human review.
 
