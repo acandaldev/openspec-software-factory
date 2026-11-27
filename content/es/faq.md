@@ -1,6 +1,6 @@
 # Preguntas frecuentes
 
-Si no sabes qué comando toca, ejecuta `/estado`. Lee el plan, git, la PR y el CI, y te devuelve una línea por cambio con el siguiente comando o carril recomendado.
+Si no sabes qué comando toca, ejecuta `/estado`. Ejecuta `docs-sync --estado` y te devuelve una tabla fija por cambio con el estado y el siguiente comando.
 
 ## ¿Qué comando uso?
 
@@ -25,21 +25,19 @@ Los comandos no compiten: cada uno tiene un ámbito distinto.
 | Gate | `/revisar` | si la evidencia cumple; no es opcional |
 | Cierre | `/curar`, `/opsx-verify`, `/opsx-sync`, `/opsx-archive` | qué regla cambia y cuándo se archiva |
 
-## `/estado`: el observador
+## `/estado`: el observador determinista
 
-`/estado` no implementa, no revisa, no cura y no commitea. Solo lee el plan, el árbol, la PR y el CI, y resume.
+`/estado` ejecuta `node scripts/docs-sync.mjs --estado` y muestra su salida **tal cual**. No interpreta el estado ni ejecuta la recomendación.
 
 ```text
-Estado · 2026-11-27 10:12 · 2 cambios activos
-
-acme-notes     11/11  bloque 2  sin carril  sin PR  —          → /curar y cerrar
-acme-billing    3/7   bloque 1  feat/…-1    PR #12   CI verde   → /revisar bloque 1
-
-Siguiente carril recomendado: feat/acme-notes-2
-Comando: /curar acme-notes 2
+| CAMBIO | TAREAS | BLOQUE | CARRIL | PR | CI | ESTADO | MOTIVO |
+|---|---|---|---|---|---|---|---|
+| `acme-notes` | 11/11 | 2 | — | — | — | completo | — |
+| `acme-billing` | 3/7 | 1 | `feat/acme-billing-1` | #12 | verde | listo | — |
+COMANDO: /curar acme-notes
 ```
 
-Si un dato no se puede confirmar, lo marca como `no verificado`. La recomendación es una sola y no se ejecuta sola: el comando observa, tú decides.
+`ESTADO` tiene cinco valores fijos: `completo`, `listo`, `aparcado`, `esperando` y `bloqueado`. Un cambio bloqueado por CI rojo, árbol sucio o CI en curso deja `COMANDO: —`: el humano decide el siguiente paso. La tabla no usa el último CI de `main` como si fuera el del carril; sin PR, la columna `CI` es `—`.
 
 ## ¿`/coordinar` es siempre el primero?
 

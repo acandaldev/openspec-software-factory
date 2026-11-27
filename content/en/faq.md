@@ -1,6 +1,6 @@
 # Frequently asked questions
 
-If you do not know which command is next, run `/estado`. It reads the plan, git, the PR and CI, and returns one line per change with the recommended next command or lane.
+If you do not know which command is next, run `/estado`. It runs `docs-sync --estado` and returns a fixed table per change with the state and the next command.
 
 ## Which command should I use?
 
@@ -25,21 +25,19 @@ The commands do not compete: each has a different scope.
 | Gate | `/revisar` | whether the evidence holds; it is not optional |
 | Closure | `/curar`, `/opsx-verify`, `/opsx-sync`, `/opsx-archive` | which rule changes and when to archive |
 
-## `/estado`: the observer
+## `/estado`: the deterministic observer
 
-`/estado` does not implement, review, curate or commit. It only reads the plan, the tree, the PR and CI, and summarizes.
+`/estado` runs `node scripts/docs-sync.mjs --estado` and shows its output **verbatim**. It does not interpret the state or execute the recommendation.
 
 ```text
-Status · 2026-11-27 10:12 · 2 active changes
-
-acme-notes     11/11  block 2  no lane   no PR  —          → /curar and close
-acme-billing    3/7   block 1  feat/…-1  PR #12  CI green   → /revisar block 1
-
-Recommended next lane: feat/acme-notes-2
-Command: /curar acme-notes 2
+| CAMBIO | TAREAS | BLOQUE | CARRIL | PR | CI | ESTADO | MOTIVO |
+|---|---|---|---|---|---|---|---|
+| `acme-notes` | 11/11 | 2 | — | — | — | completo | — |
+| `acme-billing` | 3/7 | 1 | `feat/acme-billing-1` | #12 | verde | listo | — |
+COMANDO: /curar acme-notes
 ```
 
-If a fact cannot be confirmed, it is marked `not verified`. The recommendation is a single one and is not executed automatically: the command observes, you decide.
+`ESTADO` has five fixed values: `completo`, `listo`, `aparcado`, `esperando` and `bloqueado`. A change blocked by red CI, a dirty tree or CI in progress leaves `COMANDO: —`: the human decides the next step. The table never uses the last `main` CI as if it were the lane's; without a PR, `CI` is `—`.
 
 ## Is `/coordinar` always first?
 
