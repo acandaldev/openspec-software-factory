@@ -3,7 +3,7 @@
 Sitio público del método: **OpenSpec + subagentes + gates + traza + curador**.
 
 - `content/es/`, `content/en/` — fuente de las páginas en markdown.
-- `content/pages.json` — cinco páginas (landing, método, ejemplo, operación y adopción) y los fragmentos que las componen; las URLs antiguas se generan como redirects.
+- `content/pages.json` — seis páginas (landing, método, ejemplo, operación, adopción y FAQ) y los fragmentos que las componen; las URLs antiguas se generan como redirects.
 - `TEMPLATE.md` — puntero al repositorio del template ejecutable.
 - `data/template.json` — copia fijada del manifiesto del template (versión, repositorio, comandos y agentes).
 - `site/assets/` — CSS, favicon, JS de movimiento y GSAP self-hosted.

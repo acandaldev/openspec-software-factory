@@ -53,5 +53,16 @@
     "intro": "adopcion",
     "sources": ["comparativa"],
     "redirects": ["comparativa"]
+  },
+  {
+    "slug": "faq",
+    "nav": { "es": "FAQ", "en": "FAQ" },
+    "description": {
+      "es": "Qué comando usar en cada momento, qué hace /estado y por qué coordinar no decide los gates.",
+      "en": "Which command to use at each point, what /estado does and why coordinar does not decide the gates."
+    },
+    "intro": "faq",
+    "sources": [],
+    "redirects": []
   }
 ]
